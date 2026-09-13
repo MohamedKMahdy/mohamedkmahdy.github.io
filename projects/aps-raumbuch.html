@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APS Raumbuch | Mohamed K. Mahdy</title>
+<meta name="description" content="ACC-connected room book generator that also runs fully offline against IFC.">
+<meta property="og:title" content="APS Raumbuch | Mohamed K. Mahdy">
+<meta property="og:description" content="ACC-connected room book generator that also runs fully offline against IFC.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.github.io/projects/aps-raumbuch.html">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
+
+<div class="wrap"><a class="crumb" href="../index.html">← Mohamed K. Mahdy</a></div>
+<header style="padding-top:26px"><div class="wrap">
+  <p class="label">Cloud · openBIM</p>
+  <h1>Cloud-connected, vendor-neutral</h1>
+  <p class="stack">React · FastAPI · Autodesk Platform Services · AEC Data Model API · IFC</p>
+  <div class="proj-body"><p>Authenticates against APS, browses Autodesk Construction Cloud, opens a model in the APS Viewer, extracts every room and the furniture inside it, and exports a formatted German <em>Raumbuch</em> to Excel or PDF.</p><p><strong>Cross-model association.</strong> Rooms living in a linked geometry node joined to furniture in the main model through baked room parameters, with deduplication, because partial linked copies share element ids.</p><p>Queries the AEC Data Model GraphQL API directly rather than scraping the Viewer's property database, which is faster and works before the model finishes loading.</p></div>
+  <div class="result">Not locked to one vendor: the same extraction runs <strong>fully offline</strong> against an uploaded IFC file via IfcOpenShell.</div>
+</div></header>
+
+<footer><div class="wrap">
+  <p class="label">Get in touch</p>
+  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
+    <a class="btn" href="../index.html">All work</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+  </div>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

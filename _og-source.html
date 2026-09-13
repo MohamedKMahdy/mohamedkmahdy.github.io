@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  @page { size: 1200px 630px; margin: 0; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{
+    background:#1F4E5F; color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 78px; position:relative;
+  }
+  /* faint grid, architectural feel */
+  .grid{
+    position:absolute; inset:0; opacity:.07;
+    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
+    background-size:60px 60px;
+  }
+  .inner{position:relative}
+  .eyebrow{
+    font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:20px;
+    letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.62);
+    margin-bottom:26px;
+  }
+  h1{font-size:78px; line-height:1.02; letter-spacing:-.025em; font-weight:650; margin-bottom:18px}
+  .role{
+    font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:25px;
+    color:#9fd0de; letter-spacing:.02em; margin-bottom:30px;
+  }
+  .rule{width:96px;height:3px;background:rgba(255,255,255,.45);margin-bottom:30px}
+  .lede{font-size:29px; line-height:1.4; color:rgba(255,255,255,.93); max-width:830px}
+  .stats{
+    position:absolute; left:78px; right:78px; bottom:52px;
+    display:flex; gap:52px; font-family:ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  .stat b{display:block;font-size:34px;font-weight:650;letter-spacing:-.02em;line-height:1.1}
+  .stat span{font-size:14px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+</style></head>
+<body>
+  <div class="grid"></div>
+  <div class="inner">
+    <p class="eyebrow">Munich, Germany</p>
+    <h1>Mohamed K. Mahdy</h1>
+    <p class="role">AEC Solutions Architect &amp; AI Specialist</p>
+    <div class="rule"></div>
+    <p class="lede">I build the software layer between engineers and their models, and the AI layer above it.</p>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>~20</b><span>Tools shipped</span></div>
+    <div class="stat"><b>5+</b><span>Years in AEC</span></div>
+    <div class="stat"><b>895</b><span>Consulting hours</span></div>
+    <div class="stat"><b>BIM · GIS · AI</b><span>Where I work</span></div>
+  </div>
+</body></html>
