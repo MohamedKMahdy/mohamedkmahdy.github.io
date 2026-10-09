@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static site generator for mohamedkmahdy.github.io.
 Run: python3 build.py   (from the site/ directory)"""
-import os, html
+import os, html, hashlib
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 OUT_PROJ = os.path.join(SITE, 'projects')
@@ -711,7 +711,10 @@ def build_project(i, p):
     chips = "".join(f"<li>{s}</li>" for s in p['stack'])
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
 
-    og = f"og/{p['slug']}.png" if os.path.exists(os.path.join(SITE, 'og', p['slug'] + '.png')) else "og-image.png"
+    og_file = os.path.join(SITE, 'og', p['slug'] + '.png')
+    # The version is the image's content hash, so link previews refresh whenever the image changes.
+    og = (f"og/{p['slug']}.png?v={hashlib.sha1(open(og_file, 'rb').read()).hexdigest()[:8]}"
+          if os.path.exists(og_file) else "og-image.png")
     return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../",
                 f"{BASE}/projects/{p['slug']}.html", og) + f"""
 <main id="main">
