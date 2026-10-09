@@ -432,7 +432,7 @@ bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribut
 bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
 cs.forEach(function(c){c.hidden=k!=='all'&&(' '+c.getAttribute('data-cats')+' ').indexOf(' '+k+' ')<0});});});})();"""
 
-def head(title, desc, root, url):
+def head(title, desc, root, url, og="og-image.png"):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -445,11 +445,11 @@ def head(title, desc, root, url):
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
 <meta property="og:site_name" content="{NAME}">
-<meta property="og:image" content="{BASE}/og-image.png">
+<meta property="og:image" content="{BASE}/{og}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="{BASE}/og-image.png">
+<meta name="twitter:image" content="{BASE}/{og}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="{root}style.css">
 </head>
@@ -623,6 +623,70 @@ def build_index():
 {JS_FILTER}</script>
 </body></html>"""
 
+# ---------------------------------------------------------------- link preview images
+# One 1200 x 630 card per project page, so a shared link (LinkedIn, Teams, Slack) shows the project
+# itself. Needs Pillow and the macOS system fonts; without them the shared og-image.png is used.
+def build_og(p):
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        F = "/System/Library/Fonts/"
+        bold = lambda n: ImageFont.truetype(F + "Supplemental/Arial Bold.ttf", n)
+        sans = lambda n: ImageFont.truetype(F + "SFNS.ttf", n)
+        mono = lambda n: ImageFont.truetype(F + "Menlo.ttc", n)
+        bold(10)
+    except Exception:
+        return False
+    W, H, TEAL = 1200, 630, (31, 78, 95)
+    im = Image.new("RGB", (W, H), TEAL)
+    grid = Image.new("RGBA", (W, H), (0, 0, 0, 0)); g = ImageDraw.Draw(grid)
+    for x in range(0, W, 60): g.line([(x, 0), (x, H)], fill=(255, 255, 255, 16))
+    for y in range(0, H, 60): g.line([(0, y), (W, y)], fill=(255, 255, 255, 16))
+    im.paste(grid, (0, 0), grid)
+    d = ImageDraw.Draw(im)
+    shot = next((src for kind, src, *_ in p['media'] if kind in ('img', 'imgn')), None)
+    tw = 470 if shot else 1000
+
+    def wrap(text, font, width, lines):
+        out, cur = [], ""
+        for w in text.split():
+            t = (cur + " " + w).strip()
+            if d.textlength(t, font=font) <= width: cur = t
+            else: out.append(cur); cur = w
+        out.append(cur)
+        if len(out) > lines:
+            out = out[:lines]; out[-1] = out[-1].rstrip(".,:;") + "..."
+        return out
+
+    x, y = 64, 64
+    d.text((x, y), "MOHAMED K. MAHDY", font=mono(19), fill=(170, 196, 205)); y += 52
+    title = html.unescape(p['title'])
+    for size in (64, 56, 48):
+        tl = wrap(title, bold(size), tw, 3)
+        if len(tl) <= 2 or size == 48: break
+    for line in tl:
+        d.text((x, y), line, font=bold(size), fill="white"); y += int(size * 1.12)
+    y += 10
+    d.text((x, y), html.unescape(p['tag']).upper(), font=mono(19), fill=(159, 208, 222)); y += 48
+    for line in wrap(html.unescape(p['card']), sans(26), tw, 6 if shot else 4):
+        d.text((x, y), line, font=sans(26), fill=(226, 236, 240)); y += 37
+    d.text((x, H - 64), "mohamedkmahdy.github.io", font=mono(18), fill=(150, 180, 190))
+
+    if shot:
+        bx, by, bw, bh = 576, 56, 568, 518
+        src = Image.open(os.path.join(SITE, shot)).convert("RGB")
+        scale = max(bw / src.width, bh / src.height)
+        src = src.resize((round(src.width * scale), round(src.height * scale)), Image.LANCZOS)
+        src = src.crop((0, 0, bw, bh))
+        shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(shadow).rounded_rectangle([bx + 6, by + 10, bx + bw + 6, by + bh + 10], 16, fill=(0, 0, 0, 70))
+        im.paste(shadow, (0, 0), shadow)
+        mask = Image.new("L", (bw, bh), 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, bw - 1, bh - 1], 14, fill=255)
+        im.paste(src, (bx, by), mask)
+        d.rounded_rectangle([bx, by, bx + bw - 1, by + bh - 1], 14, outline=(255, 255, 255), width=2)
+    os.makedirs(os.path.join(SITE, 'og'), exist_ok=True)
+    im.save(os.path.join(SITE, 'og', p['slug'] + '.png'), optimize=True)
+    return True
+
 # ---------------------------------------------------------------- project page
 def build_project(i, p):
     gal = ""
@@ -647,8 +711,9 @@ def build_project(i, p):
     chips = "".join(f"<li>{s}</li>" for s in p['stack'])
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
 
+    og = f"og/{p['slug']}.png" if os.path.exists(os.path.join(SITE, 'og', p['slug'] + '.png')) else "og-image.png"
     return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../",
-                f"{BASE}/projects/{p['slug']}.html") + f"""
+                f"{BASE}/projects/{p['slug']}.html", og) + f"""
 <main id="main">
 <div class="wrap read">
   <a class="crumb" href="../index.html#work">← All work</a>
@@ -681,9 +746,10 @@ def build_project(i, p):
 os.makedirs(OUT_PROJ, exist_ok=True)
 open(os.path.join(SITE, 'style.css'), 'w').write(CSS)
 open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
+og_made = [build_og(p) for p in P]
 for i, p in enumerate(P):
     open(os.path.join(OUT_PROJ, p['slug'] + '.html'), 'w').write(build_project(i, p))
-print(f"built: index.html, style.css, {len(P)} project pages")
+print(f"built: index.html, style.css, {len(P)} project pages, {sum(og_made)} preview images")
 for p in P:
     n = len(p['media'])
     print(f"  projects/{p['slug']}.html  ({n} media)" if n else f"  projects/{p['slug']}.html")
