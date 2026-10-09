@@ -19,25 +19,61 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
-
-<div class="wrap"><a class="crumb" href="../index.html">← Mohamed K. Mahdy</a></div>
-<header style="padding-top:26px"><div class="wrap">
-  <p class="label">Scheduled services</p>
-  <h1>Nothing should depend on someone remembering</h1>
-  <p class="stack">C# · Revit API · Navisworks · Power BI · Windows scheduler</p>
-  <div class="proj-body"><p><strong>VITAL</strong> is a bulk Revit model checker with a built-in scheduler. It runs check-sets across every project on a nightly cycle and extracts performance metrics into Power BI, so degradation is caught before it becomes a problem.</p><p><strong>ANT</strong> is a background service that exports NWC and DWG deliverables every night. Nobody has to remember, and nothing is missed before a deadline.</p></div>
-  <div class="result">Boring by design. <strong>Reliability is the feature.</strong></div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
-<section><div class="wrap"><h2>Demos &amp; interface</h2><div class="gallery"><figure><img src="../img/image9.png" alt="VITAL: scheduled check configuration" loading="lazy"><figcaption><b>VITAL: scheduled check configuration</b><span>Projects and check-sets defined once, then run unattended on a nightly cycle.</span></figcaption></figure><figure><img src="../img/image7.png" alt="ANT: bulk export configuration" loading="lazy"><figcaption><b>ANT: bulk export configuration</b></figcaption></figure></div></div></section>
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
-    <a class="btn" href="../index.html">All work</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Scheduled services</span>
+    <h1>VITAL &amp; ANT</h1>
+    <p class="subtitle">Nothing should depend on someone remembering.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API</li><li>Navisworks</li><li>Power BI</li><li>Windows scheduler</li></ul>
   </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">Nightly checks and exports only happen reliably when nobody has to remember to start them.</p>
+  <h2>What it does</h2>
+  <p><strong>VITAL</strong> is a bulk Revit model checker with a built-in scheduler. It runs check-sets across every project on a nightly cycle and extracts performance metrics into Power BI, so degradation is caught before it becomes a problem.</p><p><strong>ANT</strong> is a background service that exports NWC and DWG deliverables every night. Nobody has to remember, and nothing is missed before a deadline.</p>
+  <div class="result"><span>Highlight</span>Boring by design. <strong>Reliability is the feature.</strong></div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/image9.png" target="_blank" rel="noopener"><img src="../img/image9.png" alt="VITAL: scheduled check configuration" loading="lazy"></a><figcaption><b>VITAL: scheduled check configuration</b><span>Projects and check-sets defined once, then run unattended on a nightly cycle.</span></figcaption></figure><figure><a href="../img/image7.png" target="_blank" rel="noopener"><img src="../img/image7.png" alt="ANT: bulk export configuration" loading="lazy"></a><figcaption><b>ANT: bulk export configuration</b></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="bim-analytics.html"><small>← Previous project</small><b>BIM Analytics</b></a>
+  <a class="next" href="curtain-panels.html"><small>Next project →</small><b>Curtain Panel Suite</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
 </div></footer>
 <script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}

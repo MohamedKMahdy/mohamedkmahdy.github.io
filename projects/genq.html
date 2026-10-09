@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GenQ | Mohamed K. Mahdy</title>
+<meta name="description" content="Priced, classified bills of quantities straight from the Revit model, exported to Excel, PDF or CSV. Revit 2022 to 2027.">
+<meta property="og:title" content="GenQ | Mohamed K. Mahdy">
+<meta property="og:description" content="Priced, classified bills of quantities straight from the Revit model, exported to Excel, PDF or CSV. Revit 2022 to 2027.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.github.io/projects/genq.html">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Revit · quantity take-off</span>
+    <h1>GenQ</h1>
+    <p class="subtitle">A priced bill of quantities without leaving Revit.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API 2022 to 2027</li><li>.NET Framework 4.8 / .NET 8 / .NET 10</li><li>ClosedXML</li><li>PDFsharp</li><li>xUnit</li></ul>
+  </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">Quantity surveyors often re-measure what the model already knows. GenQ reads the quantities straight from Revit and prices them.</p>
+  <h2>What it does</h2>
+  <p>Tick the element types to price and give each one a unit, a division and section code (CSI MasterFormat 2018 or a custom list), a rate and a description. GenQ measures the model and exports the bill of quantities to Excel, PDF or CSV from a docked panel, so you keep working in Revit while it is open.</p><p>Version 3 measures the model in one pass instead of one per type, adds phase, design option and level filters, counts repeated placements of linked models, and matches categories by Revit's built-in ids, so it works in any Revit language. Units cover count, length, area, volume, weight from material density, and one line per material layer. Settings and rates are saved in the model itself, and price lists move between projects as Excel files.</p><p>Every third-party library is bundled into one assembly and loaded in a private context, so GenQ never clashes with Revit's own copies or with other add-ins.</p>
+  <div class="result"><span>Highlight</span>Self-tested inside Revit 2024, 2025 and 2026 on Autodesk's Snowdon Towers sample: <strong>392 types read in 1.7 to 3.4 s, 136 BOQ lines calculated in under a second</strong>, and the same grand total in every version.</div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/genq-tabs.jpg" target="_blank" rel="noopener"><img src="../img/genq-tabs.jpg" alt="Types, results and report" loading="lazy"></a><figcaption><b>Types, results and report</b><span>The three tabs of the docked panel, shown with a sample model.</span></figcaption></figure><figure class="narrow"><a href="../img/genq-revit-2026.png" target="_blank" rel="noopener"><img src="../img/genq-revit-2026.png" alt="Docked in Revit 2026" loading="lazy"></a><figcaption><b>Docked in Revit 2026</b><span>The in-Revit self-test on the Snowdon Towers sample, German Revit.</span></figcaption></figure><figure><video src="../video/genq-boq-generator.mp4" controls muted playsinline preload="metadata"></video><figcaption><b>Earlier version: BOQ Generator</b><span>The original tool generating a detailed bill of quantities in Excel.</span></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="speckle-llm.html"><small>← Previous project</small><b>Quible</b></a>
+  <a class="next" href="acc-integrations.html"><small>Next project →</small><b>ACC Integrations</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

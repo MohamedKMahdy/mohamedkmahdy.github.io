@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>APS Raumbuch | Mohamed K. Mahdy</title>
-<meta name="description" content="ACC-connected room book generator that also runs fully offline against IFC.">
-<meta property="og:title" content="APS Raumbuch | Mohamed K. Mahdy">
-<meta property="og:description" content="ACC-connected room book generator that also runs fully offline against IFC.">
+<title>Raumbuch | Mohamed K. Mahdy</title>
+<meta name="description" content="Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.">
+<meta property="og:title" content="Raumbuch | Mohamed K. Mahdy">
+<meta property="og:description" content="Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/aps-raumbuch.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
@@ -19,25 +19,61 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
-
-<div class="wrap"><a class="crumb" href="../index.html">← Mohamed K. Mahdy</a></div>
-<header style="padding-top:26px"><div class="wrap">
-  <p class="label">Cloud · openBIM</p>
-  <h1>Cloud-connected, vendor-neutral</h1>
-  <p class="stack">React · FastAPI · Autodesk Platform Services · AEC Data Model API · IFC</p>
-  <div class="proj-body"><p>Authenticates against APS, browses Autodesk Construction Cloud, opens a model in the APS Viewer, extracts every room and the furniture inside it, and exports a formatted German <em>Raumbuch</em> to Excel or PDF.</p><p><strong>Cross-model association.</strong> Rooms living in a linked geometry node joined to furniture in the main model through baked room parameters, with deduplication, because partial linked copies share element ids.</p><p>Queries the AEC Data Model GraphQL API directly rather than scraping the Viewer's property database, which is faster and works before the model finishes loading.</p></div>
-  <div class="result">Not locked to one vendor: the same extraction runs <strong>fully offline</strong> against an uploaded IFC file via IfcOpenShell.</div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
 
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
-    <a class="btn" href="../index.html">All work</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Sweco · Revit + web</span>
+    <h1>Raumbuch</h1>
+    <p class="subtitle">One room book, two routes to it.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API</li><li>React</li><li>Vite</li><li>FastAPI</li><li>APS Viewer</li><li>Model Derivative API</li><li>web-ifc</li><li>three.js</li></ul>
   </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">A room book lists every room and everything in it. Teams often assemble it by hand from the model, room by room, and start again when the design changes.</p>
+  <h2>What it does</h2>
+  <p><strong>Revit add-in</strong> (Revit 2023 to 2027). Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes the room number and name into shared parameters. It then creates one cropped plan per room and exports the room book as Excel, as a PDF with one page per room, and as an offline HTML dashboard. The three steps live in one docked panel, in German and English.</p><p><strong>Web app.</strong> Signs in to Autodesk Construction Cloud, browses hubs, projects and folders across all APS regions, and opens a model in the APS Viewer with a plan panel beside the 3D view. Rooms come from the 3D scene, from the Model Derivative API, or from the 2D plan views when neither has them. Furniture from the main model and every linked model is placed in one coordinate system and matched to rooms by parameter, by position, or by the nearest room within 2 m.</p><p>Both export a formatted German <em>Raumbuch</em> to Excel, PDF and a single-file HTML dashboard whose charts double as filters.</p>
+  <div class="result"><span>Highlight</span>Not locked to one vendor: IFC files open <strong>without any login</strong>, are parsed in the browser with web-ifc and never uploaded. Several IFC files form one federated model.</div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/raumbuch-dashboard.jpg" target="_blank" rel="noopener"><img src="../img/raumbuch-dashboard.jpg" alt="The room book dashboard" loading="lazy"></a><figcaption><b>The room book dashboard</b><span>One offline HTML file with KPI tiles, charts that filter and the room table. Rendered from the real template with sample data.</span></figcaption></figure><figure class="narrow"><a href="../img/raumbuch-panel.png" target="_blank" rel="noopener"><img src="../img/raumbuch-panel.png" alt="The Revit add-in panel" loading="lazy"></a><figcaption><b>The Revit add-in panel</b><span>Model status, the three steps with their state, the export formats and the settings, in one docked panel.</span></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="revit-batch.html"><small>← Previous project</small><b>Sweco Revit Batch</b></a>
+  <a class="next" href="clash-management.html"><small>Next project →</small><b>Beacon &amp; Collide</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
 </div></footer>
 <script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}

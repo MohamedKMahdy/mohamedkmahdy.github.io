@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clash Management | Mohamed K. Mahdy</title>
-<meta name="description" content="BEACON and COLLIDE: clash grouping, status sync, and matrix generation.">
-<meta property="og:title" content="Clash Management | Mohamed K. Mahdy">
-<meta property="og:description" content="BEACON and COLLIDE: clash grouping, status sync, and matrix generation.">
+<title>Beacon &amp; Collide | Mohamed K. Mahdy</title>
+<meta name="description" content="Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.">
+<meta property="og:title" content="Beacon &amp; Collide | Mohamed K. Mahdy">
+<meta property="og:description" content="Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/clash-management.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
@@ -19,25 +19,61 @@
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
-
-<div class="wrap"><a class="crumb" href="../index.html">← Mohamed K. Mahdy</a></div>
-<header style="padding-top:26px"><div class="wrap">
-  <p class="label">Navisworks · WPF</p>
-  <h1>4,000 clashes, 200 actual problems</h1>
-  <p class="stack">C# · Navisworks API · WPF</p>
-  <div class="proj-body"><p><strong>BEACON</strong> is a Navisworks plugin that groups clashes by mass and proximity, syncs status across NWF files, and automates grouping, renaming and un-grouping. Clash coordination stops being a full-time job and becomes a review step.</p><p><strong>COLLIDE</strong> is a standalone WPF application that builds clash matrices from discipline and category rules, then exports XML configurations directly into Navisworks.</p></div>
-  
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
-<section><div class="wrap"><h2>Demos &amp; interface</h2><div class="gallery"><figure><img src="../img/image31.png" alt="BEACON: Navisworks clash grouping" loading="lazy"><figcaption><b>BEACON: Navisworks clash grouping</b></figcaption></figure><figure><img src="../img/image32.png" alt="COLLIDE: clash matrix generator" loading="lazy"><figcaption><b>COLLIDE: clash matrix generator</b><span>Disciplines, categories, priorities and tolerances defined once, exported as a Navisworks-ready XML configuration.</span></figcaption></figure></div></div></section>
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
-    <a class="btn" href="../index.html">All work</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Navisworks · openBIM</span>
+    <h1>Beacon &amp; Collide</h1>
+    <p class="subtitle">4,000 clashes, 200 actual problems.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Navisworks API 2022 to 2027</li><li>WPF</li><li>Python</li><li>IfcOpenShell / IfcClash</li><li>IDS</li><li>BCF</li></ul>
   </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them, and setting up the right tests in the first place, takes days.</p>
+  <h2>What it does</h2>
+  <p><strong>Beacon 2</strong> is a Navisworks Manage add-in for 2022 to 2027. It groups clashes by the zone their clash point lies in, using the real zone shape rather than its bounding box (masses, rooms, generic models or a separate zones model; where zones overlap, the smallest wins), or writes the zone in front of each clash name. It also transfers status, assignment, approval and comments between clash tests and files, matching by result GUID first and then by the clashing pair, and leaves a clash alone rather than guess. Every action is one undo step.</p><p><strong>Collide 5</strong> turns a short list of rules into a complete clash matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
+  <div class="result"><span>Highlight</span>A classic 133-group matrix carried <strong>8,778 cells</strong>. Collide reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/beacon-zones.png" target="_blank" rel="noopener"><img src="../img/beacon-zones.png" alt="Beacon: grouping clashes by zone" loading="lazy"></a><figcaption><b>Beacon: grouping clashes by zone</b><span>Zones come from any 3D objects; a clash belongs to the zone its clash point lies in.</span></figcaption></figure><figure><a href="../img/collide-editor.jpg" target="_blank" rel="noopener"><img src="../img/collide-editor.jpg" alt="Collide: the matrix editor" loading="lazy"></a><figcaption><b>Collide: the matrix editor</b><span>Discipline matrix, the rule behind each cell, and the group pairs it decides.</span></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="aps-raumbuch.html"><small>← Previous project</small><b>Raumbuch</b></a>
+  <a class="next" href="speckle-llm.html"><small>Next project →</small><b>Quible</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
 </div></footer>
 <script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}

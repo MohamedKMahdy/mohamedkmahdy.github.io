@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Validation | Mohamed K. Mahdy</title>
+<meta name="description" content="Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.">
+<meta property="og:title" content="Family Validation | Mohamed K. Mahdy">
+<meta property="og:description" content="Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.github.io/projects/family-validation.html">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Sweco · Content Catalog</span>
+    <h1>Family Validation</h1>
+    <p class="subtitle">Clean families in, clean catalog out.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API 2023 to 2027</li><li>WPF</li><li>.NET Framework 4.8 / .NET 8 / .NET 10</li><li>no third-party libraries</li></ul>
+  </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">One badly built family, with an embedded CAD import or the wrong category, slows down every project that loads it. Checking hundreds of them by hand does not happen.</p>
+  <h2>What it does</h2>
+  <p>A launcher window drives a hidden Revit that opens every family in a folder and checks it: the naming convention (auto-correcting the category prefix when that is unambiguous), embedded CAD imports (removed, while linked CAD is kept), name against category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass.</p><p><strong>Safe by construction.</strong> The original is copied aside before anything else, and a family whose copy fails is skipped, never touched. Cleaned copies go to their own folder, sources are never changed in place, and a dry run writes the full report without changing a file.</p><p>A visual rules editor lets non-developers maintain the standard: categories and name patterns are built from blocks instead of regular expressions, and the editor refuses to save a ruleset the run would reject.</p>
+  <div class="result"><span>Highlight</span><strong>Zero third-party dependencies:</strong> everything is .NET plus the Revit API, with each worker built for the runtime its Revit version ships.</div>
+  
+</div></section>
+
+<section><div class="wrap"><div class="pn">
+  <a href="acc-integrations.html"><small>← Previous project</small><b>ACC Integrations</b></a>
+  <a class="next" href="cloud-revisions.html"><small>Next project →</small><b>Cloud Revisions</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

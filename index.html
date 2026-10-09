@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mohamed K. Mahdy | AEC Solutions Architect &amp; AI Specialist</title>
-<meta name="description" content="Revit &amp; Navisworks tooling, Autodesk Platform Services, and multi-agent LLM systems over BIM data. Munich.">
+<meta name="description" content="Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.">
 <meta property="og:title" content="Mohamed K. Mahdy | AEC Solutions Architect &amp; AI Specialist">
-<meta property="og:description" content="Revit &amp; Navisworks tooling, Autodesk Platform Services, and multi-agent LLM systems over BIM data. Munich.">
+<meta property="og:description" content="Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
@@ -19,107 +19,225 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
-
-<header><div class="wrap">
-  <p class="label">Munich, Germany</p>
-  <h1>Mohamed K. Mahdy</h1>
-  <p class="role">AEC Solutions Architect &amp; AI Specialist</p>
-  <p class="lede">I build the software layer between engineers and their models, and the AI layer above it.</p>
-  <p class="sub">Five years shipping production tooling for architecture and engineering: Revit and Navisworks
-  plugins, background services, desktop applications, and cloud integrations that turn manual coordination work
-  into systems that run overnight without supervision. Currently owning the AI and automation roadmap for the
-  BIM&nbsp;+&nbsp;Data Science department at Sweco, alongside an M.Sc. at TUM.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Get in touch</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
-  </div>
-  <div class="stats">
-    <div class="stat"><b>~20</b><span>Tools shipped</span></div>
-    <div class="stat"><b>5+</b><span>Years in AEC</span></div>
-    <div class="stat"><b>6</b><span>Organisations</span></div>
-    <div class="stat"><b>895</b><span>Consulting hours</span></div>
-  </div>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="index.html#work">Work</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
 
-<section><div class="wrap"><h2>Selected work</h2><div class="cards">
-      <a class="card" href="projects/aps-raumbuch.html">
-        <div class="thumb"><span class="glyph">APS Raumbuch</span></div>
+<main id="main">
+<div class="hero"><div class="wrap"><div class="grid">
+  <div>
+    <p class="hello">Hi, I'm</p>
+    <h1>Mohamed K. Mahdy</h1>
+    <p class="role">AEC Solutions Architect &amp; AI Specialist · Munich</p>
+    <p class="lede">I build the software layer between engineers and their models, and the AI layer above it.</p>
+    <p class="sub">For five years I have been building tools for architects and engineers: Revit and
+    Navisworks add-ins, scheduled services and cloud integrations that take repetitive coordination work off
+    people's desks and run overnight on their own.</p>
+    <p class="now"><b aria-hidden="true"></b>Now: AI &amp; automation for BIM&nbsp;+&nbsp;Data Science at Sweco, and an M.Sc. at TUM</p>
+    <div class="links">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="mailto:mohamedkmahdy@outlook.com">Get in touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+  <img class="photo" src="img/headshot.jpg" alt="Portrait of Mohamed K. Mahdy" width="200" height="200">
+</div>
+  <div class="stats">
+    <div class="stat"><b>~20</b><span>tools shipped</span></div>
+    <div class="stat"><b>5+</b><span>years in AEC</span></div>
+    <div class="stat"><b>6</b><span>organisations</span></div>
+    <div class="stat"><b>895</b><span>consulting hours</span></div>
+  </div>
+</div></div>
+
+<section id="work"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Work</p>
+    <h2>Things I've built</h2>
+    <p>Tools for architects, engineers and BIM coordinators, from small Revit add-ins to services that run
+    unattended every night. Each project page starts with the problem it solves.</p>
+    <p class="hint">Most of the code lives in private repositories. I am happy to walk you through any of it.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter projects" hidden><button type="button" data-f="all" aria-pressed="true">All <small>12</small></button><button type="button" data-f="revit" aria-pressed="false">Revit <small>8</small></button><button type="button" data-f="clash" aria-pressed="false">Navisworks &amp; clashes <small>2</small></button><button type="button" data-f="cloud" aria-pressed="false">Cloud &amp; web <small>4</small></button><button type="button" data-f="data" aria-pressed="false">Data &amp; dashboards <small>3</small></button></div>
+  <div class="cards">
+      <a class="card" href="projects/revit-batch.html" data-cats="revit cloud">
+        <div class="thumb"><img src="img/revit-batch-jobs.png" alt="" loading="lazy"></div>
         <div class="cbody">
-          <span class="tag">Cloud · openBIM</span>
-          <h3>APS Raumbuch</h3>
-          <p>ACC-connected room book generator that also runs fully offline against IFC.</p>
-          <span class="more">View project →</span>
+          <span class="tag">Sweco · Revit 2023 to 2027</span>
+          <h3>Sweco Revit Batch</h3>
+          <p>Model checks, IFC, NWC, PDF and DWG exports, health and change reports over many Revit models, each model opened once.</p>
+          <span class="more">Read the story →</span>
         </div>
       </a>
-      <a class="card" href="projects/revit-automation.html">
+      <a class="card" href="projects/aps-raumbuch.html" data-cats="revit cloud">
+        <div class="thumb"><img src="img/raumbuch-dashboard.jpg" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">Sweco · Revit + web</span>
+          <h3>Raumbuch</h3>
+          <p>Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/clash-management.html" data-cats="clash">
+        <div class="thumb"><img src="img/beacon-zones.png" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">Navisworks · openBIM</span>
+          <h3>Beacon &amp; Collide</h3>
+          <p>Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/speckle-llm.html" data-cats="ai cloud">
+        <div class="thumb"><div class="glyph"><b>Quible</b></div></div>
+        <div class="cbody">
+          <span class="tag">Speckle · local LLM</span>
+          <h3>Quible</h3>
+          <p>A BIM assistant in Speckle comment threads, on a local Llama: answers about elements, the whole model and the specification.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/genq.html" data-cats="revit">
+        <div class="thumb"><img src="img/genq-tabs.jpg" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">Revit · quantity take-off</span>
+          <h3>GenQ</h3>
+          <p>Priced, classified bills of quantities straight from the Revit model, exported to Excel, PDF or CSV. Revit 2022 to 2027.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/acc-integrations.html" data-cats="cloud">
+        <div class="thumb"><img src="img/keepr-projects.png" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">KEEPR · Sheet Bridge</span>
+          <h3>ACC Integrations</h3>
+          <p>Scheduled local backups of ACC and BIM 360 projects, plus bulk attribute editing across cloud projects.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/family-validation.html" data-cats="revit">
+        <div class="thumb"><div class="glyph"><b>Family Validation</b></div></div>
+        <div class="cbody">
+          <span class="tag">Sweco · Content Catalog</span>
+          <h3>Family Validation</h3>
+          <p>Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/cloud-revisions.html" data-cats="revit data">
+        <div class="thumb"><img src="img/cloud-revisions-dashboard.jpg" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">Sweco · Revit add-in</span>
+          <h3>Cloud Revisions</h3>
+          <p>Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.</p>
+          <span class="more">Read the story →</span>
+        </div>
+      </a>
+      <a class="card" href="projects/revit-automation.html" data-cats="revit">
         <div class="thumb"><img src="img/image47.png" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">9 tools · video</span>
           <h3>Revit Automation Suite</h3>
           <p>Nine production Revit plugins: model management, interior finishes, quantity take-off. With demos.</p>
-          <span class="more">View project →</span>
+          <span class="more">Read the story →</span>
         </div>
       </a>
-      <a class="card" href="projects/clash-management.html">
-        <div class="thumb"><img src="img/image31.png" alt="" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag">Navisworks · WPF</span>
-          <h3>Clash Management</h3>
-          <p>BEACON and COLLIDE: clash grouping, status sync, and matrix generation.</p>
-          <span class="more">View project →</span>
-        </div>
-      </a>
-      <a class="card" href="projects/curtain-panels.html">
-        <div class="thumb"><img src="img/image55.jpeg" alt="" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag">Parametric · 4 tools</span>
-          <h3>Curtain Panel Suite</h3>
-          <p>Generator → Scheduler → Drawings → Tagger. A facade from parametric definition to annotated documentation.</p>
-          <span class="more">View project →</span>
-        </div>
-      </a>
-      <a class="card" href="projects/bim-analytics.html">
+      <a class="card" href="projects/bim-analytics.html" data-cats="data">
         <div class="thumb"><img src="img/image12.png" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">Power BI · 9 dashboards</span>
           <h3>BIM Analytics</h3>
           <p>Model health, clash detection, issues and resourcing: automated reporting pipelines on ACC and BIM 360.</p>
-          <span class="more">View project →</span>
+          <span class="more">Read the story →</span>
         </div>
       </a>
-      <a class="card" href="projects/model-health.html">
+      <a class="card" href="projects/model-health.html" data-cats="revit clash data">
         <div class="thumb"><img src="img/image9.png" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">Scheduled services</span>
           <h3>VITAL &amp; ANT</h3>
           <p>Nightly model-health checks and automated deliverable exports. Nothing depends on someone remembering.</p>
-          <span class="more">View project →</span>
+          <span class="more">Read the story →</span>
         </div>
       </a>
-      <a class="card" href="projects/acc-integrations.html">
-        <div class="thumb"><img src="img/image25.png" alt="" loading="lazy"></div>
+      <a class="card" href="projects/curtain-panels.html" data-cats="revit">
+        <div class="thumb"><img src="img/image55.jpeg" alt="" loading="lazy"></div>
         <div class="cbody">
-          <span class="tag">KEEPR · Sheet Bridge</span>
-          <h3>ACC Integrations</h3>
-          <p>Automated weekly backup of ACC and BIM 360, plus bulk attribute editing across cloud projects.</p>
-          <span class="more">View project →</span>
+          <span class="tag">Parametric · 4 tools</span>
+          <h3>Curtain Panel Suite</h3>
+          <p>Generator → Scheduler → Drawings → Tagger. A facade from parametric definition to annotated documentation.</p>
+          <span class="more">Read the story →</span>
         </div>
-      </a>
-      <a class="card" href="projects/speckle-llm.html">
-        <div class="thumb"><span class="glyph">Speckle + LLM</span></div>
-        <div class="cbody">
-          <span class="tag">2023</span>
-          <h3>Speckle + LLM</h3>
-          <p>Natural-language queries over 3D models, before it was a category.</p>
-          <span class="more">View project →</span>
-        </div>
-      </a></div></div></section>
+      </a></div>
+</div></section>
 
-<section><div class="wrap"><h2>Capability</h2><div class="caps"><div class="cap"><h4>AEC development</h4><p>Revit API · Navisworks API · Dynamo · Grasshopper · RhinoCommon · pyRevit · Desite MD</p></div><div class="cap"><h4>Cloud &amp; interoperability</h4><p>Autodesk Platform Services · AEC Data Model API · Speckle · IFC / IfcOpenShell · ACC · BIM 360</p></div><div class="cap"><h4>AI &amp; agents</h4><p>Model Context Protocol · Claude API · multi-agent orchestration · Azure OpenAI · LLM evaluation</p></div><div class="cap"><h4>Geospatial</h4><p>Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science</p></div><div class="cap"><h4>Software</h4><p>C# .NET (WPF / MVVM) · Python · React · FastAPI · Node.js · GraphQL · SQL · pytest · Pydantic</p></div><div class="cap"><h4>Data &amp; BI</h4><p>Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning</p></div></div></div></section>
+<section id="experience"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Experience</p>
+    <h2>Where I've worked</h2>
+    <p>Six organisations and a freelance practice, from Cairo to Dubai to Munich.</p>
+  </div>
+  <ol class="timeline">
+    <li><span class="when">2025 to now</span><div class="job">
+      <h3>Sweco <small>· Munich</small></h3><p class="jrole">Werkstudent, AI &amp; Automation Specialist (BIM + Data Science)</p><p>I own the AI and automation roadmap for the BIM + Data Science department: scoping the automation portfolio, building Revit tools and LLM agents, and taking tools through Sweco's internal release process.</p>
+      <p class="jproj"><a href="projects/revit-batch.html">Sweco Revit Batch</a> <a href="projects/aps-raumbuch.html">Raumbuch</a> <a href="projects/family-validation.html">Family Validation</a> <a href="projects/cloud-revisions.html">Cloud Revisions</a></p>
+    </div></li>
+    <li><span class="when">2024 to 2025</span><div class="job">
+      <h3>Obermeyer <small>· Munich</small></h3><p class="jrole">BIM Software Developer</p><p>Model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards for model quality.</p>
+      <p class="jproj"><a href="projects/bim-analytics.html">BIM Analytics</a></p>
+    </div></li>
+    <li><span class="when">2023 to 2024</span><div class="job">
+      <h3>Dewan Architects + Engineers <small>· Dubai, remote</small></h3><p class="jrole">BIM Software Developer &amp; Data Analyst</p><p>Model-health monitoring, clash management, nightly exports, cloud backups and project intelligence hubs, plus an early integration of LLMs with Speckle.</p>
+      <p class="jproj"><a href="projects/model-health.html">VITAL &amp; ANT</a> <a href="projects/clash-management.html">Beacon &amp; Collide</a> <a href="projects/acc-integrations.html">ACC Integrations</a> <a href="projects/bim-analytics.html">BIM Analytics</a> <a href="projects/speckle-llm.html">Quible</a></p>
+    </div></li>
+    <li><span class="when">2022 to 2024</span><div class="job">
+      <h3>Freelance (Upwork) <small>· Remote</small></h3><p class="jrole">BIM Software Developer &amp; Data Analyst</p><p>18 client engagements across 895 billable hours with a 5.0 average rating: curtain wall automation, a mechanical systems drawer, and Dynamo and Python pipelines.</p>
+      <p class="jproj"><a href="projects/curtain-panels.html">Curtain Panel Suite</a></p>
+    </div></li>
+    <li><span class="when">2023</span><div class="job">
+      <h3>Solid Construction <small>· Cairo</small></h3><p class="jrole">BIM Software Developer</p><p>Rebar detailing, a BOQ generator, and tools that join elements and model finishes automatically.</p>
+      <p class="jproj"><a href="projects/genq.html">GenQ</a> <a href="projects/revit-automation.html">Revit Automation Suite</a></p>
+    </div></li>
+    <li><span class="when">2021 to 2023</span><div class="job">
+      <h3>Pinnacle Misr <small>· Cairo</small></h3><p class="jrole">BIM Coordinator / Developer</p><p>Revit plugins for worksets, assembly codes and finishes, and Dynamo workflows on the El Alamein Iconic Tower and Kitoko Ministerial City.</p>
+      <p class="jproj"><a href="projects/revit-automation.html">Revit Automation Suite</a></p>
+    </div></li>
+    <li><span class="when">2020 to 2021</span><div class="job">
+      <h3>X-Dimension <small>· Cairo</small></h3><p class="jrole">BIM Architect</p><p>BIM standards and templates, Dynamo workflows for interior finishes, and Scan-to-BIM.</p>
+      
+    </div></li></ol>
+</div></section>
 
-<section><div class="wrap"><h2>Background</h2><div class="about">
+<section id="how"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">How I build</p>
+    <h2>A few things I care about</h2>
+    <p>The same handful of rules shows up in almost everything above.</p>
+  </div>
+  <div class="ways"><div class="way"><span>01</span><h3>People stay in control</h3><p>Every action is one undo step, a dry run comes before anything changes, and when AI proposes something, a person approves it.</p></div><div class="way"><span>02</span><h3>Boring is a feature</h3><p>Tools that run overnight on their own, retry when the network drops, and never leave a half-finished result that looks complete.</p></div><div class="way"><span>03</span><h3>Data stays where it belongs</h3><p>Local language models, IFC files read in the browser, and no secrets baked into a program.</p></div><div class="way"><span>04</span><h3>Open where it counts</h3><p>IFC, IDS and BCF wherever they fit, so a workflow is not locked to one vendor.</p></div></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Skills</p>
+    <h2>What I work with</h2>
+  </div>
+  <div class="caps"><div class="cap"><h3>AEC development</h3><p>Add-ins and scripts inside the tools designers already use.</p><small>Revit API (2022 to 2027) · Navisworks API · Autodesk Model Checker · Dynamo · Grasshopper · RhinoCommon · pyRevit · Desite MD</small></div><div class="cap"><h3>Cloud &amp; interoperability</h3><p>Getting model data out of one platform and into another, with open standards where possible.</p><small>Autodesk Platform Services (Viewer, Model Derivative, Data Management, AEC Data Model) · ACC · BIM 360 · Speckle · IFC / IfcOpenShell / web-ifc · IDS · BCF</small></div><div class="cap"><h3>AI &amp; agents</h3><p>Language models on top of BIM data, with the numbers computed by code rather than guessed.</p><small>Model Context Protocol · Claude API · local LLMs (Ollama, Llama) · constrained query planning · multi-agent orchestration · Azure OpenAI · LLM evaluation</small></div><div class="cap"><h3>Geospatial</h3><p>Graduate training at TUM in GIS, spatial data mining and remote sensing.</p><small>Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science</small></div><div class="cap"><h3>Software</h3><p>Desktop, web and back-end work, tested and built for every supported Revit version.</p><small>C# .NET (Framework 4.8, .NET 8, .NET 10; WPF / MVVM) · Python · React · Vite · FastAPI · Node.js · GraphQL · SQL · SQLite · xUnit · pytest · Pydantic</small></div><div class="cap"><h3>Data &amp; BI</h3><p>Dashboards and flows that make project data visible to people who never open the model.</p><small>Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning</small></div></div>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">About</p>
+    <h2>A bit about me</h2>
+  </div>
+  <div class="about">
   <div>
     <p>I trained as an architectural engineer and moved into software because the interesting problems in
     construction are data problems. Most firms are sitting on valuable project data trapped in disconnected
@@ -130,24 +248,35 @@
     <p>My M.Sc. at TUM added the half I was missing: graduate work in geospatial information science, spatial
     data mining, photogrammetry and remote sensing alongside semantic modelling and software engineering.
     <strong>BIM, GIS and AI are converging, and very few people work across all three.</strong></p>
+    <p>I speak Arabic natively, English at a professional working level (IELTS Academic 6.5), and I am
+    learning German (A2).</p>
   </div>
   <div class="edu">
+    <h3>Education</h3>
     <div><b>Technical University of Munich</b><span>M.Sc. Information Technologies for the Built Environment</span><em>Expected 2026</em></div>
     <div><b>Information Technology Institute</b><span>Intensive Code Camp: BIM Automation Development</span><em>2022 · Giza</em></div>
-    <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014–2020</em></div>
+    <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014 to 2020</em></div>
     <div><b>Autodesk</b><span>Certified Professional, Revit Architecture</span><em>2020</em></div>
   </div>
-</div></div></section>
+  </div>
+</div></section>
+</main>
 
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
   <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
     <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
     <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
   </div>
-  <p class="meta">Munich, Germany · English: professional working proficiency (IELTS Academic 6.5) · Arabic: native · German: A2</p>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
 </div></footer>
 <script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}
@@ -155,5 +284,10 @@ if(s)r.setAttribute('data-theme',s);
 t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
 if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
 var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
-try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+try{localStorage.setItem('theme',n)}catch(e){}});})();
+(function(){var f=document.querySelector('.filters');if(!f)return;f.hidden=false;
+var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.card');
+bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-f');
+bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+cs.forEach(function(c){c.hidden=k!=='all'&&(' '+c.getAttribute('data-cats')+' ').indexOf(' '+k+' ')<0});});});})();</script>
 </body></html>

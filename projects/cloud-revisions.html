@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cloud Revisions | Mohamed K. Mahdy</title>
+<meta name="description" content="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.">
+<meta property="og:title" content="Cloud Revisions | Mohamed K. Mahdy">
+<meta property="og:description" content="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.github.io/projects/cloud-revisions.html">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">Sweco · Revit add-in</span>
+    <h1>Cloud Revisions</h1>
+    <p class="subtitle">Where the cloud APIs stop, an add-in starts.</p>
+    <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API 2023 to 2027</li><li>.NET Framework 4.8 / .NET 8 / .NET 10</li><li>dependency-free Excel and HTML</li></ul>
+  </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">Keeping track of which revision clouds sit on which sheets, and under which revision, usually means clicking through the sheets one by one.</p>
+  <h2>What it does</h2>
+  <p>Revision clouds are annotation elements. The APS AEC Data Model API does not expose them and the Model Derivative API only inconsistently, so the only complete source is the Revit API itself.</p><p>The add-in lists every revision cloud in the active model with its view, the sheet it appears on and the full revision data (sequence, number, date, description, issue status, issued by and to), then exports a formatted Excel workbook or a self-contained HTML dashboard with Power BI style filtering. Everything sits in one docked panel, in German or English.</p>
+  <div class="result"><span>Highlight</span>Neither export needs Excel, a CDN or internet access: both files are written by the add-in itself, so they work behind a <strong>corporate proxy</strong>.</div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/cloud-revisions-dashboard.jpg" target="_blank" rel="noopener"><img src="../img/cloud-revisions-dashboard.jpg" alt="The revision cloud dashboard" loading="lazy"></a><figcaption><b>The revision cloud dashboard</b><span>Filters by revision, view type, issue status and sheet, with linked charts. Rendered from the real template with sample data.</span></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="family-validation.html"><small>← Previous project</small><b>Family Validation</b></a>
+  <a class="next" href="revit-automation.html"><small>Next project →</small><b>Revit Automation Suite</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

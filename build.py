@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static site generator for mohamedkmahdy.github.io.
 Run: python3 build.py   (from the site/ directory)"""
-import os, html, shutil
+import os, html
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 OUT_PROJ = os.path.join(SITE, 'projects')
@@ -10,23 +10,121 @@ NAME  = "Mohamed K. Mahdy"
 ROLE  = "AEC Solutions Architect &amp; AI Specialist"
 LEDE  = "I build the software layer between engineers and their models, and the AI layer above it."
 BASE  = "https://mohamedkmahdy.github.io"
+EMAIL = "mohamedkmahdy@outlook.com"
+LINKEDIN = "https://www.linkedin.com/in/mohamedkmahdy/"
+GITHUB = "https://github.com/MohamedKMahdy"
+
+# Filter chips on the index; each project lists the keys it belongs to in `cats`.
+CATS = [("revit","Revit"), ("clash","Navisworks &amp; clashes"), ("cloud","Cloud &amp; web"),
+        ("data","Data &amp; dashboards")]
 
 # ---------------------------------------------------------------- projects
 P = [
-dict(slug="aps-raumbuch", title="APS Raumbuch", tag="Cloud · openBIM",
-  card="ACC-connected room book generator that also runs fully offline against IFC.",
-  stack="React · FastAPI · Autodesk Platform Services · AEC Data Model API · IFC",
-  head="Cloud-connected, vendor-neutral",
-  body=["Authenticates against APS, browses Autodesk Construction Cloud, opens a model in the APS Viewer, extracts every room and the furniture inside it, and exports a formatted German <em>Raumbuch</em> to Excel or PDF.",
-        "<strong>Cross-model association.</strong> Rooms living in a linked geometry node joined to furniture in the main model through baked room parameters, with deduplication, because partial linked copies share element ids.",
-        "Queries the AEC Data Model GraphQL API directly rather than scraping the Viewer's property database, which is faster and works before the model finishes loading."],
-  result="Not locked to one vendor: the same extraction runs <strong>fully offline</strong> against an uploaded IFC file via IfcOpenShell.",
+dict(slug="revit-batch", title="Sweco Revit Batch", tag="Sweco · Revit 2023 to 2027", cats="revit cloud",
+  card="Model checks, IFC, NWC, PDF and DWG exports, health and change reports over many Revit models, each model opened once.",
+  head="Set up a job once, let it run every week.",
+  problem="Model checks and deliverable exports are the jobs everyone agrees matter and nobody has time to run by hand on dozens of models every week.",
+  stack=["C#", ".NET Framework 4.8 / .NET 8 / .NET 10", "Revit API", "WPF", "Autodesk Platform Services", "Windows Task Scheduler"],
+  body=["A desktop program and a headless Revit worker that run seven tasks across many models in one go, now or on a weekly schedule: Autodesk Model Checker, the IFC export, the NWC export for Navisworks, PDF and DWG sheet exports, a model health report and a change report. The program starts the matching installed Revit in the background, opens each model once, runs every chosen task on it and closes it without saving.",
+        "<strong>Four kinds of source:</strong> chosen ACC cloud models, an ACC folder, a local or network folder, or a fixed list of files. Folders are read again at every run, so new models are picked up, and exports and reports can be uploaded back to ACC afterwards.",
+        "<strong>Repeat runs cost little.</strong> A model whose source, settings and outputs have not changed since the last verified run is skipped. Results land in one output folder with a history workbook for Excel and Power BI, plus an optional Teams message after each run.",
+        "One codebase builds four apps: the combined tool and three single-task editions (Bulk Model Checker, IFC Bulk Export, NWC Bulk Export) that replace earlier standalone tools."],
+  result="Every Revit version from 2023 to 2027 from <strong>one codebase</strong>, each model routed to the installed Revit that can open it, with a German and English interface and a per-user install that needs no admin rights.",
+  media=[("img","img/revit-batch-jobs.png","A weekly job","Models from ACC, the Revit version each one opens in, and the tasks to run. Shown with made-up data."),
+         ("img","img/revit-batch-tasks.png","Seven tasks, one pass","Every task chosen here runs on each model while Revit has it open once."),
+         ("img","img/revit-batch-results.png","Results per model and task","Unchanged models are skipped and say why; failures say what to fix."),
+         ("img","img/revit-batch-output.png","Output, history and schedule","One output folder synced with SharePoint, a history workbook, a Teams message and the weekly time.")]),
+
+dict(slug="aps-raumbuch", title="Raumbuch", tag="Sweco · Revit + web", cats="revit cloud",
+  card="Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.",
+  head="One room book, two routes to it.",
+  problem="A room book lists every room and everything in it. Teams often assemble it by hand from the model, room by room, and start again when the design changes.",
+  stack=["C#", "Revit API", "React", "Vite", "FastAPI", "APS Viewer", "Model Derivative API", "web-ifc", "three.js"],
+  body=["<strong>Revit add-in</strong> (Revit 2023 to 2027). Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes the room number and name into shared parameters. It then creates one cropped plan per room and exports the room book as Excel, as a PDF with one page per room, and as an offline HTML dashboard. The three steps live in one docked panel, in German and English.",
+        "<strong>Web app.</strong> Signs in to Autodesk Construction Cloud, browses hubs, projects and folders across all APS regions, and opens a model in the APS Viewer with a plan panel beside the 3D view. Rooms come from the 3D scene, from the Model Derivative API, or from the 2D plan views when neither has them. Furniture from the main model and every linked model is placed in one coordinate system and matched to rooms by parameter, by position, or by the nearest room within 2 m.",
+        "Both export a formatted German <em>Raumbuch</em> to Excel, PDF and a single-file HTML dashboard whose charts double as filters."],
+  result="Not locked to one vendor: IFC files open <strong>without any login</strong>, are parsed in the browser with web-ifc and never uploaded. Several IFC files form one federated model.",
+  media=[("img","img/raumbuch-dashboard.jpg","The room book dashboard","One offline HTML file with KPI tiles, charts that filter and the room table. Rendered from the real template with sample data."),
+         ("imgn","img/raumbuch-panel.png","The Revit add-in panel","Model status, the three steps with their state, the export formats and the settings, in one docked panel.")]),
+
+dict(slug="clash-management", title="Beacon &amp; Collide", tag="Navisworks · openBIM", cats="clash",
+  card="Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.",
+  head="4,000 clashes, 200 actual problems.",
+  problem="A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them, and setting up the right tests in the first place, takes days.",
+  stack=["C#", "Navisworks API 2022 to 2027", "WPF", "Python", "IfcOpenShell / IfcClash", "IDS", "BCF"],
+  body=["<strong>Beacon 2</strong> is a Navisworks Manage add-in for 2022 to 2027. It groups clashes by the zone their clash point lies in, using the real zone shape rather than its bounding box (masses, rooms, generic models or a separate zones model; where zones overlap, the smallest wins), or writes the zone in front of each clash name. It also transfers status, assignment, approval and comments between clash tests and files, matching by result GUID first and then by the clashing pair, and leaves a clash alone rather than guess. Every action is one undo step.",
+        "<strong>Collide 5</strong> turns a short list of rules into a complete clash matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan. A local browser editor handles the matrix, groups and rules.",
+        "Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling."],
+  result="A classic 133-group matrix carried <strong>8,778 cells</strong>. Collide reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.",
+  media=[("img","img/beacon-zones.png","Beacon: grouping clashes by zone","Zones come from any 3D objects; a clash belongs to the zone its clash point lies in."),
+         ("img","img/collide-editor.jpg","Collide: the matrix editor","Discipline matrix, the rule behind each cell, and the group pairs it decides.")]),
+
+dict(slug="speckle-llm", title="Quible", tag="Speckle · local LLM", cats="ai cloud",
+  card="A BIM assistant in Speckle comment threads, on a local Llama: answers about elements, the whole model and the specification.",
+  head="I put an LLM on BIM data before it was a category.",
+  problem="Most people on a project never open the model, but they still have questions about it: what this panel's U-value is, how many doors lack a fire rating, whether the latest version still meets the spec.",
+  stack=["Python", "FastAPI", "Speckle (GraphQL, webhooks, specklepy)", "Ollama", "Llama 3.1", "SQLite"],
+  body=["In 2023 I connected Speckle to a large language model so project teams could ask questions about a 3D model in plain language. <strong>Quible</strong> is the 2026 rebuild. It runs on a <strong>local Llama through Ollama</strong>, so model data and project documents never leave the machine.",
+        "It works inside Speckle comment threads. It answers questions about a selected element from its parameters and any attached specification PDF, with page citations. It answers questions about the whole model. And it checks every new model version against rules drawn from the specification, opening one thread per failing rule that isolates the offending elements in the viewer and replying when a later version fixes them.",
+        "<strong>The language model never computes and never writes SQL.</strong> It fills a JSON query plan constrained to the index's real field names; code validates and repairs the plan and runs it as parameterised SQL, and every reply shows the exact query and result. Rules from the specification are proposed by the model and only run once a person approves them.",
+        "Along the way I also built a custom Speckle-Revit connector for a separate client, extending open interoperability between the two platforms."],
+  result="The lesson from 2023 still holds: <strong>the model was never the hard part.</strong> The hard part is getting clean, queryable, structured data out of the authoring tools.",
   media=[]),
 
-dict(slug="revit-automation", title="Revit Automation Suite", tag="9 tools · video",
+dict(slug="genq", title="GenQ", tag="Revit · quantity take-off", cats="revit",
+  card="Priced, classified bills of quantities straight from the Revit model, exported to Excel, PDF or CSV. Revit 2022 to 2027.",
+  head="A priced bill of quantities without leaving Revit.",
+  problem="Quantity surveyors often re-measure what the model already knows. GenQ reads the quantities straight from Revit and prices them.",
+  stack=["C#", "Revit API 2022 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "ClosedXML", "PDFsharp", "xUnit"],
+  body=["Tick the element types to price and give each one a unit, a division and section code (CSI MasterFormat 2018 or a custom list), a rate and a description. GenQ measures the model and exports the bill of quantities to Excel, PDF or CSV from a docked panel, so you keep working in Revit while it is open.",
+        "Version 3 measures the model in one pass instead of one per type, adds phase, design option and level filters, counts repeated placements of linked models, and matches categories by Revit's built-in ids, so it works in any Revit language. Units cover count, length, area, volume, weight from material density, and one line per material layer. Settings and rates are saved in the model itself, and price lists move between projects as Excel files.",
+        "Every third-party library is bundled into one assembly and loaded in a private context, so GenQ never clashes with Revit's own copies or with other add-ins."],
+  result="Self-tested inside Revit 2024, 2025 and 2026 on Autodesk's Snowdon Towers sample: <strong>392 types read in 1.7 to 3.4 s, 136 BOQ lines calculated in under a second</strong>, and the same grand total in every version.",
+  media=[("img","img/genq-tabs.jpg","Types, results and report","The three tabs of the docked panel, shown with a sample model."),
+         ("imgn","img/genq-revit-2026.png","Docked in Revit 2026","The in-Revit self-test on the Snowdon Towers sample, German Revit."),
+         ("video","video/genq-boq-generator.mp4","Earlier version: BOQ Generator","The original tool generating a detailed bill of quantities in Excel.")]),
+
+dict(slug="acc-integrations", title="ACC Integrations", tag="KEEPR · Sheet Bridge", cats="cloud",
+  card="Scheduled local backups of ACC and BIM 360 projects, plus bulk attribute editing across cloud projects.",
+  head="Cloud-hosted does not mean backed up.",
+  problem="Projects in Autodesk Construction Cloud feel safe because they live in the cloud. A deleted folder or an ended subscription can still take years of work with it.",
+  stack=["C#", ".NET 8", "WPF", "Autodesk Platform Services (PKCE)", "Data Management API"],
+  body=["<strong>KEEPR</strong> keeps dated local copies of Autodesk Construction Cloud and BIM 360 projects. Pick projects and folders, a destination and a weekly time; KEEPR downloads the latest version of every document and keeps the last few backups. Version 5 (2026) is a full rewrite with a German and English interface.",
+        "<strong>Incremental by hard links.</strong> A document unchanged since the previous backup is linked instead of downloaded again, so later runs are fast and five kept backups do not take five times the space. A run only becomes a backup once its manifest is written, so a crash or power cut never leaves a half-finished folder that looks complete.",
+        "Sign-in uses PKCE, so no client secret ships with the program. A scheduled backup missed while KEEPR was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours.",
+        "<strong>Sheet Bridge</strong> is a web application for bulk-editing ACC and BIM 360 sheet attributes, replacing a slow one-at-a-time process in the web UI."],
+  result="Open-source roots: KEEPR began in 2023 as a WPF front end for Stewart Celani's MIT-licensed <a href=\"https://github.com/stewartcelani/autodesk-construction-cloud-backup\" rel=\"noopener\">autodesk-construction-cloud-backup</a>, and keeps that history and credit.",
+  media=[("img","img/keepr-projects.png","KEEPR: projects and weekly schedule","Shown with made-up data."),
+         ("img","img/keepr-folders.png","KEEPR: folder selection","Untick a folder to leave it out; new folders follow their parent."),
+         ("img","img/keepr-running.png","KEEPR: a backup running",""),
+         ("img","img/image30.png","Sheet Bridge: bulk attribute editor","")]),
+
+dict(slug="family-validation", title="Family Validation", tag="Sweco · Content Catalog", cats="revit",
+  card="Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.",
+  head="Clean families in, clean catalog out.",
+  problem="One badly built family, with an embedded CAD import or the wrong category, slows down every project that loads it. Checking hundreds of them by hand does not happen.",
+  stack=["C#", "Revit API 2023 to 2027", "WPF", ".NET Framework 4.8 / .NET 8 / .NET 10", "no third-party libraries"],
+  body=["A launcher window drives a hidden Revit that opens every family in a folder and checks it: the naming convention (auto-correcting the category prefix when that is unambiguous), embedded CAD imports (removed, while linked CAD is kept), name against category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass.",
+        "<strong>Safe by construction.</strong> The original is copied aside before anything else, and a family whose copy fails is skipped, never touched. Cleaned copies go to their own folder, sources are never changed in place, and a dry run writes the full report without changing a file.",
+        "A visual rules editor lets non-developers maintain the standard: categories and name patterns are built from blocks instead of regular expressions, and the editor refuses to save a ruleset the run would reject."],
+  result="<strong>Zero third-party dependencies:</strong> everything is .NET plus the Revit API, with each worker built for the runtime its Revit version ships.",
+  media=[]),
+
+dict(slug="cloud-revisions", title="Cloud Revisions", tag="Sweco · Revit add-in", cats="revit data",
+  card="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.",
+  head="Where the cloud APIs stop, an add-in starts.",
+  problem="Keeping track of which revision clouds sit on which sheets, and under which revision, usually means clicking through the sheets one by one.",
+  stack=["C#", "Revit API 2023 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "dependency-free Excel and HTML"],
+  body=["Revision clouds are annotation elements. The APS AEC Data Model API does not expose them and the Model Derivative API only inconsistently, so the only complete source is the Revit API itself.",
+        "The add-in lists every revision cloud in the active model with its view, the sheet it appears on and the full revision data (sequence, number, date, description, issue status, issued by and to), then exports a formatted Excel workbook or a self-contained HTML dashboard with Power BI style filtering. Everything sits in one docked panel, in German or English."],
+  result="Neither export needs Excel, a CDN or internet access: both files are written by the add-in itself, so they work behind a <strong>corporate proxy</strong>.",
+  media=[("img","img/cloud-revisions-dashboard.jpg","The revision cloud dashboard","Filters by revision, view type, issue status and sheet, with linked charts. Rendered from the real template with sample data.")]),
+
+dict(slug="revit-automation", title="Revit Automation Suite", tag="9 tools · video", cats="revit",
   card="Nine production Revit plugins: model management, interior finishes, quantity take-off. With demos.",
-  stack="C# · Revit API · WPF · Excel interop",
-  head="Nine production Revit plugins",
+  head="Nine production Revit plugins.",
+  problem="Small, repetitive Revit tasks (finishes, worksets, classification, joins, purging before issue) add up to hours of engineering time every week.",
+  stack=["C#", "Revit API", "WPF", "Excel interop"],
   body=["A suite of enterprise Revit add-ins built for architecture and engineering teams, covering model management, interior finishes workflows, quantity take-off and bulk file operations. Each one replaced a manual process that consumed engineering hours every week.",
         "All demos below are recorded against a generic sample model."],
   result="",
@@ -45,34 +143,14 @@ dict(slug="revit-automation", title="Revit Automation Suite", tag="9 tools · vi
     ("img","img/image54.png","Auto Joiner: interface",""),
   ]),
 
-dict(slug="clash-management", title="Clash Management", tag="Navisworks · WPF",
-  card="BEACON and COLLIDE: clash grouping, status sync, and matrix generation.",
-  stack="C# · Navisworks API · WPF",
-  head="4,000 clashes, 200 actual problems",
-  body=["<strong>BEACON</strong> is a Navisworks plugin that groups clashes by mass and proximity, syncs status across NWF files, and automates grouping, renaming and un-grouping. Clash coordination stops being a full-time job and becomes a review step.",
-        "<strong>COLLIDE</strong> is a standalone WPF application that builds clash matrices from discipline and category rules, then exports XML configurations directly into Navisworks."],
-  result="",
-  media=[("img","img/image31.png","BEACON: Navisworks clash grouping",""),
-         ("img","img/image32.png","COLLIDE: clash matrix generator","Disciplines, categories, priorities and tolerances defined once, exported as a Navisworks-ready XML configuration.")]),
-
-dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 tools",
-  card="Generator → Scheduler → Drawings → Tagger. A facade from parametric definition to annotated documentation.",
-  stack="C# · Revit API · adaptive families",
-  head="Geometry that builds itself",
-  body=["One tool chain taking a curtain wall facade from parametric definition through to fully annotated documentation.",
-        "<strong>Panel Generator</strong> creates and edits curtain panels across the facade. <strong>Panel Scheduler</strong> builds and exports panel schedules. <strong>Panel Drawings</strong> generates a dedicated view for every panel type. <strong>Panel Tagger</strong> tags and dimensions the whole set automatically."],
-  result="",
-  media=[("img","img/image55.jpeg","Panel Generator",""),
-         ("img","img/image56.jpeg","Panel Scheduler",""),
-         ("img","img/image57.jpeg","Panel Drawings",""),
-         ("img","img/image58.jpeg","Panel Tagger","")]),
-
-dict(slug="bim-analytics", title="BIM Analytics", tag="Power BI · 9 dashboards",
+dict(slug="bim-analytics", title="BIM Analytics", tag="Power BI · 9 dashboards", cats="data",
   card="Model health, clash detection, issues and resourcing: automated reporting pipelines on ACC and BIM 360.",
-  stack="Power BI · DAX · SharePoint · BIM 360 / ACC · Revizto",
-  head="Making model health visible to people who never open Revit",
+  head="Making model health visible to people who never open Revit.",
+  problem="Model health is invisible to the people who never open Revit, which is most of the people making decisions about a project.",
+  stack=["Power BI", "DAX", "SharePoint", "BIM 360 / ACC", "Revizto", "Python"],
   body=["A suite of automated Power BI dashboards and reporting pipelines built for BIM coordination, covering model health, clash detection, open issues, ACC administration, resourcing and team-level assessment.",
-        "Each dashboard reads directly from project data and refreshes on a schedule, so coordination status is current without anyone assembling a report. Deployed as project-specific intelligence hubs on SharePoint."],
+        "Each dashboard reads directly from project data and refreshes on a schedule, so coordination status is current without anyone assembling a report. Deployed as project-specific intelligence hubs on SharePoint.",
+        "In 2026 I decoded one programme's 52 Power BI files (model health across 376 Revit models, clash trends, issues and account administration) and rebuilt them as <strong>one self-contained HTML page</strong> that opens offline in any browser, without Power BI, and leaves out every personal detail."],
   result="Built across three organisations: Dewan, Obermeyer and Sweco.",
   media=[("img","img/image12.png","Project intelligence hub: home page",""),
          ("img","img/image10.png","SharePoint deployment",""),
@@ -90,136 +168,257 @@ dict(slug="bim-analytics", title="BIM Analytics", tag="Power BI · 9 dashboards"
          ("img","img/image23.png","Team level: breakdown",""),
          ("img","img/image24.png","Team level: detail","")]),
 
-dict(slug="model-health", title="VITAL &amp; ANT", tag="Scheduled services",
+dict(slug="model-health", title="VITAL &amp; ANT", tag="Scheduled services", cats="revit clash data",
   card="Nightly model-health checks and automated deliverable exports. Nothing depends on someone remembering.",
-  stack="C# · Revit API · Navisworks · Power BI · Windows scheduler",
-  head="Nothing should depend on someone remembering",
+  head="Nothing should depend on someone remembering.",
+  problem="Nightly checks and exports only happen reliably when nobody has to remember to start them.",
+  stack=["C#", "Revit API", "Navisworks", "Power BI", "Windows scheduler"],
   body=["<strong>VITAL</strong> is a bulk Revit model checker with a built-in scheduler. It runs check-sets across every project on a nightly cycle and extracts performance metrics into Power BI, so degradation is caught before it becomes a problem.",
         "<strong>ANT</strong> is a background service that exports NWC and DWG deliverables every night. Nobody has to remember, and nothing is missed before a deadline."],
   result="Boring by design. <strong>Reliability is the feature.</strong>",
   media=[("img","img/image9.png","VITAL: scheduled check configuration","Projects and check-sets defined once, then run unattended on a nightly cycle."),
          ("img","img/image7.png","ANT: bulk export configuration","")]),
 
-dict(slug="acc-integrations", title="ACC Integrations", tag="KEEPR · Sheet Bridge",
-  card="Automated weekly backup of ACC and BIM 360, plus bulk attribute editing across cloud projects.",
-  stack="C# · WPF · Autodesk Platform Services · ACC / BIM 360 APIs",
-  head="Disaster recovery and bulk editing for the cloud",
-  body=["<strong>KEEPR</strong> is a desktop application using Autodesk Platform Services to schedule and manage weekly backups of ACC and BIM 360 projects. Cloud-hosted does not mean backed up; this closes that gap.",
-        "<strong>Sheet Bridge</strong> is a web application for bulk-editing ACC and BIM 360 sheet attributes, replacing a slow one-at-a-time process in the web UI."],
+dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 tools", cats="revit",
+  card="Generator → Scheduler → Drawings → Tagger. A facade from parametric definition to annotated documentation.",
+  head="Geometry that builds itself.",
+  problem="Documenting a complex facade panel by panel, with a schedule, a view and dimensions for every type, is slow and easy to get wrong.",
+  stack=["C#", "Revit API", "adaptive families"],
+  body=["One tool chain taking a curtain wall facade from parametric definition through to fully annotated documentation.",
+        "<strong>Panel Generator</strong> creates and edits curtain panels across the facade. <strong>Panel Scheduler</strong> builds and exports panel schedules. <strong>Panel Drawings</strong> generates a dedicated view for every panel type. <strong>Panel Tagger</strong> tags and dimensions the whole set automatically."],
   result="",
-  media=[("img","img/image25.png","KEEPR",""),
-         ("img","img/image26.png","KEEPR: backup scheduling",""),
-         ("img","img/image27.png","KEEPR: project selection",""),
-         ("img","img/image28.png","KEEPR: run history",""),
-         ("img","img/image29.png","KEEPR: log",""),
-         ("img","img/image30.png","Sheet Bridge: bulk attribute editor","")]),
+  media=[("img","img/image55.jpeg","Panel Generator",""),
+         ("img","img/image56.jpeg","Panel Scheduler",""),
+         ("img","img/image57.jpeg","Panel Drawings",""),
+         ("img","img/image58.jpeg","Panel Tagger","")]),
+]
 
-dict(slug="speckle-llm", title="Speckle + LLM", tag="2023",
-  card="Natural-language queries over 3D models, before it was a category.",
-  stack="Speckle · LLM · natural-language model queries",
-  head="I put an LLM on BIM data before it was a category",
-  body=["In 2023 I connected Speckle to a large language model so project teams could ask questions about a 3D model in plain language. At the time there was no name for this.",
-        "The lesson has shaped everything since: <strong>the model was never the hard part.</strong> The hard part is getting clean, queryable, structured data out of the authoring tools, which is what most of my work has been about ever since."],
-  result="Later built a custom <strong>Speckle–Revit connector</strong> for a separate client, extending open interoperability between the two platforms.",
-  media=[]),
+# Where I've worked: (when, employer, place, role, summary, [project slugs])
+JOBS = [
+ ("2025 to now", "Sweco", "Munich", "Werkstudent, AI &amp; Automation Specialist (BIM + Data Science)",
+  "I own the AI and automation roadmap for the BIM + Data Science department: scoping the automation portfolio, building Revit tools and LLM agents, and taking tools through Sweco's internal release process.",
+  ["revit-batch", "aps-raumbuch", "family-validation", "cloud-revisions"]),
+ ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer",
+  "Model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards for model quality.",
+  ["bim-analytics"]),
+ ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst",
+  "Model-health monitoring, clash management, nightly exports, cloud backups and project intelligence hubs, plus an early integration of LLMs with Speckle.",
+  ["model-health", "clash-management", "acc-integrations", "bim-analytics", "speckle-llm"]),
+ ("2022 to 2024", "Freelance (Upwork)", "Remote", "BIM Software Developer &amp; Data Analyst",
+  "18 client engagements across 895 billable hours with a 5.0 average rating: curtain wall automation, a mechanical systems drawer, and Dynamo and Python pipelines.",
+  ["curtain-panels"]),
+ ("2023", "Solid Construction", "Cairo", "BIM Software Developer",
+  "Rebar detailing, a BOQ generator, and tools that join elements and model finishes automatically.",
+  ["genq", "revit-automation"]),
+ ("2021 to 2023", "Pinnacle Misr", "Cairo", "BIM Coordinator / Developer",
+  "Revit plugins for worksets, assembly codes and finishes, and Dynamo workflows on the El Alamein Iconic Tower and Kitoko Ministerial City.",
+  ["revit-automation"]),
+ ("2020 to 2021", "X-Dimension", "Cairo", "BIM Architect",
+  "BIM standards and templates, Dynamo workflows for interior finishes, and Scan-to-BIM.",
+  []),
+]
+
+# How I build: principles drawn from the projects above.
+WAYS = [
+ ("People stay in control", "Every action is one undo step, a dry run comes before anything changes, and when AI proposes something, a person approves it."),
+ ("Boring is a feature", "Tools that run overnight on their own, retry when the network drops, and never leave a half-finished result that looks complete."),
+ ("Data stays where it belongs", "Local language models, IFC files read in the browser, and no secrets baked into a program."),
+ ("Open where it counts", "IFC, IDS and BCF wherever they fit, so a workflow is not locked to one vendor."),
 ]
 
 CAPS = [
- ("AEC development","Revit API · Navisworks API · Dynamo · Grasshopper · RhinoCommon · pyRevit · Desite MD"),
- ("Cloud &amp; interoperability","Autodesk Platform Services · AEC Data Model API · Speckle · IFC / IfcOpenShell · ACC · BIM 360"),
- ("AI &amp; agents","Model Context Protocol · Claude API · multi-agent orchestration · Azure OpenAI · LLM evaluation"),
- ("Geospatial","Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science"),
- ("Software","C# .NET (WPF / MVVM) · Python · React · FastAPI · Node.js · GraphQL · SQL · pytest · Pydantic"),
- ("Data &amp; BI","Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning"),
+ ("AEC development","Add-ins and scripts inside the tools designers already use.",
+  "Revit API (2022 to 2027) · Navisworks API · Autodesk Model Checker · Dynamo · Grasshopper · RhinoCommon · pyRevit · Desite MD"),
+ ("Cloud &amp; interoperability","Getting model data out of one platform and into another, with open standards where possible.",
+  "Autodesk Platform Services (Viewer, Model Derivative, Data Management, AEC Data Model) · ACC · BIM 360 · Speckle · IFC / IfcOpenShell / web-ifc · IDS · BCF"),
+ ("AI &amp; agents","Language models on top of BIM data, with the numbers computed by code rather than guessed.",
+  "Model Context Protocol · Claude API · local LLMs (Ollama, Llama) · constrained query planning · multi-agent orchestration · Azure OpenAI · LLM evaluation"),
+ ("Geospatial","Graduate training at TUM in GIS, spatial data mining and remote sensing.",
+  "Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science"),
+ ("Software","Desktop, web and back-end work, tested and built for every supported Revit version.",
+  "C# .NET (Framework 4.8, .NET 8, .NET 10; WPF / MVVM) · Python · React · Vite · FastAPI · Node.js · GraphQL · SQL · SQLite · xUnit · pytest · Pydantic"),
+ ("Data &amp; BI","Dashboards and flows that make project data visible to people who never open the model.",
+  "Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning"),
 ]
 
 CSS = """
-:root{--bg:#fff;--bg-alt:#f6f7f8;--fg:#16191c;--fg-soft:#5b656e;--fg-faint:#8b959d;
---accent:#1F4E5F;--accent-soft:#e5eef1;--line:#e3e7ea;--card:#fff;
+:root{--bg:#faf9f6;--bg-alt:#f2f0eb;--fg:#1b1f23;--fg-soft:#535d66;--fg-faint:#848d96;
+--accent:#1F4E5F;--on-accent:#fff;--accent-soft:#e2ecef;--warm:#b4612b;--line:#e5e2db;--card:#fff;
+--shadow:0 1px 2px rgba(27,31,35,.04),0 8px 24px rgba(27,31,35,.06);
 --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
---sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;--maxw:940px}
-@media (prefers-color-scheme:dark){:root{--bg:#0e1113;--bg-alt:#14181b;--fg:#e8ecef;--fg-soft:#9aa5ad;
---fg-faint:#6b757d;--accent:#6fb3c9;--accent-soft:#152a33;--line:#232a2f;--card:#131719}}
-:root[data-theme="dark"]{--bg:#0e1113;--bg-alt:#14181b;--fg:#e8ecef;--fg-soft:#9aa5ad;--fg-faint:#6b757d;
---accent:#6fb3c9;--accent-soft:#152a33;--line:#232a2f;--card:#131719}
-:root[data-theme="light"]{--bg:#fff;--bg-alt:#f6f7f8;--fg:#16191c;--fg-soft:#5b656e;--fg-faint:#8b959d;
---accent:#1F4E5F;--accent-soft:#e5eef1;--line:#e3e7ea;--card:#fff}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;--maxw:1060px;--read:720px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1214;--bg-alt:#161a1d;--fg:#e9edf0;
+--fg-soft:#a4aeb6;--fg-faint:#717c85;--accent:#7cc0d4;--on-accent:#0b1a20;--accent-soft:#16303a;--warm:#e39462;
+--line:#242b30;--card:#14181b;--shadow:0 1px 2px rgba(0,0,0,.3)}}
+:root[data-theme="dark"]{--bg:#0f1214;--bg-alt:#161a1d;--fg:#e9edf0;--fg-soft:#a4aeb6;--fg-faint:#717c85;
+--accent:#7cc0d4;--on-accent:#0b1a20;--accent-soft:#16303a;--warm:#e39462;--line:#242b30;--card:#14181b;
+--shadow:0 1px 2px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;
 line-height:1.65;-webkit-font-smoothing:antialiased}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.read{max-width:var(--read)}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-.label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 14px}
-header{padding:84px 0 56px;border-bottom:1px solid var(--line)}
-h1{font-size:clamp(30px,5.4vw,46px);line-height:1.12;margin:0 0 10px;letter-spacing:-.022em;font-weight:650}
-.role{font-family:var(--mono);font-size:clamp(12px,2.1vw,14px);color:var(--accent);letter-spacing:.06em;margin:0 0 26px}
-.lede{font-size:clamp(17px,2.5vw,20px);line-height:1.55;max-width:44ch;margin:0 0 18px}
-.sub{color:var(--fg-soft);max-width:62ch;margin:0 0 30px}
-.links{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:9px 15px;border:1px solid var(--line);border-radius:7px;font-size:14px;
-color:var(--fg);background:var(--card);transition:.15s}
-.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.btn.primary:hover{opacity:.9;color:#fff}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;background:var(--line);
-border:1px solid var(--line);border-radius:9px;overflow:hidden;margin:40px 0 0}
-.stat{background:var(--bg);padding:18px 16px}
-.stat b{display:block;font-size:23px;font-weight:650;letter-spacing:-.02em}
-.stat span{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-faint)}
-section{padding:60px 0;border-bottom:1px solid var(--line)}
-h2{font-size:13px;font-family:var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--fg-faint);
-font-weight:500;margin:0 0 32px}
-/* project cards */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
-.card{display:block;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--card);
-color:var(--fg);transition:.16s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
-.card .thumb{aspect-ratio:16/9;background:var(--bg-alt);overflow:hidden;display:grid;place-items:center;border-bottom:1px solid var(--line)}
-.card .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.card .thumb .glyph{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-faint)}
-.card .cbody{padding:16px 18px 18px}
-.card h3{font-size:17px;margin:0 0 5px;letter-spacing:-.012em;font-weight:640}
-.card .tag{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
-color:var(--accent);background:var(--accent-soft);padding:3px 7px;border-radius:5px;display:inline-block;margin-bottom:9px}
-.card p{margin:0;font-size:14.5px;color:var(--fg-soft);line-height:1.55}
-.card .more{font-family:var(--mono);font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-top:11px;display:block}
-/* project page */
-.crumb{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-faint);
-padding:26px 0 0;display:block}
-.stack{font-family:var(--mono);font-size:12px;color:var(--fg-faint);margin:0 0 20px}
-.proj-body p{margin:0 0 13px;color:var(--fg-soft);max-width:70ch}
-.proj-body p strong{color:var(--fg);font-weight:620}
-.result{margin-top:18px;padding:13px 16px;background:var(--bg-alt);border-left:2px solid var(--accent);
-border-radius:0 7px 7px 0;font-size:15px;color:var(--fg)}
-.gallery{display:grid;gap:34px;margin-top:8px}
-figure{margin:0}
-figure video,figure img{width:100%;border:1px solid var(--line);border-radius:9px;display:block;background:var(--bg-alt)}
-figcaption{margin-top:10px}
-figcaption b{display:block;font-size:15px;font-weight:640;margin-bottom:3px}
-figcaption span{font-size:14px;color:var(--fg-soft);line-height:1.55}
-.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:22px}
-.cap h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 7px;font-weight:600}
-.cap p{margin:0;font-size:14.5px;color:var(--fg-soft);line-height:1.6}
-.cat{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:18px 26px}
-.cat div h4{font-size:13px;margin:0 0 5px;font-weight:640}
-.cat div p{margin:0;font-size:13.5px;color:var(--fg-soft);font-family:var(--mono);line-height:1.75}
-.about{display:grid;grid-template-columns:1.55fr 1fr;gap:44px}
-.about p{margin:0 0 14px;color:var(--fg-soft);max-width:64ch}.about p strong{color:var(--fg)}
-.edu{border-left:1px solid var(--line);padding-left:24px}
-.edu div{margin-bottom:19px}.edu b{display:block;font-size:14.5px;font-weight:620}
-.edu span{display:block;font-size:13px;color:var(--fg-soft)}
-.edu em{display:block;font-family:var(--mono);font-size:11px;color:var(--fg-faint);font-style:normal;margin-top:2px}
-@media(max-width:720px){.about{grid-template-columns:1fr;gap:30px}
-.edu{border-left:0;border-top:1px solid var(--line);padding:24px 0 0}}
-footer{padding:52px 0 66px}footer .lede{margin-bottom:22px}
-.meta{margin-top:34px;font-size:12.5px;color:var(--fg-faint);font-family:var(--mono)}
-#tt{position:fixed;top:16px;right:16px;z-index:10;width:34px;height:34px;border:1px solid var(--line);
-background:var(--card);color:var(--fg-soft);border-radius:8px;cursor:pointer;font-size:14px;line-height:1;
-display:grid;place-items:center}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--card);padding:8px 12px;border-radius:8px;z-index:30}
+.skip:focus{left:12px}
+/* nav */
+.nav{position:sticky;top:0;z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 86%,transparent);
+-webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:18px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--fg);font-weight:640;letter-spacing:-.01em;margin-right:auto}
+.brand:hover{text-decoration:none}
+.brand i{width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--on-accent);display:grid;
+place-items:center;font:600 15px/1 var(--mono);font-style:normal}
+.nav nav{display:flex;gap:4px}
+.nav nav a{color:var(--fg-soft);font-size:14.5px;padding:6px 10px;border-radius:8px}
+.nav nav a:hover{color:var(--fg);background:var(--bg-alt);text-decoration:none}
+#tt{width:34px;height:34px;border:1px solid var(--line);background:var(--card);color:var(--fg-soft);border-radius:9px;
+cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;flex:none}
 #tt:hover{color:var(--accent);border-color:var(--accent)}
+@media(max-width:640px){.brand span{display:none}.nav .wrap{gap:8px}.nav nav a{padding:6px 7px;font-size:14px}}
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block;background:#fff;
+box-shadow:0 0 0 6px var(--card),0 0 0 7px var(--line),var(--shadow)}
+.hello{font-size:18px;color:var(--warm);margin:0 0 6px;font-weight:560}
+h1{font-size:clamp(34px,5.6vw,52px);line-height:1.08;margin:0 0 10px;letter-spacing:-.025em;font-weight:680}
+.role{font-family:var(--mono);font-size:clamp(12px,2vw,14px);color:var(--accent);letter-spacing:.04em;margin:0 0 24px}
+.lede{font-size:clamp(19px,2.6vw,23px);line-height:1.45;max-width:30ch;margin:0 0 16px;font-weight:520;letter-spacing:-.01em}
+.sub{color:var(--fg-soft);max-width:62ch;margin:0 0 22px}
+.now{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:var(--fg-soft);background:var(--card);
+border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 12px;margin:0 0 26px}
+.now b{width:8px;height:8px;border-radius:50%;background:#3aa76d;box-shadow:0 0 0 3px rgba(58,167,109,.18)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:10px;font-size:15px;
+color:var(--fg);background:var(--card);transition:.15s;font-weight:520}
+.btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.btn.primary:hover{opacity:.9;color:var(--on-accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:48px 0 0}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
+.stat b{display:block;font-size:28px;font-weight:680;letter-spacing:-.02em;line-height:1.15}
+.stat span{font-size:14px;color:var(--fg-soft)}
+@media(max-width:760px){.hero{padding:44px 0 40px}.hero .grid{grid-template-columns:1fr;gap:26px}
+.photo{width:120px;height:120px;order:-1}}
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-head{margin:0 0 34px;max-width:var(--read)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin:0 0 8px}
+h2{font-size:clamp(26px,3.6vw,34px);line-height:1.2;letter-spacing:-.02em;margin:0 0 12px;font-weight:660}
+.sec-head p{color:var(--fg-soft);margin:0 0 10px}
+.hint{font-size:14.5px;color:var(--fg-faint)}
+/* filters + cards */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.filters button{font:inherit;font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
+background:var(--card);color:var(--fg-soft);cursor:pointer}
+.filters button:hover{border-color:var(--accent);color:var(--accent)}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.filters button small{opacity:.7;margin-left:4px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);
+color:var(--fg);transition:.18s;box-shadow:var(--shadow)}
+.card[hidden]{display:none}
+.card:hover{border-color:var(--accent);transform:translateY(-3px);text-decoration:none}
+.card .thumb{aspect-ratio:16/9;background:var(--bg-alt);overflow:hidden;border-bottom:1px solid var(--line)}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:.3s}
+.card:hover .thumb img{transform:scale(1.03)}
+.glyph{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:18px 20px;
+background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/28px 28px,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/28px 28px,var(--accent-soft)}
+.glyph b{font-size:24px;line-height:1.15;letter-spacing:-.02em;color:var(--accent);font-weight:680}
+.glyph small{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-soft);margin-top:4px}
+.card .cbody{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:19px;margin:0 0 6px;letter-spacing:-.015em;font-weight:650}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;display:inline-block;margin-bottom:10px;align-self:flex-start}
+.card p{margin:0;font-size:15px;color:var(--fg-soft);line-height:1.55}
+.more{font-size:14px;font-weight:560;color:var(--accent);margin-top:auto;padding-top:14px}
+.card:hover .more{text-decoration:underline}
+/* timeline */
+.timeline{list-style:none;margin:0;padding:0;max-width:820px}
+.timeline li{display:grid;grid-template-columns:130px 1fr;gap:24px;position:relative;padding:0 0 30px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:150px;top:8px;bottom:-8px;width:1px;background:var(--line)}
+.timeline li:last-child::before{display:none}
+.timeline .when{font-family:var(--mono);font-size:13px;color:var(--fg-faint);padding-top:3px;text-align:right}
+.timeline .job{position:relative;padding-left:20px}
+.timeline .job::before{content:"";position:absolute;left:-10px;top:8px;width:11px;height:11px;border-radius:50%;
+background:var(--bg);border:2px solid var(--accent)}
+.timeline li:first-child .job::before{background:var(--accent)}
+.timeline h3{font-size:18px;margin:0;font-weight:650;letter-spacing:-.01em}
+.timeline h3 small{font-size:14px;font-weight:450;color:var(--fg-faint)}
+.timeline .jrole{font-size:14.5px;color:var(--accent);margin:2px 0 6px}
+.timeline p{margin:0 0 6px;font-size:15.5px;color:var(--fg-soft);line-height:1.55}
+.jproj{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px!important}
+.jproj a{font-size:13px;padding:3px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.jproj a:hover{text-decoration:none;filter:brightness(.97)}
+@media(max-width:640px){.timeline li{grid-template-columns:1fr;gap:4px;padding-left:22px}
+.timeline li::before{left:5px;top:10px}.timeline .when{text-align:left}
+.timeline .job{padding-left:0}.timeline .job::before{left:-22px;top:-20px}}
+/* ways */
+.ways{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.way{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.way span{font-family:var(--mono);font-size:12px;color:var(--warm)}
+.way h3{font-size:17px;margin:6px 0 6px;font-weight:650;letter-spacing:-.01em}
+.way p{margin:0;font-size:15px;color:var(--fg-soft);line-height:1.55}
+/* skills */
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px 32px}
+.cap h3{font-size:17px;margin:0 0 4px;font-weight:650}
+.cap p{margin:0 0 8px;font-size:15px;color:var(--fg-soft);line-height:1.55}
+.cap small{display:block;font-size:13px;color:var(--fg-faint);line-height:1.7}
+/* about */
+.about{display:grid;grid-template-columns:1.55fr 1fr;gap:48px}
+.about p{margin:0 0 15px;color:var(--fg-soft);max-width:64ch}.about p strong{color:var(--fg)}
+.edu{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 22px 6px;align-self:start}
+.edu h3{font-size:13px;font-family:var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 16px;font-weight:500}
+.edu div{margin-bottom:18px}.edu b{display:block;font-size:15px;font-weight:620}
+.edu span{display:block;font-size:14px;color:var(--fg-soft)}
+.edu em{display:block;font-size:13px;color:var(--fg-faint);font-style:normal;margin-top:2px}
+@media(max-width:760px){.about{grid-template-columns:1fr;gap:28px}}
+/* contact */
+.contact{background:var(--accent-soft);border-radius:20px;padding:40px 36px;margin:0 0 8px}
+.contact h2{margin-bottom:10px}
+.contact p{color:var(--fg-soft);max-width:60ch;margin:0 0 22px}
+@media(max-width:640px){.contact{padding:28px 22px}}
+footer{padding:28px 0 44px;font-size:13.5px;color:var(--fg-faint)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+/* project page */
+.crumb{display:inline-block;font-size:14.5px;margin:30px 0 0;color:var(--fg-soft)}
+.crumb:hover{color:var(--accent)}
+.phead{padding:22px 0 36px}
+.phead h1{margin-bottom:12px}
+.phead .subtitle{font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:var(--fg);margin:0 0 22px;font-weight:520;letter-spacing:-.01em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.chips li{font-size:13px;color:var(--fg-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
+.pbody{padding:40px 0 48px}
+.pbody h2{font-size:22px;margin:34px 0 10px}.pbody h2:first-child{margin-top:0}
+.problem{font-size:19px;line-height:1.6;color:var(--fg);margin:0}
+.pbody p{color:var(--fg-soft);margin:0 0 14px}
+.pbody p strong{color:var(--fg);font-weight:620}
+.result{margin-top:28px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warm);
+border-radius:12px;font-size:16px;color:var(--fg)}
+.result span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:6px}
+.pnote{margin-top:18px;font-size:14.5px;color:var(--fg-faint)}
+.gallery{display:grid;gap:40px}
+figure{margin:0}
+figure video,figure img{width:100%;border:1px solid var(--line);border-radius:12px;display:block;background:var(--bg-alt)}
+figure.narrow img{width:auto;max-width:min(100%,380px)}
+figure a{display:block;cursor:zoom-in}
+figcaption{margin-top:10px}
+figcaption b{display:block;font-size:15.5px;font-weight:640;margin-bottom:2px}
+figcaption span{font-size:14.5px;color:var(--fg-soft);line-height:1.55}
+.pn{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pn a{display:block;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;color:var(--fg)}
+.pn a:hover{border-color:var(--accent);text-decoration:none}
+.pn small{display:block;font-size:13px;color:var(--fg-faint)}
+.pn b{font-size:17px;font-weight:640}
+.pn .next{text-align:right}
+@media(max-width:560px){.pn{grid-template-columns:1fr}.pn .next{text-align:left}}
 """
 
-JS = """(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+JS_THEME = """(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}
 if(s)r.setAttribute('data-theme',s);
 t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
@@ -227,7 +426,13 @@ if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'
 var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
 try{localStorage.setItem('theme',n)}catch(e){}});})();"""
 
-def head(title, desc, css_path, og_img, url):
+JS_FILTER = """(function(){var f=document.querySelector('.filters');if(!f)return;f.hidden=false;
+var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.card');
+bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-f');
+bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+cs.forEach(function(c){c.hidden=k!=='all'&&(' '+c.getAttribute('data-cats')+' ').indexOf(' '+k+' ')<0});});});})();"""
+
+def head(title, desc, root, url):
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -246,66 +451,150 @@ def head(title, desc, css_path, og_img, url):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{BASE}/og-image.png">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
-<link rel="stylesheet" href="{css_path}">
+<link rel="stylesheet" href="{root}style.css">
 </head>
 <body>
-<button id="tt" type="button" aria-label="Toggle colour theme">◐</button>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="{root}index.html"><i>M</i><span>{NAME}</span></a>
+  <nav aria-label="Main">
+    <a href="{root}index.html#work">Work</a>
+    <a href="{root}index.html#experience">Experience</a>
+    <a href="{root}index.html#about">About</a>
+    <a href="{root}index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
 """
+
+def contact(root):
+    return f"""
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:{EMAIL}">Email me</a>
+    <a class="btn" href="{LINKEDIN}" rel="noopener">LinkedIn</a>
+    <a class="btn" href="{GITHUB}" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>{NAME} · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>"""
 
 def thumb_for(p):
     for kind, src, *_ in p['media']:
-        if kind == 'img':
+        if kind in ('img', 'imgn'):
             return f'<img src="{src}" alt="" loading="lazy">'
-    for kind, src, *_ in p['media']:
-        if kind == 'video':
-            return f'<video src="{src}" muted playsinline preload="metadata"></video>'
-    return f'<span class="glyph">{p["title"]}</span>'
+    return f'<div class="glyph"><b>{p["title"]}</b></div>'
 
 # ---------------------------------------------------------------- index
 def build_index():
+    counts = {k: sum(k in p['cats'].split() for p in P) for k, _ in CATS}
+    chips = f'<button type="button" data-f="all" aria-pressed="true">All <small>{len(P)}</small></button>' + "".join(
+        f'<button type="button" data-f="{k}" aria-pressed="false">{label} <small>{counts[k]}</small></button>'
+        for k, label in CATS)
+
     cards = "".join(f"""
-      <a class="card" href="projects/{p['slug']}.html">
+      <a class="card" href="projects/{p['slug']}.html" data-cats="{p['cats']}">
         <div class="thumb">{thumb_for(p)}</div>
         <div class="cbody">
           <span class="tag">{p['tag']}</span>
           <h3>{p['title']}</h3>
           <p>{p['card']}</p>
-          <span class="more">View project →</span>
+          <span class="more">Read the story →</span>
         </div>
       </a>""" for p in P)
 
-    caps = "".join(f'<div class="cap"><h4>{t}</h4><p>{b}</p></div>' for t, b in CAPS)
+    ways = "".join(f'<div class="way"><span>0{i}</span><h3>{t}</h3><p>{b}</p></div>'
+                   for i, (t, b) in enumerate(WAYS, 1))
+    caps = "".join(f'<div class="cap"><h3>{t}</h3><p>{plain}</p><small>{tools}</small></div>'
+                   for t, plain, tools in CAPS)
+    by_slug = {p['slug']: p['title'] for p in P}
+    jobs = "".join(f"""
+    <li><span class="when">{when}</span><div class="job">
+      <h3>{org} <small>· {place}</small></h3><p class="jrole">{role}</p><p>{summary}</p>
+      {('<p class="jproj">' + " ".join(f'<a href="projects/{s}.html">{by_slug[s]}</a>' for s in slugs) + '</p>') if slugs else ''}
+    </div></li>""" for when, org, place, role, summary, slugs in JOBS)
 
     return head(f"{NAME} | AEC Solutions Architect &amp; AI Specialist",
-                "Revit &amp; Navisworks tooling, Autodesk Platform Services, and multi-agent LLM systems over BIM data. Munich.",
-                "style.css", "og-image.png", BASE) + f"""
-<header><div class="wrap">
-  <p class="label">Munich, Germany</p>
-  <h1>{NAME}</h1>
-  <p class="role">{ROLE}</p>
-  <p class="lede">{LEDE}</p>
-  <p class="sub">Five years shipping production tooling for architecture and engineering: Revit and Navisworks
-  plugins, background services, desktop applications, and cloud integrations that turn manual coordination work
-  into systems that run overnight without supervision. Currently owning the AI and automation roadmap for the
-  BIM&nbsp;+&nbsp;Data Science department at Sweco, alongside an M.Sc. at TUM.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Get in touch</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+                "Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.",
+                "", BASE) + f"""
+<main id="main">
+<div class="hero"><div class="wrap"><div class="grid">
+  <div>
+    <p class="hello">Hi, I'm</p>
+    <h1>{NAME}</h1>
+    <p class="role">{ROLE} · Munich</p>
+    <p class="lede">{LEDE}</p>
+    <p class="sub">For five years I have been building tools for architects and engineers: Revit and
+    Navisworks add-ins, scheduled services and cloud integrations that take repetitive coordination work off
+    people's desks and run overnight on their own.</p>
+    <p class="now"><b aria-hidden="true"></b>Now: AI &amp; automation for BIM&nbsp;+&nbsp;Data Science at Sweco, and an M.Sc. at TUM</p>
+    <div class="links">
+      <a class="btn primary" href="#work">See my work</a>
+      <a class="btn" href="mailto:{EMAIL}">Get in touch</a>
+      <a class="btn" href="{LINKEDIN}" rel="noopener">LinkedIn</a>
+    </div>
   </div>
+  <img class="photo" src="img/headshot.jpg" alt="Portrait of {NAME}" width="200" height="200">
+</div>
   <div class="stats">
-    <div class="stat"><b>~20</b><span>Tools shipped</span></div>
-    <div class="stat"><b>5+</b><span>Years in AEC</span></div>
-    <div class="stat"><b>6</b><span>Organisations</span></div>
-    <div class="stat"><b>895</b><span>Consulting hours</span></div>
+    <div class="stat"><b>~20</b><span>tools shipped</span></div>
+    <div class="stat"><b>5+</b><span>years in AEC</span></div>
+    <div class="stat"><b>6</b><span>organisations</span></div>
+    <div class="stat"><b>895</b><span>consulting hours</span></div>
   </div>
-</div></header>
+</div></div>
 
-<section><div class="wrap"><h2>Selected work</h2><div class="cards">{cards}</div></div></section>
+<section id="work"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Work</p>
+    <h2>Things I've built</h2>
+    <p>Tools for architects, engineers and BIM coordinators, from small Revit add-ins to services that run
+    unattended every night. Each project page starts with the problem it solves.</p>
+    <p class="hint">Most of the code lives in private repositories. I am happy to walk you through any of it.</p>
+  </div>
+  <div class="filters" role="group" aria-label="Filter projects" hidden>{chips}</div>
+  <div class="cards">{cards}</div>
+</div></section>
 
-<section><div class="wrap"><h2>Capability</h2><div class="caps">{caps}</div></div></section>
+<section id="experience"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Experience</p>
+    <h2>Where I've worked</h2>
+    <p>Six organisations and a freelance practice, from Cairo to Dubai to Munich.</p>
+  </div>
+  <ol class="timeline">{jobs}</ol>
+</div></section>
 
-<section><div class="wrap"><h2>Background</h2><div class="about">
+<section id="how"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">How I build</p>
+    <h2>A few things I care about</h2>
+    <p>The same handful of rules shows up in almost everything above.</p>
+  </div>
+  <div class="ways">{ways}</div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Skills</p>
+    <h2>What I work with</h2>
+  </div>
+  <div class="caps">{caps}</div>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">About</p>
+    <h2>A bit about me</h2>
+  </div>
+  <div class="about">
   <div>
     <p>I trained as an architectural engineer and moved into software because the interesting problems in
     construction are data problems. Most firms are sitting on valuable project data trapped in disconnected
@@ -316,72 +605,84 @@ def build_index():
     <p>My M.Sc. at TUM added the half I was missing: graduate work in geospatial information science, spatial
     data mining, photogrammetry and remote sensing alongside semantic modelling and software engineering.
     <strong>BIM, GIS and AI are converging, and very few people work across all three.</strong></p>
+    <p>I speak Arabic natively, English at a professional working level (IELTS Academic 6.5), and I am
+    learning German (A2).</p>
   </div>
   <div class="edu">
+    <h3>Education</h3>
     <div><b>Technical University of Munich</b><span>M.Sc. Information Technologies for the Built Environment</span><em>Expected 2026</em></div>
     <div><b>Information Technology Institute</b><span>Intensive Code Camp: BIM Automation Development</span><em>2022 · Giza</em></div>
-    <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014–2020</em></div>
+    <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014 to 2020</em></div>
     <div><b>Autodesk</b><span>Certified Professional, Revit Architecture</span><em>2020</em></div>
   </div>
-</div></div></section>
-
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
-    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
   </div>
-  <p class="meta">Munich, Germany · English: professional working proficiency (IELTS Academic 6.5) · Arabic: native · German: A2</p>
-</div></footer>
-<script>{JS}</script>
+</div></section>
+</main>
+{contact("")}
+<script>{JS_THEME}
+{JS_FILTER}</script>
 </body></html>"""
 
 # ---------------------------------------------------------------- project page
-def build_project(p):
+def build_project(i, p):
     gal = ""
     if p['media']:
         items = ""
         for kind, src, cap, *rest in p['media']:
             note = rest[0] if rest else ""
-            el = (f'<video src="../{src}" controls muted playsinline preload="metadata"></video>'
-                  if kind == 'video' else f'<img src="../{src}" alt="{cap}" loading="lazy">')
-            items += f'<figure>{el}<figcaption><b>{cap}</b>{f"<span>{note}</span>" if note else ""}</figcaption></figure>'
-        gal = f'<section><div class="wrap"><h2>Demos &amp; interface</h2><div class="gallery">{items}</div></div></section>'
+            if kind == 'video':
+                el, cls = f'<video src="../{src}" controls muted playsinline preload="metadata"></video>', ''
+            else:
+                el = f'<a href="../{src}" target="_blank" rel="noopener"><img src="../{src}" alt="{cap}" loading="lazy"></a>'
+                cls = ' class="narrow"' if kind == 'imgn' else ''
+            items += f'<figure{cls}>{el}<figcaption><b>{cap}</b>{f"<span>{note}</span>" if note else ""}</figcaption></figure>'
+        gal = f"""<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery">{items}</div>
+</div></section>"""
 
     body = "".join(f"<p>{b}</p>" for b in p['body'])
-    res = f'<div class="result">{p["result"]}</div>' if p['result'] else ""
+    res = f'<div class="result"><span>Highlight</span>{p["result"]}</div>' if p['result'] else ""
+    pnote = f'<p class="pnote">{p["note"]}</p>' if p.get('note') else ""
+    chips = "".join(f"<li>{s}</li>" for s in p['stack'])
+    prev, nxt = P[i - 1], P[(i + 1) % len(P)]
 
-    return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../style.css",
-                "../og-image.png", f"{BASE}/projects/{p['slug']}.html") + f"""
-<div class="wrap"><a class="crumb" href="../index.html">← {NAME}</a></div>
-<header style="padding-top:26px"><div class="wrap">
-  <p class="label">{p['tag']}</p>
-  <h1>{p['head']}</h1>
-  <p class="stack">{p['stack']}</p>
-  <div class="proj-body">{body}</div>
-  {res}
-</div></header>
-{gal}
-<footer><div class="wrap">
-  <p class="label">Get in touch</p>
-  <p class="lede">Open to conversations about AEC software, openBIM tooling, and AI in the built environment.</p>
-  <div class="links">
-    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">mohamedkmahdy@outlook.com</a>
-    <a class="btn" href="../index.html">All work</a>
-    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../",
+                f"{BASE}/projects/{p['slug']}.html") + f"""
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">{p['tag']}</span>
+    <h1>{p['title']}</h1>
+    <p class="subtitle">{p['head']}</p>
+    <ul class="chips" aria-label="Built with">{chips}</ul>
   </div>
-</div></footer>
-<script>{JS}</script>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">{p['problem']}</p>
+  <h2>What it does</h2>
+  {body}
+  {res}
+  {pnote}
+</div></section>
+{gal}
+<section><div class="wrap"><div class="pn">
+  <a href="{prev['slug']}.html"><small>← Previous project</small><b>{prev['title']}</b></a>
+  <a class="next" href="{nxt['slug']}.html"><small>Next project →</small><b>{nxt['title']}</b></a>
+</div></div></section>
+</main>
+{contact("../")}
+<script>{JS_THEME}</script>
 </body></html>"""
 
 # ---------------------------------------------------------------- write
 os.makedirs(OUT_PROJ, exist_ok=True)
 open(os.path.join(SITE, 'style.css'), 'w').write(CSS)
 open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
-for p in P:
-    open(os.path.join(OUT_PROJ, p['slug'] + '.html'), 'w').write(build_project(p))
+for i, p in enumerate(P):
+    open(os.path.join(OUT_PROJ, p['slug'] + '.html'), 'w').write(build_project(i, p))
 print(f"built: index.html, style.css, {len(P)} project pages")
 for p in P:
     n = len(p['media'])
