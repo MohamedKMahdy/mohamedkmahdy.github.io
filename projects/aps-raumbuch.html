@@ -10,12 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/aps-raumbuch.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/aps-raumbuch.png?v=b2bd789b">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/aps-raumbuch.png?v=ce0c44b7">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/aps-raumbuch.png?v=b2bd789b">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/aps-raumbuch.png?v=ce0c44b7">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -46,12 +46,13 @@
   <p class="problem">A room book lists every room and everything in it. Teams often assemble it by hand from the model, room by room, and start again when the design changes.</p>
   <h2>What it does</h2>
   <p><strong>Revit add-in</strong> (Revit 2023 to 2027). Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes the room number and name into shared parameters. It then creates one cropped plan per room and exports the room book as Excel, as a PDF with one page per room, and as an offline HTML dashboard. The three steps live in one docked panel, in German and English.</p><p><strong>Web app.</strong> Signs in to Autodesk Construction Cloud, browses hubs, projects and folders across all APS regions, and opens a model in the APS Viewer with a plan panel beside the 3D view. Rooms come from the 3D scene, from the Model Derivative API, or from the 2D plan views when neither has them. Furniture from the main model and every linked model is placed in one coordinate system and matched to rooms by parameter, by position, or by the nearest room within 2 m.</p><p>Both export a formatted German <em>Raumbuch</em> to Excel, PDF and a single-file HTML dashboard whose charts double as filters.</p>
+  <h2>Features</h2><ul class="features"><li>Revit add-in for Revit 2023 to 2027, one docked panel with three steps and a highlighted next action, in German and English</li><li>Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes room number and name into shared parameters</li><li>Creates one cropped floor plan per room, named by room number and name</li><li>Exports the room book as Excel, as a PDF with a cover and one page per room with its plan and furniture, and as an offline HTML dashboard</li><li>Settings choose the room parameters in the PDF, the furniture categories and the view template of the room plans</li><li>Web app: Autodesk sign-in, hubs, projects and folders of all APS regions (US, EMEA, AUS) in one list</li><li>Web app: APS Viewer with a plan panel; selecting a room tints its furniture and cuts it out with a section box</li><li>Web app: rooms from the 3D scene, the Model Derivative API or the 2D plan views; furniture from the main model and every linked model in one coordinate system</li><li>Furniture is matched to rooms by parameter, by position, or by the nearest room within 2 m; leftovers are listed separately</li><li>Searchable room table with level separators, area totals and furniture grouped by category and type</li><li>IFC files open in the browser without any login, several files form one federated model, nothing is uploaded</li><li>Dashboard export: one offline HTML file with KPI tiles, charts that act as filters, a room table with plan images and CSV download</li></ul>
   <div class="result"><span>Highlight</span>Not locked to one vendor: IFC files open <strong>without any login</strong>, are parsed in the browser with web-ifc and never uploaded. Several IFC files form one federated model.</div>
   
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
-  <div class="gallery"><figure><a href="../img/raumbuch-dashboard.jpg" target="_blank" rel="noopener"><img src="../img/raumbuch-dashboard.jpg" alt="The room book dashboard" loading="lazy"></a><figcaption><b>The room book dashboard</b><span>One offline HTML file with KPI tiles, charts that filter and the room table. Rendered from the real template with sample data.</span></figcaption></figure><figure class="narrow"><a href="../img/raumbuch-panel.png" target="_blank" rel="noopener"><img src="../img/raumbuch-panel.png" alt="The Revit add-in panel" loading="lazy"></a><figcaption><b>The Revit add-in panel</b><span>Model status, the three steps with their state, the export formats and the settings, in one docked panel.</span></figcaption></figure></div>
+  <div class="gallery"><figure><a href="../img/raumbuch-dashboard.jpg" target="_blank" rel="noopener"><img src="../img/raumbuch-dashboard.jpg" alt="The room book dashboard" loading="lazy"></a><figcaption><b>The room book dashboard</b><span>Rendered from the real template with sample data.</span></figcaption></figure><figure class="narrow"><a href="../img/raumbuch-panel.png" target="_blank" rel="noopener"><img src="../img/raumbuch-panel.png" alt="The Revit add-in panel" loading="lazy"></a><figcaption><b>The Revit add-in panel</b></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
   <a href="revit-batch.html"><small>← Previous project</small><b>Revit Batch</b></a>

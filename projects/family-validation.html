@@ -10,12 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/family-validation.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/family-validation.png?v=cddac566">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/family-validation.png?v=acee0d34">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/family-validation.png?v=cddac566">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/family-validation.png?v=acee0d34">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -46,12 +46,13 @@
   <p class="problem">One badly built family, with an embedded CAD import or the wrong category, slows down every project that loads it. Checking hundreds of them by hand does not happen.</p>
   <h2>What it does</h2>
   <p>A launcher window drives a hidden Revit that opens every family in a folder and checks it: the naming convention (auto-correcting the category prefix when that is unambiguous), embedded CAD imports (removed, while linked CAD is kept), name against category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass.</p><p><strong>Safe by construction.</strong> The original is copied aside before anything else, and a family whose copy fails is skipped, never touched. Cleaned copies go to their own folder, sources are never changed in place, and a dry run writes the full report without changing a file.</p><p>A visual rules editor lets non-developers maintain the standard: categories and name patterns are built from blocks instead of regular expressions, and the editor refuses to save a ruleset the run would reject.</p>
+  <h2>Features</h2><ul class="features"><li>Checks a whole folder of Revit families without the user opening Revit: a launcher drives a hidden Revit</li><li>File name against the naming convention, with a safe auto-correction of the category prefix</li><li>Removes embedded CAD imports, keeps linked CAD, and can scan nested families for CAD</li><li>Checks that each family's category matches its name</li><li>Required family parameters: present, right binding and storage type, optionally not empty</li><li>File size warning and error limits</li><li>Optional classification code check against DIN 276, Uniclass or a custom pattern</li><li>Originals are copied aside before anything else; cleaned copies go to their own folder; sources are never changed</li><li>Dry run that writes the full report without changing a file</li><li>Excel report sorted worst first, plus a log</li><li>Visual rules editor: name patterns from blocks, refuses rulesets that would fail, keeps backups, imports rulesets from colleagues</li><li>Revit 2023 to 2027, German and English, no third-party libraries</li></ul>
   <div class="result"><span>Highlight</span><strong>Zero third-party dependencies:</strong> everything is .NET plus the Revit API, with each worker built for the runtime its Revit version ships.</div>
   
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
-  <div class="gallery"><figure><a href="../img/family-validation-logo.png" target="_blank" rel="noopener"><img src="../img/family-validation-logo.png" alt="The Family Validation mark" loading="lazy"></a><figcaption><b>The Family Validation mark</b></figcaption></figure></div>
+  <div class="gallery"><figure><a href="../img/family-validation-logo.png" target="_blank" rel="noopener"><img src="../img/family-validation-logo.png" alt="The Family Validation mark" loading="lazy"></a><figcaption><b>The Family Validation mark</b></figcaption></figure><figure><a href="../img/family-validation-start.png" target="_blank" rel="noopener"><img src="../img/family-validation-start.png" alt="The launcher" loading="lazy"></a><figcaption><b>The launcher</b></figcaption></figure><figure><a href="../img/family-validation-launcher.png" target="_blank" rel="noopener"><img src="../img/family-validation-launcher.png" alt="A finished check" loading="lazy"></a><figcaption><b>A finished check</b></figcaption></figure><figure><a href="../img/family-validation-standards.png" target="_blank" rel="noopener"><img src="../img/family-validation-standards.png" alt="The rules editor" loading="lazy"></a><figcaption><b>The rules editor</b></figcaption></figure><figure><a href="../img/family-validation-standards-problem.png" target="_blank" rel="noopener"><img src="../img/family-validation-standards-problem.png" alt="The rules editor refusing an invalid rule" loading="lazy"></a><figcaption><b>The rules editor refusing an invalid rule</b></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
   <a href="acc-integrations.html"><small>← Previous project</small><b>LARBACC</b></a>

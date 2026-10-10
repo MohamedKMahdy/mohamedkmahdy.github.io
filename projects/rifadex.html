@@ -10,12 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/rifadex.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rifadex.png?v=e43da18b">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rifadex.png?v=48fdae24">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rifadex.png?v=e43da18b">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rifadex.png?v=48fdae24">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -46,6 +46,7 @@
   <p class="problem">Modelling interior finishes by hand, room by room, is slow, and every design change leaves finishes that no longer fit the room.</p>
   <h2>What it does</h2>
   <p>Lengths are shown and typed in the project's units. Pick a wall, floor, base and ceiling finish for each room, from this model or from a linked architect's model, singly or for many rooms at once. RIFADEX then draws one finish wall per run of room boundary, a floor per room with openings for columns and shafts, skirting that stops at doors, and a ceiling at the room height. Doors and windows of the walls behind are cut through the finish walls.</p><p><strong>Plan, preview, apply.</strong> Every change is shown before anything is drawn, and running it again updates existing finishes in place, keeping their element ids: a new code changes the type, a room that changed shape is redrawn, openings follow moved doors, and a type you changed by hand is kept, so a feature wall survives. The linked model is never touched.</p><p>Finish types and materials are managed in a table or round-tripped through Excel, with new rows creating new types and an optional naming convention. One XML settings file holds the company standard, so any template works and nothing has to be added to a project first.</p><p><strong>RIFADEX</strong> (Revit Interior Finishes: Assignment, Drawing and Excel eXchange) is one company-neutral bundle that rebuilds my earlier in-house finishes tools, without any office-specific parameter.</p>
+  <h2>Features</h2><ul class="features"><li>Choose wall, floor, base (skirting) and ceiling finishes per room, from this model or a linked model</li><li>Set finishes for many rooms at once, filter by level, search or any room parameter, group rooms by name</li><li>Draws finish walls against the room boundary, a floor per room with openings, skirting that stops at doors, and a ceiling at the room height</li><li>Door and window openings are cut through the finish walls from the walls behind, linked or not</li><li>Plan, preview, apply: every change is shown before anything is drawn</li><li>Running it again updates existing finishes in place, keeps hand edits, and does not redraw skirting you deleted</li><li>Height and floor offset can be overridden per room; lengths in the project's units</li><li>Remove drawn finishes per room and surface; a count of what was drawn per room</li><li>Finish types and materials in a table or round-tripped through Excel; new rows create new types</li><li>Optional naming convention built from tokens</li><li>One XML settings file holds the company standard and can live on a server; any template works</li><li>No shared parameters and no third-party DLLs; Revit 2024 to 2027 from one codebase</li></ul>
   <div class="result"><span>Highlight</span>Tested inside Revit end to end: drawing, redrawing, hand edits, door cuts, a moved and rotated link and an Excel round trip, from <strong>one codebase for Revit 2024 to 2027</strong> with no third-party DLLs.</div>
   
 </div></section>

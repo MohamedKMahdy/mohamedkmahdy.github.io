@@ -10,12 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/rimacos.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=6bdda3e6">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=736625e9">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=6bdda3e6">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=736625e9">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -46,12 +46,13 @@
   <p class="problem">A clash matrix grows with the square of the number of clash groups. Maintaining thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.</p>
   <h2>What it does</h2>
   <p><strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash detection matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan.</p><p>A rule says how two references are tested against each other (everything, a discipline, a tag or a single group), and the most specific rule wins. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
+  <h2>Features</h2><ul class="features"><li>Clash rules instead of matrix cells: a rule says how two references are tested, and the most specific rule wins</li><li>References at four levels: everything, a discipline, a tag or a single clash group</li><li>Test types hard, hard (conservative), clearance, duplicate and none, each with tolerance and severity</li><li>Group priorities decide which side is responsible for each clash pair</li><li>Navisworks output: search sets and Clash Detective tests as XML, ready to import</li><li>IfcOpenShell output: IfcClash sets that run on IFC models and report as BCF</li><li>buildingSMART IDS 1.0 file that checks the models carry the classes, classifications and properties the groups filter on</li><li>Excel matrix for the BIM execution plan, editable and importable again</li><li>HTML report and CSV test list, optionally with clash counts per test and discipline pair</li><li>Clash groups select by IFC class and predefined type, property filters, classification codes and Revit categories</li><li>Models are found by their ISO 19650 container name</li><li>Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks</li><li>Merged or per-pair test granularity</li></ul>
   <div class="result"><span>Highlight</span>A classic 133-group matrix carried <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
   
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
-  <div class="gallery"><figure><a href="../img/rimacos-editor.jpg" target="_blank" rel="noopener"><img src="../img/rimacos-editor.jpg" alt="The matrix editor" loading="lazy"></a><figcaption><b>The matrix editor</b><span>Discipline matrix, the rule behind each cell, and the group pairs it decides.</span></figcaption></figure></div>
+  <div class="gallery"><figure><a href="../img/rimacos-editor.jpg" target="_blank" rel="noopener"><img src="../img/rimacos-editor.jpg" alt="The matrix editor" loading="lazy"></a><figcaption><b>The matrix editor</b></figcaption></figure><figure><a href="../img/rimacos-tests.jpg" target="_blank" rel="noopener"><img src="../img/rimacos-tests.jpg" alt="The clash tests a rule set produces" loading="lazy"></a><figcaption><b>The clash tests a rule set produces</b></figcaption></figure><figure><a href="../img/rimacos-report.jpg" target="_blank" rel="noopener"><img src="../img/rimacos-report.jpg" alt="The HTML report" loading="lazy"></a><figcaption><b>The HTML report</b></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
   <a href="clash-management.html"><small>← Previous project</small><b>SORTIE</b></a>

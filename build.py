@@ -207,6 +207,15 @@ dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 to
          ("img","img/image58.jpeg","Panel Tagger","")]),
 ]
 
+# Full feature list per project, from each repository's README.
+FEATURES = {'revit-batch': ['Seven tasks in one pass: Autodesk Model Checker, IFC export, NWC export for Navisworks, PDF and DWG sheet exports, a model health report and a change report', 'Revit opens each model once for every task of a job and closes it again without saving', 'Four kinds of source: chosen ACC cloud models, an ACC folder, a local or network folder, or a fixed list of .rvt files', 'Folders are read again at every run, so models added later are included', 'Every installed Revit from 2023 to 2027; each model goes to the version that can open it, older models are upgraded in memory only', 'Weekly runs through the Windows Task Scheduler, also while the program is closed', 'ACC both ways: plain .rvt files are downloaded for the run, and IFC, NWC, PDF, DWG files and reports can be uploaded back', 'Skip unchanged: a model whose source, settings and outputs have not changed since the last verified run is left out', 'PDF of every sheet, of a sheet set saved in the model, or of sheets matching a number pattern; one PDF per sheet or per model', 'Model health report per model: warnings, families, CAD, links, views, groups and rooms', "Change report: elements added, deleted and changed since the job's last report", 'A time limit per model; a model that hangs is closed and reported while the others carry on', 'One output folder (a SharePoint library synced with OneDrive works), a history workbook for Excel and Power BI, a Teams message after each run', 'Single-task editions built from the same code: Bulk Model Checker, IFC Bulk Export and NWC Bulk Export', 'German and English interface; per-user install without admin rights'], 'aps-raumbuch': ['Revit add-in for Revit 2023 to 2027, one docked panel with three steps and a highlighted next action, in German and English', 'Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes room number and name into shared parameters', 'Creates one cropped floor plan per room, named by room number and name', 'Exports the room book as Excel, as a PDF with a cover and one page per room with its plan and furniture, and as an offline HTML dashboard', 'Settings choose the room parameters in the PDF, the furniture categories and the view template of the room plans', 'Web app: Autodesk sign-in, hubs, projects and folders of all APS regions (US, EMEA, AUS) in one list', 'Web app: APS Viewer with a plan panel; selecting a room tints its furniture and cuts it out with a section box', 'Web app: rooms from the 3D scene, the Model Derivative API or the 2D plan views; furniture from the main model and every linked model in one coordinate system', 'Furniture is matched to rooms by parameter, by position, or by the nearest room within 2 m; leftovers are listed separately', 'Searchable room table with level separators, area totals and furniture grouped by category and type', 'IFC files open in the browser without any login, several files form one federated model, nothing is uploaded', 'Dashboard export: one offline HTML file with KPI tiles, charts that act as filters, a room table with plan images and CSV download'], 'clash-management': ['Group clashes by the zone their clash point lies in, one group per zone, or write the zone in front of each clash name', 'Zones are any 3D objects: masses, rooms, generic models or a separate zones model', 'The real zone shape is used, with the bounding box as a faster option for simple zones', 'Where zones overlap the smallest wins; clashes outside every zone go to a "No zone" group', "Zone name from the object's name or from any property", 'Export status, assignment, approval, description and comments of clashes to a status file', 'Import them into the same clashes in this or another Navisworks file, also from a Navisworks XML clash report', 'Clashes are matched by result GUID first, then by the clashing pair; a clash with two possible counterparts is left alone', 'Clean up: move clashes out of their groups, or take the zones off their names again', 'Every action works on the clash tests you check and is one undo step', 'One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install'], 'rimacos': ['Clash rules instead of matrix cells: a rule says how two references are tested, and the most specific rule wins', 'References at four levels: everything, a discipline, a tag or a single clash group', 'Test types hard, hard (conservative), clearance, duplicate and none, each with tolerance and severity', 'Group priorities decide which side is responsible for each clash pair', 'Navisworks output: search sets and Clash Detective tests as XML, ready to import', 'IfcOpenShell output: IfcClash sets that run on IFC models and report as BCF', 'buildingSMART IDS 1.0 file that checks the models carry the classes, classifications and properties the groups filter on', 'Excel matrix for the BIM execution plan, editable and importable again', 'HTML report and CSV test list, optionally with clash counts per test and discipline pair', 'Clash groups select by IFC class and predefined type, property filters, classification codes and Revit categories', 'Models are found by their ISO 19650 container name', 'Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks', 'Merged or per-pair test granularity'], 'speckle-llm': ['Answers questions about a selected element from its parameters and any attached specification PDF, with page citations', 'Answers questions about the whole model, such as counts, totals and breakdowns per level', 'Every element of the latest version of each model sits in a local SQLite index', 'The Llama only fills a JSON query plan; code checks and repairs it and runs it as parameterised SQL', 'Each reply shows the exact query and result, plus a link that opens exactly those elements in the Speckle viewer', 'Proposes rules from specification PDFs; a person approves them before they run', 'Checks every new model version and opens one pinned thread per failing rule, isolating the elements in the viewer', 'Replies "Resolved" when a later version fixes the problem', 'Missing values are stated, never invented, and citations are checked against the supplied documents', 'Runs on a local Llama through Ollama, so model data and documents never leave the machine', 'Works with both Speckle data shapes (v2 Revit parameters and v3 properties)', 'Webhook server with signature check and de-duplicated retries; command line for indexing, questions and checks; Docker setup with GPU'], 'qubecta': ['Units, bill sections, cost plan elements, rates and descriptions per element type', 'Code lists: CSI MasterFormat 2018, RICS NRM2 and NRM1, UniFormat II and DIN 276 built in; Uniclass 2015, OmniClass and Revit assembly code files read as they are', "Suggestions from earlier projects, Revit keynotes and assembly codes, and each type's name and materials, each with its reason", 'Elements from where things are: doors and windows from their host, walls and floors from exterior and load-bearing settings', 'Measures count, length, area, volume, perimeter, weight from material density, and one line per material layer', 'Filters by phase, design option and level; counts repeated placements of linked models', 'Bill by trade and cost plan by element, with cost per m² of gross floor area', 'Additions on the running total: preliminaries, overheads and profit, contingency and VAT; waste percentage; items not in the model', 'Exports to Excel, PDF and CSV, and to GAEB DA XML 3.3 (X83 tender, X82 priced estimate) validated against the official schemas', "Writes elements back into Revit's Assembly Code, so schedules and the IFC export carry them", 'Settings and rates are saved in the model; price lists move between projects as Excel files', 'Works in any Revit language; one docked panel for Revit 2022 to 2027'], 'rifadex': ['Choose wall, floor, base (skirting) and ceiling finishes per room, from this model or a linked model', 'Set finishes for many rooms at once, filter by level, search or any room parameter, group rooms by name', 'Draws finish walls against the room boundary, a floor per room with openings, skirting that stops at doors, and a ceiling at the room height', 'Door and window openings are cut through the finish walls from the walls behind, linked or not', 'Plan, preview, apply: every change is shown before anything is drawn', 'Running it again updates existing finishes in place, keeps hand edits, and does not redraw skirting you deleted', "Height and floor offset can be overridden per room; lengths in the project's units", 'Remove drawn finishes per room and surface; a count of what was drawn per room', 'Finish types and materials in a table or round-tripped through Excel; new rows create new types', 'Optional naming convention built from tokens', 'One XML settings file holds the company standard and can live on a server; any template works', 'No shared parameters and no third-party DLLs; Revit 2024 to 2027 from one codebase'], 'acc-integrations': ['Pick ACC and BIM 360 projects, folders and a destination; the latest version of every document is saved under its ACC name', 'One dated folder per project and run, with a report and a manifest of every file and its ACC version', 'Unchanged documents are hard-linked from the previous backup instead of downloaded again', 'Keeps the last backups per project (5 by default); never deletes anything after a run with failures', 'A run only becomes a backup once its manifest is written; failed and cancelled runs are kept and labelled', 'Include or exclude any folder; new folders follow their parent', 'Weekly schedule on any days and time, running from the notification area and optionally with Windows', 'Missed backups are made up at the next start; failed ones are retried after 15 minutes, 1 hour and 4 hours', 'Sign-in with PKCE, no client secret shipped; an optional secret is stored encrypted for the Windows user', 'Parallel downloads (1 to 8), a test run that downloads nothing, daily logs', 'German and English interface'], 'family-validation': ['Checks a whole folder of Revit families without the user opening Revit: a launcher drives a hidden Revit', 'File name against the naming convention, with a safe auto-correction of the category prefix', 'Removes embedded CAD imports, keeps linked CAD, and can scan nested families for CAD', "Checks that each family's category matches its name", 'Required family parameters: present, right binding and storage type, optionally not empty', 'File size warning and error limits', 'Optional classification code check against DIN 276, Uniclass or a custom pattern', 'Originals are copied aside before anything else; cleaned copies go to their own folder; sources are never changed', 'Dry run that writes the full report without changing a file', 'Excel report sorted worst first, plus a log', 'Visual rules editor: name patterns from blocks, refuses rulesets that would fail, keeps backups, imports rulesets from colleagues', 'Revit 2023 to 2027, German and English, no third-party libraries'], 'cloud-revisions': ['Lists every revision cloud in the active model', 'Per cloud: id, view and view type, the sheet it appears on, revision sequence, number, date, description, issue status, issued by and to, comment and mark', 'Filters for revision, clouds on sheets only and issued revisions only', 'Formatted Excel workbook with frozen header and filters', 'Offline HTML dashboard with KPI tiles, filter chips, linked charts and a searchable, sortable table', 'Neither export needs Excel, a CDN or internet access', 'One docked panel on its own ribbon tab, German or English, with an explanation for every option', 'Revit 2023 to 2027, no dependencies'], 'revit-automation': ['Revit-Transmitter: detaches models with worksets kept or discarded, purges unused elements and prepares issue-ready files', 'Worksets Manager: creates standard worksets from Excel or by classification and assigns every element to the right one', 'Auto Joiner: joins and unjoins every intersecting element of selected categories in one pass', 'Transfer Types: transfers types and families between many projects selected from a folder tree'], 'bim-analytics': ['Model health dashboards from Autodesk Model Checker results across every project', 'Clash detection dashboards: trend per report date, discipline-pair matrix and clash tests', 'Issues dashboards from BIM 360 and ACC: causes, companies, status and timelines', 'ACC account administration: staffing load, products, companies, project sizes and model opening times', 'Resourcing and team-level assessment dashboards', 'Project intelligence hubs on SharePoint with scheduled refresh', 'Offline rebuild: 52 Power BI files decoded into one self-contained HTML page with a project picker across every tab, no Power BI needed, personal data left out'], 'curtain-panels': ['Panel Generator: creates and edits curtain panels across the facade', 'Panel Scheduler: builds and exports panel schedules', 'Panel Drawings: generates a dedicated view for every panel type', 'Panel Tagger: tags and dimensions the whole set automatically']}
+
+MEDIA = {'revit-batch': [('img', 'img/revit-batch-jobs.png', 'A weekly job', 'Models, the Revit version each one opens in, and the tasks to run. Made-up data.'), ('img', 'img/revit-batch-07-acc-models.png', 'Choosing models in ACC', ''), ('img', 'img/revit-batch-21b-source-local-folder.png', 'Models from a network folder', ''), ('img', 'img/revit-batch-tasks.png', 'Seven tasks, one pass', ''), ('img', 'img/revit-batch-23h-task-pdf.png', 'PDF export of the sheets', ''), ('img', 'img/revit-batch-23f-task-model-health.png', 'Model health and change reports', ''), ('img', 'img/revit-batch-output.png', 'Output, history and Teams', ''), ('img', 'img/revit-batch-25a-schedule-on.png', 'Weekly schedule', ''), ('img', 'img/revit-batch-results.png', 'Results per model and task', ''), ('img', 'img/revit-batch-26a-results-done.png', 'A finished run', ''), ('img', 'img/bmc-job.png', 'Bulk Model Checker edition', ''), ('img', 'img/bmc-finished.png', 'Bulk Model Checker: a finished weekly run', ''), ('img', 'img/ifc-bulk-acc.png', 'IFC Bulk Export edition', ''), ('img', 'img/nwc-acc-tree.png', 'NWC Bulk Export edition', ''), ('img', 'img/nwc-finished.png', 'NWC Bulk Export: uploads back to ACC', ''), ('img', 'img/image9.png', 'An earlier version: scheduled model checks', ''), ('img', 'img/image7.png', 'An earlier version: nightly exports', '')], 'aps-raumbuch': [('img', 'img/raumbuch-dashboard.jpg', 'The room book dashboard', 'Rendered from the real template with sample data.'), ('imgn', 'img/raumbuch-panel.png', 'The Revit add-in panel', '')], 'clash-management': [('img', 'img/sortie-zones.png', 'Zones', ''), ('img', 'img/sortie-transfer.png', 'Status transfer', ''), ('img', 'img/sortie-report.png', 'A finished transfer', ''), ('img', 'img/sortie-cleanup.png', 'Clean up', ''), ('img', 'img/sortie-logo.png', 'The SORTIE mark', '')], 'rimacos': [('img', 'img/rimacos-editor.jpg', 'The matrix editor', ''), ('img', 'img/rimacos-tests.jpg', 'The clash tests a rule set produces', ''), ('img', 'img/rimacos-report.jpg', 'The HTML report', '')], 'speckle-llm': [('img', 'img/arvent-card.png', 'The ARVENT mark', ''), ('img', 'img/arvent-01-index.png', 'Indexing a model', ''), ('img', 'img/arvent-query.png', 'A model-wide question', ''), ('img', 'img/arvent-03-query-de.png', 'The same question in German', ''), ('img', 'img/arvent-04-extract.png', 'Rules proposed from a specification', ''), ('img', 'img/arvent-check.png', 'Checking approved rules', ''), ('img', 'img/arvent-ask.png', 'A missing value is stated, never invented', '')], 'qubecta': [('img', 'img/qubecta-tabs.jpg', 'Set up, bill and cost plan', 'Shown with a sample model.'), ('img', 'img/qubecta-suggest-export.jpg', 'Suggestions, what is measured, and export', ''), ('imgn', 'img/qubecta-revit.png', 'Docked in Revit', 'DIN 276 suggestions with their checks on the Snowdon Towers sample.'), ('img', 'img/qubecta-pdf.png', 'PDF bill summary', ''), ('img', 'img/qubecta-pdf-division.png', 'PDF bill by division', ''), ('img', 'img/qubecta-excel.png', 'Excel cost plan by element', ''), ('img', 'img/qubecta-excel-division.png', 'Excel bill by division', ''), ('video', 'video/qubecta-earlier.mp4', 'An earlier version', 'Generating a detailed bill of quantities in Excel.')], 'acc-integrations': [('img', 'img/larbacc-projects.png', 'Projects and weekly schedule', 'Made-up data.'), ('img', 'img/larbacc-folders.png', 'Folder selection', ''), ('img', 'img/larbacc-running.png', 'A backup running', ''), ('img', 'img/larbacc-first-run.png', 'First start', ''), ('imgn', 'img/larbacc-settings.png', 'Settings', '')], 'family-validation': [('img', 'img/family-validation-logo.png', 'The Family Validation mark', ''), ('img', 'img/family-validation-start.png', 'The launcher', ''), ('img', 'img/family-validation-launcher.png', 'A finished check', ''), ('img', 'img/family-validation-standards.png', 'The rules editor', ''), ('img', 'img/family-validation-standards-problem.png', 'The rules editor refusing an invalid rule', '')], 'cloud-revisions': [('img', 'img/cloud-revisions-dashboard.jpg', 'The revision cloud dashboard', ''), ('img', 'img/cloud-revisions-workbook.png', 'The Excel workbook', ''), ('imgn', 'img/cloud-revisions-panel.png', 'The docked panel', ''), ('img', 'img/cloud-revisions-logo.png', 'The Cloud Revisions mark', '')]}
+for _p in P:
+    if _p['slug'] in MEDIA: _p['media'] = MEDIA[_p['slug']]
+    if _p['slug'] == 'bim-analytics': _p['media'] = [('img', 'img/bimperf-overview.jpg', 'Offline rebuild: overview', 'Client project names are blurred.'), ('img', 'img/bimperf-model-health-summary.jpg', 'Offline rebuild: model health', ''), ('img', 'img/bimperf-clash-detection.jpg', 'Offline rebuild: clash detection', '')] + _p['media']
+    _p['features'] = FEATURES.get(_p['slug'], [])
+
 # Where I've worked: (when, employer, place, role, summary)
 JOBS = [
  ("2025 to now", "Sweco", "Munich", "Werkstudent, AI &amp; Automation Specialist (BIM + Data Science)",
@@ -249,17 +258,18 @@ CAPS = [
 ]
 
 CSS = """
-:root{--bg:#faf9f6;--bg-alt:#f2f0eb;--fg:#1b1f23;--fg-soft:#535d66;--fg-faint:#848d96;
---accent:#1F4E5F;--on-accent:#fff;--accent-soft:#e2ecef;--warm:#b4612b;--line:#e5e2db;--card:#fff;
---shadow:0 1px 2px rgba(27,31,35,.04),0 8px 24px rgba(27,31,35,.06);
---mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
---sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;--maxw:1060px;--read:720px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1214;--bg-alt:#161a1d;--fg:#e9edf0;
---fg-soft:#a4aeb6;--fg-faint:#717c85;--accent:#7cc0d4;--on-accent:#0b1a20;--accent-soft:#16303a;--warm:#e39462;
---line:#242b30;--card:#14181b;--shadow:0 1px 2px rgba(0,0,0,.3)}}
-:root[data-theme="dark"]{--bg:#0f1214;--bg-alt:#161a1d;--fg:#e9edf0;--fg-soft:#a4aeb6;--fg-faint:#717c85;
---accent:#7cc0d4;--on-accent:#0b1a20;--accent-soft:#16303a;--warm:#e39462;--line:#242b30;--card:#14181b;
---shadow:0 1px 2px rgba(0,0,0,.3)}
+:root{--bg:#F2F2F2;--bg-alt:#E6E6E6;--fg:#111111;--fg-soft:#575656;--fg-faint:#6b6b6b;
+--accent:#3C6E28;--accent-2:#538840;--on-accent:#fff;--accent-soft:#E6F2DE;--warm:#3C6E28;--line:#e2e2e2;--card:#fff;
+--charcoal:#444444;--on-charcoal:#ffffff;--charcoal-soft:#B2B2B2;--amber:#E0A800;
+--shadow:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
+--mono:"Cascadia Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--sans:"Segoe UI",-apple-system,BlinkMacSystemFont,Calibri,Arial,sans-serif;--maxw:1060px;--read:760px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1e1e;--bg-alt:#2a2a2a;--fg:#F2F2F2;
+--fg-soft:#cfcfcf;--fg-faint:#B2B2B2;--accent:#A9C99A;--accent-2:#7BA85F;--on-accent:#111;--accent-soft:#2c3a25;--warm:#A9C99A;
+--line:#3a3a3a;--card:#2a2a2a;--charcoal:#333333;--shadow:0 1px 2px rgba(0,0,0,.3)}}
+:root[data-theme="dark"]{--bg:#1e1e1e;--bg-alt:#2a2a2a;--fg:#F2F2F2;--fg-soft:#cfcfcf;--fg-faint:#B2B2B2;
+--accent:#A9C99A;--accent-2:#7BA85F;--on-accent:#111;--accent-soft:#2c3a25;--warm:#A9C99A;--line:#3a3a3a;--card:#2a2a2a;
+--charcoal:#333333;--shadow:0 1px 2px rgba(0,0,0,.3)}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:17px;
@@ -271,19 +281,18 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .skip{position:absolute;left:-999px;top:8px;background:var(--card);padding:8px 12px;border-radius:8px;z-index:30}
 .skip:focus{left:12px}
 /* nav */
-.nav{position:sticky;top:0;z-index:20;background:var(--bg);background:color-mix(in srgb,var(--bg) 86%,transparent);
--webkit-backdrop-filter:saturate(1.4) blur(10px);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:20;background:var(--charcoal);color:var(--on-charcoal)}
 .nav .wrap{display:flex;align-items:center;gap:18px;height:60px}
-.brand{display:flex;align-items:center;gap:10px;color:var(--fg);font-weight:640;letter-spacing:-.01em;margin-right:auto}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:640;letter-spacing:-.01em;margin-right:auto}
 .brand:hover{text-decoration:none}
-.brand i{width:30px;height:30px;border-radius:9px;background:var(--accent);color:var(--on-accent);display:grid;
+.brand i{width:30px;height:30px;border-radius:6px;background:#538840;color:#fff;display:grid;
 place-items:center;font:600 15px/1 var(--mono);font-style:normal}
 .nav nav{display:flex;gap:4px}
-.nav nav a{color:var(--fg-soft);font-size:14.5px;padding:6px 10px;border-radius:8px}
-.nav nav a:hover{color:var(--fg);background:var(--bg-alt);text-decoration:none}
-#tt{width:34px;height:34px;border:1px solid var(--line);background:var(--card);color:var(--fg-soft);border-radius:9px;
+.nav nav a{color:#e6e6e6;font-size:14.5px;padding:6px 10px;border-radius:6px}
+.nav nav a:hover{color:#fff;background:rgba(255,255,255,.12);text-decoration:none}
+#tt{width:34px;height:34px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#e6e6e6;border-radius:6px;
 cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;flex:none}
-#tt:hover{color:var(--accent);border-color:var(--accent)}
+#tt:hover{color:#fff;border-color:#A9C99A}
 @media(max-width:640px){.brand span{display:none}.nav .wrap{gap:8px}.nav nav a{padding:6px 7px;font-size:14px}}
 /* hero */
 .hero{padding:72px 0 56px}
@@ -297,7 +306,7 @@ h1{font-size:clamp(34px,5.6vw,52px);line-height:1.08;margin:0 0 10px;letter-spac
 .sub{color:var(--fg-soft);max-width:62ch;margin:0 0 22px}
 .now{display:inline-flex;align-items:center;gap:9px;font-size:14px;color:var(--fg-soft);background:var(--card);
 border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 12px;margin:0 0 26px}
-.now b{width:8px;height:8px;border-radius:50%;background:#3aa76d;box-shadow:0 0 0 3px rgba(58,167,109,.18)}
+.now b{width:8px;height:8px;border-radius:50%;background:#538840;box-shadow:0 0 0 3px rgba(83,136,64,.2)}
 .links{display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-block;padding:10px 16px;border:1px solid var(--line);border-radius:10px;font-size:15px;
 color:var(--fg);background:var(--card);transition:.15s;font-weight:520}
@@ -305,8 +314,8 @@ color:var(--fg);background:var(--card);transition:.15s;font-weight:520}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.primary:hover{opacity:.9;color:var(--on-accent)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin:48px 0 0}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
-.stat b{display:block;font-size:28px;font-weight:680;letter-spacing:-.02em;line-height:1.15}
+.stat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:8px;padding:16px 18px 14px}
+.stat b{display:block;font-size:28px;font-weight:700;letter-spacing:-.02em;line-height:1.15;color:var(--accent)}
 .stat span{font-size:14px;color:var(--fg-soft)}
 @media(max-width:760px){.hero{padding:44px 0 40px}.hero .grid{grid-template-columns:1fr;gap:26px}
 .photo{width:120px;height:120px;order:-1}}
@@ -325,7 +334,7 @@ background:var(--card);color:var(--fg-soft);cursor:pointer}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .filters button small{opacity:.7;margin-left:4px;font-size:12.5px}
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
-.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--card);
+.card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);
 color:var(--fg);transition:.18s;box-shadow:var(--shadow)}
 .card[hidden]{display:none}
 .card:hover{border-color:var(--accent);transform:translateY(-3px);text-decoration:none}
@@ -404,9 +413,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-betw
 .problem{font-size:19px;line-height:1.6;color:var(--fg);margin:0}
 .pbody p{color:var(--fg-soft);margin:0 0 14px}
 .pbody p strong{color:var(--fg);font-weight:620}
-.result{margin-top:28px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--warm);
+.result{margin-top:28px;padding:18px 20px;background:var(--accent-soft);border:1px solid var(--line);border-left:4px solid var(--accent-2);
 border-radius:12px;font-size:16px;color:var(--fg)}
 .result span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--warm);margin-bottom:6px}
+.features{list-style:none;margin:6px 0 4px;padding:0;display:grid;grid-template-columns:1fr;gap:9px}
+.features li{position:relative;padding:10px 14px 10px 40px;background:var(--card);border:1px solid var(--line);border-radius:8px;
+color:var(--fg);font-size:15.5px;line-height:1.5}
+.features li::before{content:"";position:absolute;left:14px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--accent-2);
+}
+.features li::after{content:"";position:absolute;left:18.5px;top:17px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .pnote{margin-top:18px;font-size:14.5px;color:var(--fg-faint)}
 .gallery{display:grid;gap:40px}
 figure{margin:0}
@@ -457,7 +472,7 @@ def head(title, desc, root, url, og="og-image.png"):
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{BASE}/{og}">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="{root}style.css">
 </head>
 <body>
@@ -528,7 +543,7 @@ def build_index():
 
     return head(f"{NAME} | AEC Solutions Architect &amp; AI Specialist",
                 "Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.",
-                "", BASE) + f"""
+                "", BASE, "og-image.png?v=" + hashlib.sha1(open(os.path.join(SITE, "og-image.png"), "rb").read()).hexdigest()[:8]) + f"""
 <main id="main">
 <div class="hero"><div class="wrap"><div class="grid">
   <div>
@@ -641,8 +656,8 @@ def build_og(p):
         bold(10)
     except Exception:
         return False
-    W, H, TEAL = 1200, 630, (31, 78, 95)
-    im = Image.new("RGB", (W, H), TEAL)
+    W, H, CHARCOAL = 1200, 630, (68, 68, 68)
+    im = Image.new("RGB", (W, H), CHARCOAL)
     grid = Image.new("RGBA", (W, H), (0, 0, 0, 0)); g = ImageDraw.Draw(grid)
     for x in range(0, W, 60): g.line([(x, 0), (x, H)], fill=(255, 255, 255, 16))
     for y in range(0, H, 60): g.line([(0, y), (W, y)], fill=(255, 255, 255, 16))
@@ -663,7 +678,7 @@ def build_og(p):
         return out
 
     x, y = 64, 64
-    d.text((x, y), "MOHAMED K. MAHDY", font=mono(19), fill=(170, 196, 205)); y += 52
+    d.text((x, y), "MOHAMED K. MAHDY", font=mono(19), fill=(178, 178, 178)); y += 52
     title = html.unescape(p['title'])
     for size in (64, 56, 48):
         tl = wrap(title, bold(size), tw, 3)
@@ -671,10 +686,10 @@ def build_og(p):
     for line in tl:
         d.text((x, y), line, font=bold(size), fill="white"); y += int(size * 1.12)
     y += 10
-    d.text((x, y), html.unescape(p['tag']).upper(), font=mono(19), fill=(159, 208, 222)); y += 48
+    d.text((x, y), html.unescape(p['tag']).upper(), font=mono(19), fill=(169, 201, 154)); y += 48
     for line in wrap(html.unescape(p['card']), sans(26), tw, 6 if shot else 4):
-        d.text((x, y), line, font=sans(26), fill=(226, 236, 240)); y += 37
-    d.text((x, H - 64), "mohamedkmahdy.github.io", font=mono(18), fill=(150, 180, 190))
+        d.text((x, y), line, font=sans(26), fill=(236, 236, 236)); y += 37
+    d.text((x, H - 64), "mohamedkmahdy.github.io", font=mono(18), fill=(169, 201, 154))
 
     if shot:
         bx, by, bw, bh = 576, 56, 568, 518
@@ -711,6 +726,7 @@ def build_project(i, p):
 </div></section>"""
 
     body = "".join(f"<p>{b}</p>" for b in p['body'])
+    feats = ('<h2>Features</h2><ul class="features">' + "".join(f"<li>{html.escape(f, quote=False)}</li>" for f in p['features']) + '</ul>') if p.get('features') else ""
     res = f'<div class="result"><span>Highlight</span>{p["result"]}</div>' if p['result'] else ""
     pnote = f'<p class="pnote">{p["note"]}</p>' if p.get('note') else ""
     chips = "".join(f"<li>{s}</li>" for s in p['stack'])
@@ -737,6 +753,7 @@ def build_project(i, p):
   <p class="problem">{p['problem']}</p>
   <h2>What it does</h2>
   {body}
+  {feats}
   {res}
   {pnote}
 </div></section>
