@@ -295,23 +295,7 @@ cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;flex
 #tt:hover{color:#fff;border-color:#A9C99A}
 @media(max-width:640px){.brand span{display:none}.nav .wrap{gap:8px}.nav nav a{padding:6px 7px;font-size:14px}}
 /* hero */
-.band{background:var(--charcoal);color:#fff}
-.band a{color:#A9C99A}
-.hero{padding:64px 0 52px}
-.hero .hello,.hero .role{color:#A9C99A}
-.hero .sub{color:#dcdcdc}
-.hero .now{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#e6e6e6}
-.hero .btn{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
-.hero .btn:hover{border-color:#A9C99A;color:#fff}
-.hero .btn.primary{background:#538840;border-color:#538840;color:#fff;font-weight:600}
-.hero .btn.primary:hover{background:#3C6E28;border-color:#3C6E28;opacity:1}
-.hero .stat{background:#fff;color:#111}.hero .stat b{color:#3C6E28}.hero .stat span{color:#575656}
-.hero .photo{box-shadow:0 0 0 5px rgba(255,255,255,.15)}
-.band .crumb{color:#cfcfcf}.band .crumb:hover{color:#fff}
-.band .phead{padding:18px 0 40px}
-.band .phead .subtitle{color:#e6e6e6}
-.band .tag{background:transparent;border:1px solid #7BA85F;color:#A9C99A}
-.band .chips li{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#e6e6e6}
+.hero{padding:72px 0 56px}
 .hero .grid{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
 .photo{width:200px;height:200px;border-radius:50%;object-fit:cover;display:block;background:#fff;
 box-shadow:0 0 0 6px var(--card),0 0 0 7px var(--line),var(--shadow)}
@@ -338,13 +322,13 @@ color:var(--fg);background:var(--card);transition:.15s;font-weight:520}
 /* sections */
 section{padding:72px 0;border-top:1px solid var(--line)}
 .sec-head{margin:0 0 34px;max-width:var(--read)}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);margin:0 0 8px}
-h2{font-size:clamp(26px,3.6vw,34px);line-height:1.2;letter-spacing:-.01em;margin:0 0 12px;font-weight:700;color:var(--accent)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--warm);margin:0 0 8px}
+h2{font-size:clamp(26px,3.6vw,34px);line-height:1.2;letter-spacing:-.02em;margin:0 0 12px;font-weight:660}
 .sec-head p{color:var(--fg-soft);margin:0 0 10px}
 .hint{font-size:14.5px;color:var(--fg-faint)}
 /* filters + cards */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
-.filters button{font:inherit;font-size:14.5px;padding:6px 14px;border-radius:999px;border:1px solid var(--accent-2);
+.filters button{font:inherit;font-size:14.5px;padding:7px 14px;border-radius:999px;border:1px solid var(--line);
 background:var(--card);color:var(--fg-soft);cursor:pointer}
 .filters button:hover{border-color:var(--accent);color:var(--accent)}
 .filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
@@ -363,7 +347,7 @@ background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/28px 28px,linear
 .glyph small{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-soft);margin-top:4px}
 .card .cbody{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1}
 .card h3{font-size:19px;margin:0 0 6px;letter-spacing:-.015em;font-weight:650}
-.tag{font-family:var(--sans);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
 color:var(--accent);background:var(--accent-soft);padding:3px 8px;border-radius:6px;display:inline-block;margin-bottom:10px;align-self:flex-start}
 .card p{margin:0;font-size:15px;color:var(--fg-soft);line-height:1.55}
 .more{font-size:14px;font-weight:560;color:var(--accent);margin-top:auto;padding-top:14px}
@@ -414,7 +398,7 @@ background:var(--bg);border:2px solid var(--accent)}
 .contact h2{margin-bottom:10px}
 .contact p{color:var(--fg-soft);max-width:60ch;margin:0 0 22px}
 @media(max-width:640px){.contact{padding:28px 22px}}
-footer{padding:24px 0 30px;font-size:13.5px;color:#cfcfcf;background:var(--charcoal)}
+footer{padding:28px 0 44px;font-size:13.5px;color:var(--fg-faint)}
 footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
 /* project page */
 .crumb{display:inline-block;font-size:14.5px;margin:30px 0 0;color:var(--fg-soft)}
@@ -456,8 +440,6 @@ figcaption span{font-size:14.5px;color:var(--fg-soft);line-height:1.55}
 @media(max-width:560px){.pn{grid-template-columns:1fr}.pn .next{text-align:left}}
 """
 
-CSS_VER = None  # set from the CSS content before writing
-
 JS_THEME = """(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
 try{s=localStorage.getItem('theme')}catch(e){}
 if(s)r.setAttribute('data-theme',s);
@@ -491,7 +473,7 @@ def head(title, desc, root, url, og="og-image.png"):
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="{BASE}/{og}">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
-<link rel="stylesheet" href="{root}style.css?v={CSS_VER}">
+<link rel="stylesheet" href="{root}style.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -563,7 +545,7 @@ def build_index():
                 "Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.",
                 "", BASE, "og-image.png?v=" + hashlib.sha1(open(os.path.join(SITE, "og-image.png"), "rb").read()).hexdigest()[:8]) + f"""
 <main id="main">
-<div class="hero band"><div class="wrap"><div class="grid">
+<div class="hero"><div class="wrap"><div class="grid">
   <div>
     <p class="hello">Hi, I'm</p>
     <h1>{NAME}</h1>
@@ -757,7 +739,7 @@ def build_project(i, p):
     return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../",
                 f"{BASE}/projects/{p['slug']}.html", og) + f"""
 <main id="main">
-<div class="band"><div class="wrap read">
+<div class="wrap read">
   <a class="crumb" href="../index.html#work">← All work</a>
   <div class="phead">
     <span class="tag">{p['tag']}</span>
@@ -765,7 +747,7 @@ def build_project(i, p):
     <p class="subtitle">{p['head']}</p>
     <ul class="chips" aria-label="Built with">{chips}</ul>
   </div>
-</div></div>
+</div>
 <section><div class="wrap read pbody">
   <h2>The problem</h2>
   <p class="problem">{p['problem']}</p>
@@ -790,7 +772,6 @@ REDIRECTS = {"genq": "qubecta", "interior-finishes": "rifadex", "batch-tools": "
 
 # ---------------------------------------------------------------- write
 os.makedirs(OUT_PROJ, exist_ok=True)
-CSS_VER = hashlib.sha1(CSS.encode()).hexdigest()[:8]
 open(os.path.join(SITE, 'style.css'), 'w').write(CSS)
 open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
 og_made = [build_og(p) for p in P]
