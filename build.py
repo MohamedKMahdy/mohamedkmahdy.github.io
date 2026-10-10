@@ -20,7 +20,7 @@ CATS = [("revit","Revit"), ("clash","Navisworks &amp; clashes"), ("cloud","Cloud
 
 # ---------------------------------------------------------------- projects
 P = [
-dict(slug="revit-batch", title="Sweco Revit Batch", tag="Sweco · Revit 2023 to 2027", cats="revit cloud",
+dict(slug="revit-batch", title="Revit Batch", tag="Revit 2023 to 2027 · batch", cats="revit cloud",
   card="Model checks, IFC, NWC, PDF and DWG exports, health and change reports over many Revit models, each model opened once.",
   head="Set up a job once, let it run every week.",
   problem="Model checks and deliverable exports are the jobs everyone agrees matter and nobody has time to run by hand on dozens of models every week.",
@@ -35,7 +35,7 @@ dict(slug="revit-batch", title="Sweco Revit Batch", tag="Sweco · Revit 2023 to 
          ("img","img/revit-batch-results.png","Results per model and task","Unchanged models are skipped and say why; failures say what to fix."),
          ("img","img/revit-batch-output.png","Output, history and schedule","One output folder synced with SharePoint, a history workbook, a Teams message and the weekly time.")]),
 
-dict(slug="aps-raumbuch", title="Raumbuch", tag="Sweco · Revit + web", cats="revit cloud",
+dict(slug="aps-raumbuch", title="Raumbuch", tag="Revit + web", cats="revit cloud",
   card="Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.",
   head="One room book, two routes to it.",
   problem="A room book lists every room and everything in it. Teams often assemble it by hand from the model, room by room, and start again when the design changes.",
@@ -115,7 +115,7 @@ dict(slug="acc-integrations", title="ACC Integrations", tag="LARBACC · Sheet Br
          ("img","img/larbacc-running.png","LARBACC: a backup running",""),
          ("img","img/image30.png","Sheet Bridge: bulk attribute editor","")]),
 
-dict(slug="family-validation", title="Family Validation", tag="Sweco · Content Catalog", cats="revit",
+dict(slug="family-validation", title="Family Validation", tag="Revit · Content Catalog", cats="revit",
   card="Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.",
   head="Clean families in, clean catalog out.",
   problem="One badly built family, with an embedded CAD import or the wrong category, slows down every project that loads it. Checking hundreds of them by hand does not happen.",
@@ -133,7 +133,7 @@ dict(slug="cloud-revisions", title="Cloud Revisions", tag="Revit add-in", cats="
   stack=["C#", "Revit API 2023 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "dependency-free Excel and HTML"],
   body=["Revision clouds are annotation elements. The APS AEC Data Model API does not expose them and the Model Derivative API only inconsistently, so the only complete source is the Revit API itself.",
         "The add-in lists every revision cloud in the active model with its view, the sheet it appears on and the full revision data (sequence, number, date, description, issue status, issued by and to), then exports a formatted Excel workbook or a self-contained HTML dashboard with Power BI style filtering. Everything sits in one docked panel on its own ribbon tab, in German or English.",
-        "First built at Sweco; version 2.0 is company-neutral, with its own name and logo."],
+        "Version 2.0 has its own name, logo and ribbon tab."],
   result="Neither export needs Excel, a CDN or internet access: both files are written by the add-in itself, so they work behind a <strong>corporate proxy</strong>.",
   media=[("img","img/cloud-revisions-dashboard.jpg","The revision cloud dashboard","Filters by revision, view type, issue status and sheet, with linked charts. Rendered from the real template with sample data."),
          ("img","img/cloud-revisions-logo.png","The Cloud Revisions mark","")]),
@@ -145,7 +145,7 @@ dict(slug="batch-tools", title="Bulk Model Checker &amp; IFC Bulk Export", tag="
   stack=["C#", ".NET Framework 4.8 / .NET 8 / .NET 10", "Revit API 2023 to 2027", "WPF", "Autodesk Platform Services", "Windows Task Scheduler"],
   body=["<strong>Bulk Model Checker</strong> (2.3) runs Autodesk Model Checker over many Revit models, right away or every week, reading them straight from an Autodesk Construction Cloud folder or from a drive or network share. It starts the matching installed Revit with a worker add-in, checks one model after the other and closes Revit again. Each model gets an Excel report (optionally HTML), plus a history table for Power BI and an optional Teams message; the original model is never saved.",
         "<strong>IFC Bulk Export</strong> (2.7) exports IFC files from many Revit models in one run, from a folder or from Autodesk Docs, with presets, space boundaries and user-defined property sets, and scheduled exports. Nothing is saved to the models.",
-        "Both are company-neutral versions with their own names and logos. The same tasks also run together, with NWC, PDF and DWG exports and model reports, in <a href=\"revit-batch.html\">Sweco Revit Batch</a>."],
+        "Both are company-neutral versions with their own names and logos. The same tasks also run together, with NWC, PDF and DWG exports and model reports, in <a href=\"revit-batch.html\">Revit Batch</a>."],
   result="Each model is opened by the installed Revit that matches it, from <strong>2023 to 2027</strong>, with a per-user install that needs no admin rights.",
   media=[("img","img/bmc-job.png","Bulk Model Checker: a check job","Models from ACC, the Revit version each one opens in, and the check set. Shown with made-up data."),
          ("img","img/bmc-finished.png","Bulk Model Checker: a finished weekly run","Reports synced to SharePoint, a history workbook and a Teams message."),
@@ -182,7 +182,7 @@ dict(slug="bim-analytics", title="BIM Analytics", tag="Power BI · 9 dashboards"
   body=["A suite of automated Power BI dashboards and reporting pipelines built for BIM coordination, covering model health, clash detection, open issues, ACC administration, resourcing and team-level assessment.",
         "Each dashboard reads directly from project data and refreshes on a schedule, so coordination status is current without anyone assembling a report. Deployed as project-specific intelligence hubs on SharePoint.",
         "In 2026 I decoded one programme's 52 Power BI files (model health across 376 Revit models, clash trends, issues and account administration) and rebuilt them as <strong>one self-contained HTML page</strong> that opens offline in any browser, without Power BI, and leaves out every personal detail."],
-  result="Built across three organisations: Dewan, Obermeyer and Sweco.",
+  result="Built and refined across three organisations.",
   media=[("img","img/image12.png","Project intelligence hub: home page",""),
          ("img","img/image10.png","SharePoint deployment",""),
          ("img","img/image11.png","SharePoint: project structure",""),
@@ -224,29 +224,22 @@ dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 to
          ("img","img/image58.jpeg","Panel Tagger","")]),
 ]
 
-# Where I've worked: (when, employer, place, role, summary, [project slugs])
+# Where I've worked: (when, employer, place, role, summary)
 JOBS = [
  ("2025 to now", "Sweco", "Munich", "Werkstudent, AI &amp; Automation Specialist (BIM + Data Science)",
-  "I own the AI and automation roadmap for the BIM + Data Science department: scoping the automation portfolio, building Revit tools and LLM agents, and taking tools through Sweco's internal release process.",
-  ["revit-batch", "batch-tools", "aps-raumbuch", "family-validation", "cloud-revisions"]),
+  "I own the AI and automation roadmap for the BIM + Data Science department: scoping the automation portfolio, building Revit tools and LLM agents, and taking tools through internal release."),
  ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer",
-  "Model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards for model quality.",
-  ["bim-analytics"]),
+  "Model-checking rules in Desite MD, Power Automate flows for SharePoint data management, and Power BI reporting on model quality."),
  ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst",
-  "Model-health monitoring, clash management, nightly exports, cloud backups and project intelligence hubs, plus an early integration of LLMs with Speckle.",
-  ["model-health", "clash-management", "acc-integrations", "bim-analytics", "speckle-llm"]),
+  "BIM software development and data analytics for coordination, model quality and project reporting."),
  ("2022 to 2024", "Freelance (Upwork)", "Remote", "BIM Software Developer &amp; Data Analyst",
-  "18 client engagements across 895 billable hours with a 5.0 average rating: curtain wall automation, a mechanical systems drawer, and Dynamo and Python pipelines.",
-  ["curtain-panels"]),
+  "18 client engagements across 895 billable hours with a 5.0 average rating: Revit automation, Dynamo and Python pipelines."),
  ("2023", "Solid Construction", "Cairo", "BIM Software Developer",
-  "Rebar detailing, a BOQ generator, and tools that join elements and model finishes automatically.",
-  ["genq", "interior-finishes", "revit-automation"]),
+  "Revit add-ins and Dynamo workflows for structural, quantity and finishes work."),
  ("2021 to 2023", "Pinnacle Misr", "Cairo", "BIM Coordinator / Developer",
-  "Revit plugins for worksets, assembly codes and finishes, and Dynamo workflows on the El Alamein Iconic Tower and Kitoko Ministerial City.",
-  ["interior-finishes", "revit-automation"]),
+  "Revit plugins and Dynamo workflows on large projects, including the El Alamein Iconic Tower and Kitoko Ministerial City."),
  ("2020 to 2021", "X-Dimension", "Cairo", "BIM Architect",
-  "BIM standards and templates, Dynamo workflows for interior finishes, and Scan-to-BIM.",
-  []),
+  "BIM standards and templates, Dynamo workflows, and Scan-to-BIM."),
 ]
 
 # How I build: principles drawn from the projects above.
@@ -545,12 +538,10 @@ def build_index():
                    for i, (t, b) in enumerate(WAYS, 1))
     caps = "".join(f'<div class="cap"><h3>{t}</h3><p>{plain}</p><small>{tools}</small></div>'
                    for t, plain, tools in CAPS)
-    by_slug = {p['slug']: p['title'] for p in P}
     jobs = "".join(f"""
     <li><span class="when">{when}</span><div class="job">
       <h3>{org} <small>· {place}</small></h3><p class="jrole">{role}</p><p>{summary}</p>
-      {('<p class="jproj">' + " ".join(f'<a href="projects/{s}.html">{by_slug[s]}</a>' for s in slugs) + '</p>') if slugs else ''}
-    </div></li>""" for when, org, place, role, summary, slugs in JOBS)
+    </div></li>""" for when, org, place, role, summary in JOBS)
 
     return head(f"{NAME} | AEC Solutions Architect &amp; AI Specialist",
                 "Revit &amp; Navisworks tooling, Autodesk Platform Services, and AI over BIM data. Munich.",
@@ -630,8 +621,8 @@ def build_index():
     <p>I trained as an architectural engineer and moved into software because the interesting problems in
     construction are data problems. Most firms are sitting on valuable project data trapped in disconnected
     tools and manual workflows. I build the systems that connect it.</p>
-    <p>That has meant Revit and Navisworks plugins in Cairo, model-health and clash-analytics platforms in
-    Dubai, and enterprise automation in Munich. Along the way I delivered <strong>18 independent client
+    <p>That has meant Revit and Navisworks plugins, model-health and clash-analytics platforms, and
+    enterprise automation, across Cairo, Dubai and Munich. Along the way I delivered <strong>18 independent client
     engagements across 895 billable hours</strong> with a 5.0 average rating, doubling my rate over the period.</p>
     <p>My M.Sc. at TUM added the half I was missing: graduate work in geospatial information science, spatial
     data mining, photogrammetry and remote sensing alongside semantic modelling and software engineering.
