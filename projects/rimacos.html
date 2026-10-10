@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rimacos | Mohamed K. Mahdy</title>
+<meta name="description" content="Clash detection matrices written as rules instead of cells, with Navisworks, IfcClash, BCF, IDS, Excel and HTML outputs.">
+<meta property="og:title" content="Rimacos | Mohamed K. Mahdy">
+<meta property="og:description" content="Clash detection matrices written as rules instead of cells, with Navisworks, IfcClash, BCF, IDS, Excel and HTML outputs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.github.io/projects/rimacos.html">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=6bdda3e6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=6bdda3e6">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i>M</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="wrap read">
+  <a class="crumb" href="../index.html#work">← All work</a>
+  <div class="phead">
+    <span class="tag">openBIM · clash matrices</span>
+    <h1>Rimacos</h1>
+    <p class="subtitle">Rules, not cells.</p>
+    <ul class="chips" aria-label="Built with"><li>Python</li><li>IfcOpenShell / IfcClash</li><li>IDS 1.0</li><li>BCF</li><li>Navisworks XML</li><li>openpyxl</li><li>pytest</li></ul>
+  </div>
+</div>
+<section><div class="wrap read pbody">
+  <h2>The problem</h2>
+  <p class="problem">A clash matrix grows with the square of the number of clash groups. Maintaining thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.</p>
+  <h2>What it does</h2>
+  <p><strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash detection matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan.</p><p>A rule says how two references are tested against each other (everything, a discipline, a tag or a single group), and the most specific rule wins. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
+  <div class="result"><span>Highlight</span>A classic 133-group matrix carried <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
+  
+</div></section>
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/rimacos-editor.jpg" target="_blank" rel="noopener"><img src="../img/rimacos-editor.jpg" alt="The matrix editor" loading="lazy"></a><figcaption><b>The matrix editor</b><span>Discipline matrix, the rule behind each cell, and the group pairs it decides.</span></figcaption></figure></div>
+</div></section>
+<section><div class="wrap"><div class="pn">
+  <a href="clash-management.html"><small>← Previous project</small><b>SORTIE</b></a>
+  <a class="next" href="speckle-llm.html"><small>Next project →</small><b>ARVENT</b></a>
+</div></div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
+  tooling and AI in the built environment.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>
