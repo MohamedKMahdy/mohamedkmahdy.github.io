@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ACC Integrations | Mohamed K. Mahdy</title>
-<meta name="description" content="Scheduled local backups of ACC and BIM 360 projects, plus bulk attribute editing across cloud projects.">
+<meta name="description" content="Scheduled local backups of ACC and BIM 360 projects with LARBACC, plus bulk attribute editing across cloud projects.">
 <meta property="og:title" content="ACC Integrations | Mohamed K. Mahdy">
-<meta property="og:description" content="Scheduled local backups of ACC and BIM 360 projects, plus bulk attribute editing across cloud projects.">
+<meta property="og:description" content="Scheduled local backups of ACC and BIM 360 projects with LARBACC, plus bulk attribute editing across cloud projects.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/acc-integrations.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/acc-integrations.png?v=efa9d056">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/acc-integrations.png?v=94020fa0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/acc-integrations.png?v=efa9d056">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/acc-integrations.png?v=94020fa0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -35,7 +35,7 @@
 <div class="wrap read">
   <a class="crumb" href="../index.html#work">← All work</a>
   <div class="phead">
-    <span class="tag">KEEPR · Sheet Bridge</span>
+    <span class="tag">LARBACC · Sheet Bridge</span>
     <h1>ACC Integrations</h1>
     <p class="subtitle">Cloud-hosted does not mean backed up.</p>
     <ul class="chips" aria-label="Built with"><li>C#</li><li>.NET 8</li><li>WPF</li><li>Autodesk Platform Services (PKCE)</li><li>Data Management API</li></ul>
@@ -45,16 +45,16 @@
   <h2>The problem</h2>
   <p class="problem">Projects in Autodesk Construction Cloud feel safe because they live in the cloud. A deleted folder or an ended subscription can still take years of work with it.</p>
   <h2>What it does</h2>
-  <p><strong>KEEPR</strong> keeps dated local copies of Autodesk Construction Cloud and BIM 360 projects. Pick projects and folders, a destination and a weekly time; KEEPR downloads the latest version of every document and keeps the last few backups. Version 5 (2026) is a full rewrite with a German and English interface.</p><p><strong>Incremental by hard links.</strong> A document unchanged since the previous backup is linked instead of downloaded again, so later runs are fast and five kept backups do not take five times the space. A run only becomes a backup once its manifest is written, so a crash or power cut never leaves a half-finished folder that looks complete.</p><p>Sign-in uses PKCE, so no client secret ships with the program. A scheduled backup missed while KEEPR was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours.</p><p><strong>Sheet Bridge</strong> is a web application for bulk-editing ACC and BIM 360 sheet attributes, replacing a slow one-at-a-time process in the web UI.</p>
-  <div class="result"><span>Highlight</span>Open-source roots: KEEPR began in 2023 as a WPF front end for Stewart Celani's MIT-licensed <a href="https://github.com/stewartcelani/autodesk-construction-cloud-backup" rel="noopener">autodesk-construction-cloud-backup</a>, and keeps that history and credit.</div>
+  <p><strong>LARBACC</strong> (Local, Automatic, Rotating Backups of Autodesk Construction Cloud, called KEEPR until 2026) keeps dated local copies of ACC and BIM 360 projects. Pick projects and folders, a destination and a weekly time; LARBACC downloads the latest version of every document and keeps the last few backups. Version 5 is a full rewrite with a German and English interface.</p><p><strong>Incremental by hard links.</strong> A document unchanged since the previous backup is linked instead of downloaded again, so later runs are fast and five kept backups do not take five times the space. A run only becomes a backup once its manifest is written, so a crash or power cut never leaves a half-finished folder that looks complete.</p><p>Sign-in uses PKCE, so no client secret ships with the program. A scheduled backup missed while LARBACC was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours.</p><p><strong>Sheet Bridge</strong> is a web application for bulk-editing ACC and BIM 360 sheet attributes, replacing a slow one-at-a-time process in the web UI.</p>
+  <div class="result"><span>Highlight</span>Open-source roots: LARBACC began in 2023 as a WPF front end for Stewart Celani's MIT-licensed <a href="https://github.com/stewartcelani/autodesk-construction-cloud-backup" rel="noopener">autodesk-construction-cloud-backup</a>, and keeps that history and credit.</div>
   
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
-  <div class="gallery"><figure><a href="../img/keepr-projects.png" target="_blank" rel="noopener"><img src="../img/keepr-projects.png" alt="KEEPR: projects and weekly schedule" loading="lazy"></a><figcaption><b>KEEPR: projects and weekly schedule</b><span>Shown with made-up data.</span></figcaption></figure><figure><a href="../img/keepr-folders.png" target="_blank" rel="noopener"><img src="../img/keepr-folders.png" alt="KEEPR: folder selection" loading="lazy"></a><figcaption><b>KEEPR: folder selection</b><span>Untick a folder to leave it out; new folders follow their parent.</span></figcaption></figure><figure><a href="../img/keepr-running.png" target="_blank" rel="noopener"><img src="../img/keepr-running.png" alt="KEEPR: a backup running" loading="lazy"></a><figcaption><b>KEEPR: a backup running</b></figcaption></figure><figure><a href="../img/image30.png" target="_blank" rel="noopener"><img src="../img/image30.png" alt="Sheet Bridge: bulk attribute editor" loading="lazy"></a><figcaption><b>Sheet Bridge: bulk attribute editor</b></figcaption></figure></div>
+  <div class="gallery"><figure><a href="../img/larbacc-projects.png" target="_blank" rel="noopener"><img src="../img/larbacc-projects.png" alt="LARBACC: projects and weekly schedule" loading="lazy"></a><figcaption><b>LARBACC: projects and weekly schedule</b><span>Shown with made-up data.</span></figcaption></figure><figure><a href="../img/larbacc-folders.png" target="_blank" rel="noopener"><img src="../img/larbacc-folders.png" alt="LARBACC: folder selection" loading="lazy"></a><figcaption><b>LARBACC: folder selection</b><span>Untick a folder to leave it out; new folders follow their parent.</span></figcaption></figure><figure><a href="../img/larbacc-running.png" target="_blank" rel="noopener"><img src="../img/larbacc-running.png" alt="LARBACC: a backup running" loading="lazy"></a><figcaption><b>LARBACC: a backup running</b></figcaption></figure><figure><a href="../img/image30.png" target="_blank" rel="noopener"><img src="../img/image30.png" alt="Sheet Bridge: bulk attribute editor" loading="lazy"></a><figcaption><b>Sheet Bridge: bulk attribute editor</b></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
-  <a href="interior-finishes.html"><small>← Previous project</small><b>Interior Finishes</b></a>
+  <a href="interior-finishes.html"><small>← Previous project</small><b>RIFADEX</b></a>
   <a class="next" href="family-validation.html"><small>Next project →</small><b>Family Validation</b></a>
 </div></div></section>
 </main>

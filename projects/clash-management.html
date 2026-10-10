@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Beacon &amp; Collide | Mohamed K. Mahdy</title>
-<meta name="description" content="Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.">
-<meta property="og:title" content="Beacon &amp; Collide | Mohamed K. Mahdy">
-<meta property="og:description" content="Clash coordination: zone grouping and status transfer in Navisworks, and clash matrices written as rules instead of cells.">
+<title>SORTIE &amp; Collide | Mohamed K. Mahdy</title>
+<meta name="description" content="Clash coordination: zone grouping and status transfer in Navisworks with SORTIE, and clash matrices written as rules with Collide.">
+<meta property="og:title" content="SORTIE &amp; Collide | Mohamed K. Mahdy">
+<meta property="og:description" content="Clash coordination: zone grouping and status transfer in Navisworks with SORTIE, and clash matrices written as rules with Collide.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/clash-management.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=706993e8">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=73de673b">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=706993e8">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=73de673b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -36,7 +36,7 @@
   <a class="crumb" href="../index.html#work">← All work</a>
   <div class="phead">
     <span class="tag">Navisworks · openBIM</span>
-    <h1>Beacon &amp; Collide</h1>
+    <h1>SORTIE &amp; Collide</h1>
     <p class="subtitle">4,000 clashes, 200 actual problems.</p>
     <ul class="chips" aria-label="Built with"><li>C#</li><li>Navisworks API 2022 to 2027</li><li>WPF</li><li>Python</li><li>IfcOpenShell / IfcClash</li><li>IDS</li><li>BCF</li></ul>
   </div>
@@ -45,17 +45,17 @@
   <h2>The problem</h2>
   <p class="problem">A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them, and setting up the right tests in the first place, takes days.</p>
   <h2>What it does</h2>
-  <p><strong>Beacon 2</strong> is a Navisworks Manage add-in for 2022 to 2027. It groups clashes by the zone their clash point lies in, using the real zone shape rather than its bounding box (masses, rooms, generic models or a separate zones model; where zones overlap, the smallest wins), or writes the zone in front of each clash name. It also transfers status, assignment, approval and comments between clash tests and files, matching by result GUID first and then by the clashing pair, and leaves a clash alone rather than guess. Every action is one undo step.</p><p><strong>Collide 5</strong> turns a short list of rules into a complete clash matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
+  <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events, called Beacon until version 2.1) is a Navisworks Manage add-in for 2022 to 2027. It groups clashes by the zone their clash point lies in, using the real zone shape rather than its bounding box (masses, rooms, generic models or a separate zones model; where zones overlap, the smallest wins), or writes the zone in front of each clash name. It also transfers status, assignment, approval and comments between clash tests and files, matching by result GUID first and then by the clashing pair, and leaves a clash alone rather than guess. Every action is one undo step.</p><p><strong>Collide 5</strong> turns a short list of rules into a complete clash matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
   <div class="result"><span>Highlight</span>A classic 133-group matrix carried <strong>8,778 cells</strong>. Collide reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
   
 </div></section>
 <section><div class="wrap">
   <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
-  <div class="gallery"><figure><a href="../img/beacon-zones.png" target="_blank" rel="noopener"><img src="../img/beacon-zones.png" alt="Beacon: grouping clashes by zone" loading="lazy"></a><figcaption><b>Beacon: grouping clashes by zone</b><span>Zones come from any 3D objects; a clash belongs to the zone its clash point lies in.</span></figcaption></figure><figure><a href="../img/collide-editor.jpg" target="_blank" rel="noopener"><img src="../img/collide-editor.jpg" alt="Collide: the matrix editor" loading="lazy"></a><figcaption><b>Collide: the matrix editor</b><span>Discipline matrix, the rule behind each cell, and the group pairs it decides.</span></figcaption></figure></div>
+  <div class="gallery"><figure><a href="../img/sortie-zones.png" target="_blank" rel="noopener"><img src="../img/sortie-zones.png" alt="SORTIE: grouping clashes by zone" loading="lazy"></a><figcaption><b>SORTIE: grouping clashes by zone</b><span>Zones come from any 3D objects; a clash belongs to the zone its clash point lies in.</span></figcaption></figure><figure><a href="../img/sortie-logo.png" target="_blank" rel="noopener"><img src="../img/sortie-logo.png" alt="The SORTIE mark" loading="lazy"></a><figcaption><b>The SORTIE mark</b></figcaption></figure><figure><a href="../img/collide-editor.jpg" target="_blank" rel="noopener"><img src="../img/collide-editor.jpg" alt="Collide: the matrix editor" loading="lazy"></a><figcaption><b>Collide: the matrix editor</b><span>Discipline matrix, the rule behind each cell, and the group pairs it decides.</span></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
   <a href="aps-raumbuch.html"><small>← Previous project</small><b>Raumbuch</b></a>
-  <a class="next" href="speckle-llm.html"><small>Next project →</small><b>Quible</b></a>
+  <a class="next" href="speckle-llm.html"><small>Next project →</small><b>ARVENT</b></a>
 </div></div></section>
 </main>
 

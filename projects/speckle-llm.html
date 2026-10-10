@@ -3,18 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Quible | Mohamed K. Mahdy</title>
+<title>ARVENT | Mohamed K. Mahdy</title>
 <meta name="description" content="A BIM assistant in Speckle comment threads, on a local Llama: answers about elements, the whole model and the specification.">
-<meta property="og:title" content="Quible | Mohamed K. Mahdy">
+<meta property="og:title" content="ARVENT | Mohamed K. Mahdy">
 <meta property="og:description" content="A BIM assistant in Speckle comment threads, on a local Llama: answers about elements, the whole model and the specification.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/speckle-llm.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/speckle-llm.png?v=4528f83b">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/speckle-llm.png?v=cc807521">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/speckle-llm.png?v=4528f83b">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/speckle-llm.png?v=cc807521">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -36,7 +36,7 @@
   <a class="crumb" href="../index.html#work">← All work</a>
   <div class="phead">
     <span class="tag">Speckle · local LLM</span>
-    <h1>Quible</h1>
+    <h1>ARVENT</h1>
     <p class="subtitle">I put an LLM on BIM data before it was a category.</p>
     <ul class="chips" aria-label="Built with"><li>Python</li><li>FastAPI</li><li>Speckle (GraphQL, webhooks, specklepy)</li><li>Ollama</li><li>Llama 3.1</li><li>SQLite</li></ul>
   </div>
@@ -45,13 +45,16 @@
   <h2>The problem</h2>
   <p class="problem">Most people on a project never open the model, but they still have questions about it: what this panel's U-value is, how many doors lack a fire rating, whether the latest version still meets the spec.</p>
   <h2>What it does</h2>
-  <p>In 2023 I connected Speckle to a large language model so project teams could ask questions about a 3D model in plain language. <strong>Quible</strong> is the 2026 rebuild. It runs on a <strong>local Llama through Ollama</strong>, so model data and project documents never leave the machine.</p><p>It works inside Speckle comment threads. It answers questions about a selected element from its parameters and any attached specification PDF, with page citations. It answers questions about the whole model. And it checks every new model version against rules drawn from the specification, opening one thread per failing rule that isolates the offending elements in the viewer and replying when a later version fixes them.</p><p><strong>The language model never computes and never writes SQL.</strong> It fills a JSON query plan constrained to the index's real field names; code validates and repairs the plan and runs it as parameterised SQL, and every reply shows the exact query and result. Rules from the specification are proposed by the model and only run once a person approves them.</p><p>Along the way I also built a custom Speckle-Revit connector for a separate client, extending open interoperability between the two platforms.</p>
+  <p>In 2023 I connected Speckle to a large language model so project teams could ask questions about a 3D model in plain language. <strong>ARVENT</strong> (Assistant for Requirements, Verification and Element Notes in Threads, called Quible until version 2.1) is the 2026 rebuild. It runs on a <strong>local Llama through Ollama</strong>, so model data and project documents never leave the machine.</p><p>It works inside Speckle comment threads. It answers questions about a selected element from its parameters and any attached specification PDF, with page citations. It answers questions about the whole model. And it checks every new model version against rules drawn from the specification, opening one thread per failing rule that isolates the offending elements in the viewer and replying when a later version fixes them.</p><p><strong>The language model never computes and never writes SQL.</strong> It fills a JSON query plan constrained to the index's real field names; code validates and repairs the plan and runs it as parameterised SQL, and every reply shows the exact query and result. Rules from the specification are proposed by the model and only run once a person approves them.</p><p>Along the way I also built a custom Speckle-Revit connector for a separate client, extending open interoperability between the two platforms.</p>
   <div class="result"><span>Highlight</span>The lesson from 2023 still holds: <strong>the model was never the hard part.</strong> The hard part is getting clean, queryable, structured data out of the authoring tools.</div>
   
 </div></section>
-
+<section><div class="wrap">
+  <div class="sec-head"><p class="eyebrow">See it</p><h2>Screenshots &amp; demos</h2></div>
+  <div class="gallery"><figure><a href="../img/arvent-card.png" target="_blank" rel="noopener"><img src="../img/arvent-card.png" alt="The ARVENT mark" loading="lazy"></a><figcaption><b>The ARVENT mark</b></figcaption></figure><figure><a href="../img/arvent-logo.png" target="_blank" rel="noopener"><img src="../img/arvent-logo.png" alt="The mark on light and dark backgrounds" loading="lazy"></a><figcaption><b>The mark on light and dark backgrounds</b><span>On white, on the dark header band and as an icon.</span></figcaption></figure></div>
+</div></section>
 <section><div class="wrap"><div class="pn">
-  <a href="clash-management.html"><small>← Previous project</small><b>Beacon &amp; Collide</b></a>
+  <a href="clash-management.html"><small>← Previous project</small><b>SORTIE &amp; Collide</b></a>
   <a class="next" href="genq.html"><small>Next project →</small><b>GenQ</b></a>
 </div></div></section>
 </main>

@@ -10,11 +10,11 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/genq.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/genq.png?v=dcc569c6">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/genq.png?v=471ee3d0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/genq.png?v=dcc569c6">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/genq.png?v=471ee3d0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%231F4E5F'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -45,7 +45,7 @@
   <h2>The problem</h2>
   <p class="problem">Quantity surveyors often re-measure what the model already knows. GenQ reads the quantities straight from Revit, prices them and turns them into a bill and a cost plan.</p>
   <h2>What it does</h2>
-  <p>Tick the element types to price and give each one a unit, a bill section (CSI MasterFormat 2018, RICS NRM2 or your own list), an element for the cost plan (UniFormat, RICS NRM1, DIN 276 or your own list), a rate and a description. <strong>GenQ suggests all of these</strong> from your earlier projects, Revit keynotes and assembly codes, and each type's name and materials, with the reason for each; you check them before anything changes.</p><p>It then measures the model and gives you the bill by trade and the cost plan by element, with cost per m² of gross floor area and additions such as preliminaries, contingency and VAT. Exports go to Excel, PDF and CSV, and to <strong>GAEB DA XML</strong> for German tendering and costing software, validated against the official schemas. Elements are written back into Revit's Assembly Code, so schedules and the IFC export carry them.</p><p>Under the hood it measures the model in one pass, filters by phase, design option and level, counts repeated linked models, and matches categories by Revit's built-in ids, so it works in any Revit language. Every third-party library is bundled into one assembly, so GenQ never clashes with Revit's own copies or other add-ins. Version 3.1 also absorbed the separate UniFormat Code Manager add-in.</p>
+  <p>Tick the element types to price and give each one a unit, a bill section (CSI MasterFormat 2018, RICS NRM2 or your own list), an element for the cost plan (UniFormat, RICS NRM1, DIN 276 or your own list), a rate and a description. <strong>GenQ suggests all of these</strong> from your earlier projects, Revit keynotes and assembly codes, and each type's name and materials, with the reason for each; you check them before anything changes.</p><p>It then measures the model and gives you the bill by trade and the cost plan by element, with cost per m² of gross floor area and additions such as preliminaries, contingency and VAT. Exports go to Excel, PDF and CSV, and to <strong>GAEB DA XML</strong> for German tendering and costing software, validated against the official schemas. Elements are written back into Revit's Assembly Code, so schedules and the IFC export carry them.</p><p>Under the hood it measures the model in one pass, filters by phase, design option and level, counts repeated linked models, and matches categories by Revit's built-in ids, so it works in any Revit language. Every third-party library is bundled into one assembly, so GenQ never clashes with Revit's own copies or other add-ins. Version 3.1 absorbed the separate UniFormat Code Manager add-in; version 3.2 reads elements from where things are, so doors and windows take their element from the wall or roof they sit in, and walls and floors from their exterior and load-bearing settings.</p>
   <div class="result"><span>Highlight</span>Self-tested inside Revit on Autodesk's Snowdon Towers sample: <strong>392 types, 294 suggestions, 136 bill lines</strong>, a cost plan by element, and a GAEB export that validates against the official 3.3 schemas.</div>
   
 </div></section>
@@ -54,8 +54,8 @@
   <div class="gallery"><figure><a href="../img/genq-tabs.jpg" target="_blank" rel="noopener"><img src="../img/genq-tabs.jpg" alt="Set up, bill and cost plan" loading="lazy"></a><figcaption><b>Set up, bill and cost plan</b><span>Three numbered steps in one docked panel, shown with a sample model.</span></figcaption></figure><figure><a href="../img/genq-suggest-export.jpg" target="_blank" rel="noopener"><img src="../img/genq-suggest-export.jpg" alt="Suggestions and export" loading="lazy"></a><figcaption><b>Suggestions and export</b><span>Each suggestion says why; exports include GAEB X83 and X82.</span></figcaption></figure><figure class="narrow"><a href="../img/genq-revit-2025.png" target="_blank" rel="noopener"><img src="../img/genq-revit-2025.png" alt="Docked in Revit 2025" loading="lazy"></a><figcaption><b>Docked in Revit 2025</b><span>The cost plan by element from the in-Revit self-test on the Snowdon Towers sample.</span></figcaption></figure><figure><video src="../video/genq-boq-generator.mp4" controls muted playsinline preload="metadata"></video><figcaption><b>Earlier version: BOQ Generator</b><span>The original tool generating a detailed bill of quantities in Excel.</span></figcaption></figure></div>
 </div></section>
 <section><div class="wrap"><div class="pn">
-  <a href="speckle-llm.html"><small>← Previous project</small><b>Quible</b></a>
-  <a class="next" href="interior-finishes.html"><small>Next project →</small><b>Interior Finishes</b></a>
+  <a href="speckle-llm.html"><small>← Previous project</small><b>ARVENT</b></a>
+  <a class="next" href="interior-finishes.html"><small>Next project →</small><b>RIFADEX</b></a>
 </div></div></section>
 </main>
 
