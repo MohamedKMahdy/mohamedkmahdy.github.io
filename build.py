@@ -258,7 +258,7 @@ CAPS = [
 CSS = """
 :root{--bg:#F2F2F2;--bg-alt:#E6E6E6;--fg:#111111;--fg-soft:#575656;--fg-faint:#6b6b6b;
 --accent:#3C6E28;--accent-2:#538840;--on-accent:#fff;--accent-soft:#E6F2DE;--warm:#3C6E28;--line:#e2e2e2;--card:#fff;
---charcoal:#333333;--on-charcoal:#ffffff;--charcoal-soft:#B2B2B2;--amber:#E0A800;
+--charcoal:#1e1e1e;--on-charcoal:#ffffff;--charcoal-soft:#B2B2B2;--amber:#E0A800;
 --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
 --mono:"Cascadia Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 --sans:"Segoe UI",-apple-system,BlinkMacSystemFont,Calibri,Arial,sans-serif;--maxw:1060px;--read:760px}
