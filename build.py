@@ -105,8 +105,8 @@ dict(slug="rifadex", title="RIFADEX", tag="Revit · interior finishes", cats="re
         "Finish types and materials are managed in a table or round-tripped through Excel, with new rows creating new types and an optional naming convention. One XML settings file holds the company standard, so any template works and nothing has to be added to a project first.",
         "<strong>RIFADEX</strong> (Revit Interior Finishes: Assignment, Drawing and Excel eXchange) is one company-neutral bundle that rebuilds my earlier in-house finishes tools, without any office-specific parameter."],
   result="Tested inside Revit end to end, 57 checks in Revit 2026: drawing, redrawing, hand edits, door cuts, a moved and rotated link and an Excel round trip, from <strong>one codebase for Revit 2024 to 2027</strong> with no third-party DLLs.",
-  media=[("imgn","img/rifadex-ribbon.png","The RIFADEX ribbon panel","Four tools: Room Finishes, Finish Types, Finish Materials and Settings."),
-         ("img","img/rifadex-room-finishes.png","Room Finishes","Codes per room from a linked model, then save and draw. Captured in Revit 2026."),
+  media=[("img","img/rifadex-room-finishes.png","Room Finishes","Codes per room from a linked model, then save and draw. Captured in Revit 2026."),
+         ("imgn","img/rifadex-ribbon.png","The RIFADEX ribbon panel","Four tools: Room Finishes, Finish Types, Finish Materials and Settings."),
          ("img","img/rifadex-finish-types.png","Finish Types","Edit types here or in Excel; a NEW row creates a type."),
          ("img","img/rifadex-materials.png","Finish Materials","The same table and Excel round trip for materials."),
          ("img","img/rifadex-settings.png","Settings","The company standard: finish parameters, types, materials, naming and Excel."),
@@ -262,8 +262,8 @@ CSS = """
 --shadow:0 1px 2px rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.05);
 --mono:"Cascadia Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 --sans:"Segoe UI",-apple-system,BlinkMacSystemFont,Calibri,Arial,sans-serif;--maxw:1060px;--read:760px}
-:root[data-theme="dark"]{--bg:#1e1e1e;--bg-alt:#2a2a2a;--fg:#F2F2F2;--fg-soft:#cfcfcf;--fg-faint:#B2B2B2;
---accent:#A9C99A;--accent-2:#7BA85F;--on-accent:#111;--accent-soft:#2c3a25;--warm:#A9C99A;--line:#3a3a3a;--card:#2a2a2a;
+:root[data-theme="dark"]{--bg:#3d3d3d;--bg-alt:#464646;--fg:#F2F2F2;--fg-soft:#cfcfcf;--fg-faint:#B2B2B2;
+--accent:#A9C99A;--accent-2:#7BA85F;--on-accent:#111;--accent-soft:#3f4f37;--warm:#A9C99A;--line:#5a5a5a;--card:#4a4a4a;
 --shadow:0 1px 2px rgba(0,0,0,.3)}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
