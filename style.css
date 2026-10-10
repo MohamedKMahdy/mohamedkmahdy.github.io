@@ -162,7 +162,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-betw
 .phead .subtitle{font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:var(--fg);margin:0 0 22px;font-weight:520;letter-spacing:-.01em}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 .chips li{font-size:13px;color:var(--fg-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
-.pbody{padding:40px 0 48px}
+.pbody{padding-top:40px;padding-bottom:48px}
 .pbody h2{font-size:22px;margin:34px 0 10px}.pbody h2:first-child{margin-top:0}
 .problem{font-size:19px;line-height:1.6;color:var(--fg);margin:0}
 .pbody p{color:var(--fg-soft);margin:0 0 14px}
@@ -176,6 +176,13 @@ color:var(--fg);font-size:15.5px;line-height:1.5}
 .features li::before{content:"";position:absolute;left:14px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--accent-2);
 }
 .features li::after{content:"";position:absolute;left:18.5px;top:17px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.plain{margin:0 0 30px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:10px}
+.plain span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);margin-bottom:6px}
+.plain p{margin:0;font-size:17.5px;line-height:1.6}
+.gloss{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 0}
+.gloss div{padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.gloss dt{font-weight:700;color:var(--accent)}
+.gloss dd{margin:2px 0 0;color:var(--fg-soft);font-size:15.5px;line-height:1.55}
 .pnote{margin-top:18px;font-size:14.5px;color:var(--fg-faint)}
 .gallery{display:grid;gap:40px}
 figure{margin:0}

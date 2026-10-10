@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Rimacos | Mohamed K. Mahdy</title>
-<meta name="description" content="Clash detection matrices written as rules instead of cells, with Navisworks, IfcClash, BCF, IDS, Excel and HTML outputs.">
+<meta name="description" content="Replaces a huge hand-filled clash table with a few rules, and turns them into ready-to-run clash checks for several programs.">
 <meta property="og:title" content="Rimacos | Mohamed K. Mahdy">
-<meta property="og:description" content="Clash detection matrices written as rules instead of cells, with Navisworks, IfcClash, BCF, IDS, Excel and HTML outputs.">
+<meta property="og:description" content="Replaces a huge hand-filled clash table with a few rules, and turns them into ready-to-run clash checks for several programs.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/rimacos.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=736625e9">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=856ca819">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=736625e9">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/rimacos.png?v=856ca819">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
-<link rel="stylesheet" href="../style.css?v=dc20c9a2">
+<link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,12 +42,14 @@
   </div>
 </div></div>
 <section><div class="wrap read pbody">
+  <div class="plain"><span>In plain words</span><p>A clash matrix is a big table that says which parts of a building should be checked against which, for example pipes against beams. On large projects it has thousands of cells that someone fills in by hand. Rimacos replaces the table with a few rules and produces the checks, reports and files that several programs need, including open formats any software can read.</p></div>
   <h2>The problem</h2>
-  <p class="problem">A clash matrix grows with the square of the number of clash groups. Maintaining thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.</p>
+  <p class="problem">A clash matrix grows with the square of the number of element groups. Filling in thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.</p>
   <h2>What it does</h2>
-  <p><strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash detection matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan.</p><p>A rule says how two references are tested against each other (everything, a discipline, a tag or a single group), and the most specific rule wins. A local browser editor handles the matrix, groups and rules.</p><p>Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling.</p>
-  <h2>Features</h2><ul class="features"><li>Clash rules instead of matrix cells: a rule says how two references are tested, and the most specific rule wins</li><li>References at four levels: everything, a discipline, a tag or a single clash group</li><li>Test types hard, hard (conservative), clearance, duplicate and none, each with tolerance and severity</li><li>Group priorities decide which side is responsible for each clash pair</li><li>Navisworks output: search sets and Clash Detective tests as XML, ready to import</li><li>IfcOpenShell output: IfcClash sets that run on IFC models and report as BCF</li><li>buildingSMART IDS 1.0 file that checks the models carry the classes, classifications and properties the groups filter on</li><li>Excel matrix for the BIM execution plan, editable and importable again</li><li>HTML report and CSV test list, optionally with clash counts per test and discipline pair</li><li>Clash groups select by IFC class and predefined type, property filters, classification codes and Revit categories</li><li>Models are found by their ISO 19650 container name</li><li>Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks</li><li>Merged or per-pair test granularity</li></ul>
-  <div class="result"><span>Highlight</span>A classic 133-group matrix carried <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
+  <p><strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash matrix and the files to run it: search sets and clash tests for Navisworks, clash sets for the open-source IfcClash tool with results in BCF, an IDS file that checks the models contain the information the groups depend on, and an Excel matrix and HTML report for the project's BIM execution plan.</p><p>A rule says how two sets of elements are tested against each other. Each side can be everything, a discipline, a tag or a single group, and the most specific rule wins. A local browser editor handles the matrix, the groups and the rules.</p><p>Groups select elements by IFC class and type, by property filters and by classification codes, and models are found by their ISO 19650 file names, so the whole matrix also runs on open, free tools.</p>
+  <h2>Features</h2><ul class="features"><li>Clash rules instead of matrix cells: a rule says how two sets of elements are tested, and the most specific rule wins</li><li>Each side of a rule can be everything, a discipline, a tag or a single clash group</li><li>Test types: hard clash, conservative hard clash, clearance, duplicate and none, each with a tolerance and a severity</li><li>Group priorities decide which side is responsible for fixing each clash</li><li>Navisworks output: search sets and Clash Detective tests as XML files, ready to import</li><li>Open-source output: IfcClash sets that run on IFC models and report results as BCF</li><li>An IDS 1.0 file (buildingSMART) that checks the models contain the classes, codes and properties the groups rely on</li><li>An Excel matrix for the BIM execution plan, which can be edited and imported again</li><li>HTML report and CSV list of tests, optionally with clash counts per test and discipline pair</li><li>Groups select by IFC class and type, property filters, classification codes and Revit categories</li><li>Models are found by their ISO 19650 file names</li><li>Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks</li><li>Tests can be merged or kept one per pair of groups</li></ul>
+  <div class="result"><span>Highlight</span>A classic 133-group matrix had <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.</div>
+  <h2>Terms on this page</h2><dl class="gloss"><div><dt>BIM</dt><dd>Building Information Modelling: designing a building as a shared 3D model that also holds data about every part, instead of separate drawings.</dd></div><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Navisworks</dt><dd>Autodesk software that combines the models of all disciplines into one and checks them for clashes.</dd></div><div><dt>Clash</dt><dd>A place where two parts of a building model collide, for example a pipe running through a beam.</dd></div><div><dt>IFC</dt><dd>An open file format for building models that any BIM software can read. It is maintained by buildingSMART.</dd></div><div><dt>BCF</dt><dd>An open format for passing model issues, such as clashes, between different BIM programs.</dd></div><div><dt>IDS</dt><dd>An open format that lists the information a model must contain, so that it can be checked automatically.</dd></div><div><dt>ISO 19650</dt><dd>The international standard for managing information on BIM projects, including how files are named.</dd></div></dl>
   
 </div></section>
 <section><div class="wrap">
@@ -63,7 +65,7 @@
 <section id="contact"><div class="wrap"><div class="contact">
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
-  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
   I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
   tooling and AI in the built environment.</p>
   <div class="links">

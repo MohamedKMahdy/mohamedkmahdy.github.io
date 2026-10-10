@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SORTIE | Mohamed K. Mahdy</title>
-<meta name="description" content="Clash zones and statuses for Navisworks: group clashes by the zone they sit in, and carry statuses and comments between tests and files.">
+<meta name="description" content="Sorts the thousands of clashes found in a Navisworks clash check by building zone, and keeps their status and comments when the check is run again.">
 <meta property="og:title" content="SORTIE | Mohamed K. Mahdy">
-<meta property="og:description" content="Clash zones and statuses for Navisworks: group clashes by the zone they sit in, and carry statuses and comments between tests and files.">
+<meta property="og:description" content="Sorts the thousands of clashes found in a Navisworks clash check by building zone, and keeps their status and comments when the check is run again.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/clash-management.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=591381e5">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=6666e05d">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=591381e5">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/clash-management.png?v=6666e05d">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
-<link rel="stylesheet" href="../style.css?v=dc20c9a2">
+<link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -42,12 +42,14 @@
   </div>
 </div></div>
 <section><div class="wrap read pbody">
+  <div class="plain"><span>In plain words</span><p>Before a building is built, designers combine the models from every discipline and let software look for places where things collide, such as a pipe running through a beam. These are called clashes, and one check can find thousands. SORTIE groups them by area of the building so each team can see its share, and it carries notes and decisions over when the check is repeated.</p></div>
   <h2>The problem</h2>
-  <p class="problem">A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them by area, and keeping their statuses when tests are rerun or files change, takes days.</p>
+  <p class="problem">A clash check can report thousands of clashes when the real coordination problems number only a few hundred. Sorting them by area, and keeping their status when the checks are rerun or the files change, takes days.</p>
   <h2>What it does</h2>
-  <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is a Navisworks Manage add-in for 2022 to 2027.</p><p><strong>Zones.</strong> It groups clashes by the zone their clash point lies in, one group per zone, or writes the zone in front of each clash name. Zones are any 3D objects: masses, rooms, generic models or a separate zones model, and the real zone shape is used rather than its bounding box. Where zones overlap, the smallest wins.</p><p><strong>Status transfer.</strong> It exports status, assignment, approval, description and comments of clashes and imports them into the same clashes in this or another Navisworks file, also from a Navisworks XML clash report. Clashes are matched by result GUID first and then by the clashing pair.</p><p><strong>Clean up.</strong> It moves clashes out of their groups again, or takes the zones off their names.</p>
-  <h2>Features</h2><ul class="features"><li>Group clashes by the zone their clash point lies in, one group per zone, or write the zone in front of each clash name</li><li>Zones are any 3D objects: masses, rooms, generic models or a separate zones model</li><li>The real zone shape is used, with the bounding box as a faster option for simple zones</li><li>Where zones overlap the smallest wins; clashes outside every zone go to a "No zone" group</li><li>Zone name from the object's name or from any property</li><li>Export status, assignment, approval, description and comments of clashes to a status file</li><li>Import them into the same clashes in this or another Navisworks file, also from a Navisworks XML clash report</li><li>Clashes are matched by result GUID first, then by the clashing pair; a clash with two possible counterparts is left alone</li><li>Clean up: move clashes out of their groups, or take the zones off their names again</li><li>Every action works on the clash tests you check and is one undo step</li><li>One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install</li></ul>
-  <div class="result"><span>Highlight</span>Every action works on the clash tests you check and is <strong>one undo step</strong>, and a clash with two possible counterparts is left alone rather than guessed.</div>
+  <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is an add-in for Navisworks Manage 2022 to 2027.</p><p><strong>Zones.</strong> It groups clashes by the zone of the building they sit in, one group per zone, or adds the zone name in front of each clash name. A zone can be any 3D object, such as a mass, a room or a separate zones model, and its real shape is used rather than a simple box around it. Where zones overlap, the smallest one wins.</p><p><strong>Status transfer.</strong> It saves each clash's status, assignee, approval, description and comments, and loads them back onto the same clashes in this file or another Navisworks file, also from a Navisworks XML clash report. Clashes are matched by their unique ID first and then by the pair of elements involved.</p><p><strong>Clean up.</strong> It moves clashes back out of their groups, or removes the zone names again.</p>
+  <h2>Features</h2><ul class="features"><li>Groups clashes by the zone their clash point lies in, one group per zone, or adds the zone in front of each clash name</li><li>Zones can be any 3D objects: masses, rooms, generic models or a separate zones model</li><li>Uses the real zone shape, with a simple bounding box as a faster option for simple zones</li><li>Where zones overlap, the smallest wins; clashes outside every zone go to a "No zone" group</li><li>The zone name comes from the object's name or from any of its properties</li><li>Saves the status, assignee, approval, description and comments of clashes to a file</li><li>Loads them onto the same clashes in this or another Navisworks file, also from a Navisworks XML clash report</li><li>Matches clashes by their unique ID first, then by the pair of clashing elements; a clash with two possible matches is left alone</li><li>Clean up: moves clashes out of their groups, or removes the zone names again</li><li>Every action works on the clash tests you tick and is one undo step</li><li>One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install</li></ul>
+  <div class="result"><span>Highlight</span>Every action works only on the clash tests you tick and can be undone in <strong>one step</strong>. A clash that could match two others is left alone rather than guessed.</div>
+  <h2>Terms on this page</h2><dl class="gloss"><div><dt>Navisworks</dt><dd>Autodesk software that combines the models of all disciplines into one and checks them for clashes.</dd></div><div><dt>Add-in</dt><dd>A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it.</dd></div><div><dt>Clash</dt><dd>A place where two parts of a building model collide, for example a pipe running through a beam.</dd></div></dl>
   
 </div></section>
 <section><div class="wrap">
@@ -63,7 +65,7 @@
 <section id="contact"><div class="wrap"><div class="contact">
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
-  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
   I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
   tooling and AI in the built environment.</p>
   <div class="links">

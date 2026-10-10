@@ -4,19 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cloud Revisions | Mohamed K. Mahdy</title>
-<meta name="description" content="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.">
+<meta name="description" content="Lists every revision cloud in a Revit model with its drawing sheet and revision details, and exports the list to Excel or an interactive offline dashboard.">
 <meta property="og:title" content="Cloud Revisions | Mohamed K. Mahdy">
-<meta property="og:description" content="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.">
+<meta property="og:description" content="Lists every revision cloud in a Revit model with its drawing sheet and revision details, and exports the list to Excel or an interactive offline dashboard.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.github.io/projects/cloud-revisions.html">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.github.io/og/cloud-revisions.png?v=1b07951b">
+<meta property="og:image" content="https://mohamedkmahdy.github.io/og/cloud-revisions.png?v=a31e903b">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/cloud-revisions.png?v=1b07951b">
+<meta name="twitter:image" content="https://mohamedkmahdy.github.io/og/cloud-revisions.png?v=a31e903b">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
-<link rel="stylesheet" href="../style.css?v=dc20c9a2">
+<link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -37,17 +37,19 @@
   <div class="phead">
     <span class="tag">Revit add-in</span>
     <h1>Cloud Revisions</h1>
-    <p class="subtitle">Where the cloud APIs stop, an add-in starts.</p>
+    <p class="subtitle">One list of every change marked on the drawings.</p>
     <ul class="chips" aria-label="Built with"><li>C#</li><li>Revit API 2023 to 2027</li><li>.NET Framework 4.8 / .NET 8 / .NET 10</li><li>dependency-free Excel and HTML</li></ul>
   </div>
 </div></div>
 <section><div class="wrap read pbody">
+  <div class="plain"><span>In plain words</span><p>When a drawing changes, designers mark the change with a revision cloud, a wavy outline with a revision number next to it. On a big project there are hundreds of them spread over many drawing sheets. Cloud Revisions collects them all into one list, so anyone can see what changed, where, and in which revision.</p></div>
   <h2>The problem</h2>
-  <p class="problem">Keeping track of which revision clouds sit on which sheets, and under which revision, usually means clicking through the sheets one by one.</p>
+  <p class="problem">Keeping track of which revision clouds are on which sheets, and under which revision, usually means clicking through the sheets one by one.</p>
   <h2>What it does</h2>
-  <p>Revision clouds are annotation elements. The APS AEC Data Model API does not expose them and the Model Derivative API only inconsistently, so the only complete source is the Revit API itself.</p><p>The add-in lists every revision cloud in the active model with its view, the sheet it appears on and the full revision data (sequence, number, date, description, issue status, issued by and to), then exports a formatted Excel workbook or a self-contained HTML dashboard with Power BI style filtering. Everything sits in one docked panel on its own ribbon tab, in German or English.</p><p>Version 2.0 has its own name, logo and ribbon tab.</p>
-  <h2>Features</h2><ul class="features"><li>Lists every revision cloud in the active model</li><li>Per cloud: id, view and view type, the sheet it appears on, revision sequence, number, date, description, issue status, issued by and to, comment and mark</li><li>Filters for revision, clouds on sheets only and issued revisions only</li><li>Formatted Excel workbook with frozen header and filters</li><li>Offline HTML dashboard with KPI tiles, filter chips, linked charts and a searchable, sortable table</li><li>Neither export needs Excel, a CDN or internet access</li><li>One docked panel on its own ribbon tab, German or English, with an explanation for every option</li><li>Revit 2023 to 2027, no dependencies</li></ul>
-  <div class="result"><span>Highlight</span>Neither export needs Excel, a CDN or internet access: both files are written by the add-in itself, so they work behind a <strong>corporate proxy</strong>.</div>
+  <p>Revision clouds are notes drawn on the drawings, and Autodesk's online data services either do not provide them or provide them only in part. The only complete source is Revit itself, so this is a Revit add-in.</p><p>It lists every revision cloud in the open model with its view, the sheet it appears on and all its revision details: sequence, number, date, description, whether it has been issued, and by and to whom. It then exports a formatted Excel workbook or a single-file HTML dashboard with filters similar to Power BI. Everything sits in one panel on its own Revit tab, in German or English.</p>
+  <h2>Features</h2><ul class="features"><li>Lists every revision cloud in the open model</li><li>For each cloud: ID, view and view type, the sheet it appears on, revision sequence, number, date, description, issue status, issued by and to, comment and mark</li><li>Filters by revision, by clouds on sheets only, and by issued revisions only</li><li>Formatted Excel workbook with a fixed header row and filters</li><li>Offline HTML dashboard with summary tiles, filter buttons, linked charts and a searchable, sortable table</li><li>Neither export needs Excel, online resources or internet access</li><li>One panel on its own Revit tab, in German or English, with an explanation for every option</li><li>Revit 2023 to 2027, no extra software needed</li></ul>
+  <div class="result"><span>Highlight</span>Neither export needs Excel, any online service or internet access. The add-in writes both files itself, so they also work on locked-down <strong>company networks</strong>.</div>
+  <h2>Terms on this page</h2><dl class="gloss"><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Add-in</dt><dd>A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it.</dd></div><div><dt>Sheet</dt><dd>A drawing page in Revit, ready to print or send out.</dd></div><div><dt>Power BI</dt><dd>Microsoft's software for interactive charts and dashboards.</dd></div></dl>
   
 </div></section>
 <section><div class="wrap">
@@ -63,7 +65,7 @@
 <section id="contact"><div class="wrap"><div class="contact">
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
-  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
   I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
   tooling and AI in the built environment.</p>
   <div class="links">

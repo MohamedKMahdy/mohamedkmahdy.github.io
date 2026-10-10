@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Static site generator for mohamedkmahdy.github.io.
 Run: python3 build.py   (from the site/ directory)"""
-import os, html, hashlib
+import os, re, html, hashlib
 
 SITE = os.path.dirname(os.path.abspath(__file__))
 OUT_PROJ = os.path.join(SITE, 'projects')
@@ -21,183 +21,193 @@ CATS = [("revit","Revit"), ("clash","Navisworks &amp; clashes"), ("cloud","Cloud
 # ---------------------------------------------------------------- projects
 P = [
 dict(slug="bimnox", title="Bimnox", tag="Revit 2023 to 2027 · batch", cats="revit cloud",
-  card="Model checks, IFC, NWC, PDF and DWG exports, health and change reports over many Revit models, each model opened once.",
+  card="Runs model checks and exports on many Revit models at once, overnight or every week, without anyone sitting at the computer.",
+  plain="Architects and engineers keep their building designs in Revit models. Every week someone has to open dozens of these models, check them for errors and save copies in the formats other teams need. Bimnox does that job on its own: you choose the models and the tasks once, and it runs them on a schedule and collects the results in one folder.",
   head="Set up a job once, let it run every week.",
-  problem="Model checks and deliverable exports are the jobs everyone agrees matter and nobody has time to run by hand on dozens of models every week.",
+  problem="Checking models and exporting deliverables are jobs everyone agrees matter, but nobody has time to do them by hand for dozens of models every week.",
   stack=["C#", ".NET Framework 4.8 / .NET 8 / .NET 10", "Revit API", "WPF", "Autodesk Platform Services", "Windows Task Scheduler"],
-  body=["<strong>Bimnox</strong> (BIM Nightly Orchestration and eXport) is a desktop program and a headless Revit worker that run seven tasks across many models in one go, now or on a weekly schedule: Autodesk Model Checker, the IFC export, the NWC export for Navisworks, PDF and DWG sheet exports, a model health report and a change report. The program starts the matching installed Revit in the background, opens each model once, runs every chosen task on it and closes it without saving.",
-        "<strong>Four kinds of source:</strong> chosen ACC cloud models, an ACC folder, a local or network folder, or a fixed list of files. Folders are read again at every run, so new models are picked up, and exports and reports can be uploaded back to ACC afterwards.",
-        "<strong>Repeat runs cost little.</strong> A model whose source, settings and outputs have not changed since the last verified run is skipped. Results land in one output folder with a history workbook for Excel and Power BI, plus an optional Teams message after each run.",
-        "<strong>One codebase, four apps.</strong> Besides Bimnox itself there are three single-task editions, each with its own name and icon for teams that need only one job: <strong>Bulk Model Checker</strong> (Model Checker reports, a history table for Power BI and a Teams message after each run), <strong>IFC Bulk Export</strong> (presets, space boundaries and user-defined property sets) and <strong>NWC Bulk Export</strong>.",
-        "It is the current generation of scheduled checking and export services I first built in 2023: nightly model checks feeding Power BI, and nightly NWC and DWG exports, so nothing depended on someone remembering."],
-  result="Every Revit version from 2023 to 2027 from <strong>one codebase</strong>, each model routed to the installed Revit that can open it, with a German and English interface and a per-user install that needs no admin rights.",
+  body=["<strong>Bimnox</strong> (BIM Nightly Orchestration and eXport) is a desktop program with a helper that works inside Revit without opening a window. It runs up to seven tasks on many models in one go, either now or on a weekly schedule: an Autodesk Model Checker check, an IFC export, an NWC export for Navisworks, PDF and DWG exports of the drawing sheets, a model health report and a report of what changed. It starts the right installed version of Revit in the background, opens each model once, runs every chosen task on it and closes it again without saving.",
+        "<strong>Models can come from four places:</strong> selected models in Autodesk Construction Cloud (ACC), a whole ACC folder, a folder on your computer or network, or a fixed list of files. Folders are read again at every run, so new models are picked up automatically, and the results can be uploaded back to ACC.",
+        "<strong>Repeat runs are quick.</strong> A model that has not changed since the last successful run is skipped. All results go into one output folder, together with a history workbook for Excel and Power BI, and an optional Microsoft Teams message after each run.",
+        "<strong>One codebase, four apps.</strong> Besides Bimnox itself, the same code builds three single-task versions for teams that need only one job, each with its own name and icon: <strong>Bulk Model Checker</strong>, <strong>IFC Bulk Export</strong> and <strong>NWC Bulk Export</strong>.",
+        "It is the latest generation of the scheduled checking and export services I first built in 2023, so that nothing depends on someone remembering to do it."],
+  result="<strong>One codebase</strong> supports every Revit version from 2023 to 2027 and sends each model to an installed Revit that can open it. The interface is in German and English, and it installs per user without admin rights.",
   media=[]),  # screenshots in MEDIA below
 
 dict(slug="aps-raumbuch", title="Raumbuch", tag="Revit + web", cats="revit cloud",
-  card="Room books straight from the BIM model: a Revit add-in, and an ACC-connected web app that also opens IFC files in the browser.",
+  card="Creates a room book, a list of every room and everything in it, straight from the building model. Works as a Revit add-in and as a web app.",
+  plain="A room book (Raumbuch in German) lists every room in a building with its size, finishes and furniture. It is usually typed up by hand. Raumbuch builds it automatically from the 3D building model and exports it to Excel, PDF and an interactive web page.",
   head="One room book, two routes to it.",
-  problem="A room book lists every room and everything in it. Teams often assemble it by hand from the model, room by room, and start again when the design changes.",
+  problem="A room book lists every room and everything in it. Teams often put it together by hand from the model, room by room, and have to start again when the design changes.",
   stack=["C#", "Revit API", "React", "Vite", "FastAPI", "APS Viewer", "Model Derivative API", "web-ifc", "three.js"],
-  body=["<strong>Revit add-in</strong> (Revit 2023 to 2027). Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes the room number and name into shared parameters. It then creates one cropped plan per room and exports the room book as Excel, as a PDF with one page per room, and as an offline HTML dashboard. The three steps live in one docked panel, in German and English.",
-        "<strong>Web app.</strong> Signs in to Autodesk Construction Cloud, browses hubs, projects and folders across all APS regions, and opens a model in the APS Viewer with a plan panel beside the 3D view. Rooms come from the 3D scene, from the Model Derivative API, or from the 2D plan views when neither has them. Furniture from the main model and every linked model is placed in one coordinate system and matched to rooms by parameter, by position, or by the nearest room within 2 m.",
-        "Both export a formatted German <em>Raumbuch</em> to Excel, PDF and a single-file HTML dashboard whose charts double as filters."],
-  result="Not locked to one vendor: IFC files open <strong>without any login</strong>, are parsed in the browser with web-ifc and never uploaded. Several IFC files form one federated model.",
-  media=[("img","img/raumbuch-dashboard.jpg","The room book dashboard","One offline HTML file with KPI tiles, charts that filter and the room table. Rendered from the real template with sample data."),
-         ("imgn","img/raumbuch-panel.png","The Revit add-in panel","Model status, the three steps with their state, the export formats and the settings, in one docked panel.")]),
+  body=["<strong>Revit add-in</strong> (Revit 2023 to 2027). It finds the room that each piece of furniture and equipment stands in, also in linked models, and writes the room number and name onto the item. It then creates one cropped floor plan per room and exports the room book as an Excel file, a PDF with one page per room, and an interactive HTML page that works offline. The three steps sit in one panel inside Revit, in German and English.",
+        "<strong>Web app.</strong> It signs in to Autodesk Construction Cloud, lets you browse hubs, projects and folders in every Autodesk data region, and opens a model in the browser with a floor plan next to the 3D view. It reads the rooms from the 3D model, from Autodesk's model data service, or from the 2D plans when neither has them. Furniture from the main model and every linked model is placed in one coordinate system and matched to a room by its room parameter, by its position, or by the nearest room within 2 m.",
+        "Both versions export a formatted German <em>Raumbuch</em> to Excel, PDF and a single-file HTML dashboard whose charts also work as filters."],
+  result="Not tied to one vendor: IFC files open <strong>without any login</strong>, are read in the browser and are never uploaded. Several IFC files can be combined into one model.",
+  media=[("img","img/raumbuch-dashboard.jpg","The room book dashboard","One offline HTML file with summary tiles, charts that filter and the room table. Rendered from the real template with sample data."),
+         ("imgn","img/raumbuch-panel.png","The Revit add-in panel","Model status, the three steps, the export formats and the settings, in one panel.")]),
 
 dict(slug="clash-management", title="SORTIE", tag="Navisworks · clash tools", cats="clash",
-  card="Clash zones and statuses for Navisworks: group clashes by the zone they sit in, and carry statuses and comments between tests and files.",
+  card="Sorts the thousands of clashes found in a Navisworks clash check by building zone, and keeps their status and comments when the check is run again.",
+  plain="Before a building is built, designers combine the models from every discipline and let software look for places where things collide, such as a pipe running through a beam. These are called clashes, and one check can find thousands. SORTIE groups them by area of the building so each team can see its share, and it carries notes and decisions over when the check is repeated.",
   head="4,000 clashes, 200 actual problems.",
-  problem="A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them by area, and keeping their statuses when tests are rerun or files change, takes days.",
+  problem="A clash check can report thousands of clashes when the real coordination problems number only a few hundred. Sorting them by area, and keeping their status when the checks are rerun or the files change, takes days.",
   stack=["C#", "Navisworks API 2022 to 2027", "WPF", "xUnit"],
-  body=["<strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is a Navisworks Manage add-in for 2022 to 2027.",
-        "<strong>Zones.</strong> It groups clashes by the zone their clash point lies in, one group per zone, or writes the zone in front of each clash name. Zones are any 3D objects: masses, rooms, generic models or a separate zones model, and the real zone shape is used rather than its bounding box. Where zones overlap, the smallest wins.",
-        "<strong>Status transfer.</strong> It exports status, assignment, approval, description and comments of clashes and imports them into the same clashes in this or another Navisworks file, also from a Navisworks XML clash report. Clashes are matched by result GUID first and then by the clashing pair.",
-        "<strong>Clean up.</strong> It moves clashes out of their groups again, or takes the zones off their names."],
-  result="Every action works on the clash tests you check and is <strong>one undo step</strong>, and a clash with two possible counterparts is left alone rather than guessed.",
+  body=["<strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is an add-in for Navisworks Manage 2022 to 2027.",
+        "<strong>Zones.</strong> It groups clashes by the zone of the building they sit in, one group per zone, or adds the zone name in front of each clash name. A zone can be any 3D object, such as a mass, a room or a separate zones model, and its real shape is used rather than a simple box around it. Where zones overlap, the smallest one wins.",
+        "<strong>Status transfer.</strong> It saves each clash's status, assignee, approval, description and comments, and loads them back onto the same clashes in this file or another Navisworks file, also from a Navisworks XML clash report. Clashes are matched by their unique ID first and then by the pair of elements involved.",
+        "<strong>Clean up.</strong> It moves clashes back out of their groups, or removes the zone names again."],
+  result="Every action works only on the clash tests you tick and can be undone in <strong>one step</strong>. A clash that could match two others is left alone rather than guessed.",
   media=[("img","img/sortie-zones.png","Grouping clashes by zone","Zones come from any 3D objects; a clash belongs to the zone its clash point lies in."),
          ("img","img/sortie-logo.png","The SORTIE mark","")]),
 
 dict(slug="rimacos", title="Rimacos", tag="openBIM · clash matrices", cats="clash",
-  card="Clash detection matrices written as rules instead of cells, with Navisworks, IfcClash, BCF, IDS, Excel and HTML outputs.",
+  card="Replaces a huge hand-filled clash table with a few rules, and turns them into ready-to-run clash checks for several programs.",
+  plain="A clash matrix is a big table that says which parts of a building should be checked against which, for example pipes against beams. On large projects it has thousands of cells that someone fills in by hand. Rimacos replaces the table with a few rules and produces the checks, reports and files that several programs need, including open formats any software can read.",
   head="Rules, not cells.",
-  problem="A clash matrix grows with the square of the number of clash groups. Maintaining thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.",
+  problem="A clash matrix grows with the square of the number of element groups. Filling in thousands of cells by hand, and turning them into thousands of separate clash tests, does not scale.",
   stack=["Python", "IfcOpenShell / IfcClash", "IDS 1.0", "BCF", "Navisworks XML", "openpyxl", "pytest"],
-  body=["<strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash detection matrix and the files to run it: Navisworks search sets and Clash Detective tests, IfcClash sets with BCF output, a buildingSMART IDS file that checks the models carry what the clash groups select on, and an Excel matrix and HTML report for the BIM execution plan.",
-        "A rule says how two references are tested against each other (everything, a discipline, a tag or a single group), and the most specific rule wins. A local browser editor handles the matrix, groups and rules.",
-        "Clash groups select by IFC class and predefined type, property filters and classification codes, and models are found by their ISO 19650 container name, so the whole matrix also runs on open tooling."],
-  result="A classic 133-group matrix carried <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.",
+  body=["<strong>Rimacos</strong> (Rule-based Interference Matrices And Clash tests on Open Standards) turns a short list of rules into a complete clash matrix and the files to run it: search sets and clash tests for Navisworks, clash sets for the open-source IfcClash tool with results in BCF, an IDS file that checks the models contain the information the groups depend on, and an Excel matrix and HTML report for the project's BIM execution plan.",
+        "A rule says how two sets of elements are tested against each other. Each side can be everything, a discipline, a tag or a single group, and the most specific rule wins. A local browser editor handles the matrix, the groups and the rules.",
+        "Groups select elements by IFC class and type, by property filters and by classification codes, and models are found by their ISO 19650 file names, so the whole matrix also runs on open, free tools."],
+  result="A classic 133-group matrix had <strong>8,778 cells</strong>. Rimacos reproduces every one of them with <strong>4 rules</strong>, and the merged output needs <strong>79 clash tests</strong> instead of 8,778.",
   media=[("img","img/rimacos-editor.jpg","The matrix editor","Discipline matrix, the rule behind each cell, and the group pairs it decides.")]),
 
-dict(slug="speckle-llm", title="ARVENT", tag="Speckle · local LLM", cats="ai cloud",
-  card="A BIM assistant in Speckle comment threads, on a local Llama: answers about elements, the whole model and the specification.",
-  head="I put an LLM on BIM data before it was a category.",
-  problem="Most people on a project never open the model, but they still have questions about it: what this panel's U-value is, how many doors lack a fire rating, whether the latest version still meets the spec.",
+dict(slug="speckle-llm", title="ARVENT", tag="Speckle · local AI", cats="ai cloud",
+  card="Answers questions about a 3D building model in plain language, right in the model's comment threads. It runs on a local AI model, so no data leaves the machine.",
+  plain="Most people on a building project never open the 3D model, but they still have questions about it. ARVENT lets them ask in a comment, for example how many doors have no fire rating, and replies with the answer, the exact data behind it and a link that shows those parts in the model. It also checks each new version of the model against the project's written requirements.",
+  head="I connected AI to building models before it was a trend.",
+  problem="Most people on a project never open the model, but they still have questions about it: what this panel's insulation value is, how many doors have no fire rating, whether the latest version still meets the specification.",
   stack=["Python", "FastAPI", "Speckle (GraphQL, webhooks, specklepy)", "Ollama", "Llama 3.1", "SQLite"],
-  body=["In 2023 I connected Speckle to a large language model so project teams could ask questions about a 3D model in plain language. <strong>ARVENT</strong> (Assistant for Requirements, Verification and Element Notes in Threads) is the 2026 rebuild. It runs on a <strong>local Llama through Ollama</strong>, so model data and project documents never leave the machine.",
-        "It works inside Speckle comment threads. It answers questions about a selected element from its parameters and any attached specification PDF, with page citations. It answers questions about the whole model. And it checks every new model version against rules drawn from the specification, opening one thread per failing rule that isolates the offending elements in the viewer and replying when a later version fixes them.",
-        "<strong>The language model never computes and never writes SQL.</strong> It fills a JSON query plan constrained to the index's real field names; code validates and repairs the plan and runs it as parameterised SQL, and every reply shows the exact query and result. Rules from the specification are proposed by the model and only run once a person approves them.",
-        "Along the way I also built a custom Speckle-Revit connector for a separate client, extending open interoperability between the two platforms."],
-  result="The lesson from 2023 still holds: <strong>the model was never the hard part.</strong> The hard part is getting clean, queryable, structured data out of the authoring tools.",
+  body=["In 2023 I connected Speckle, an open platform for sharing 3D building models, to a large language model, so project teams could ask questions about a model in plain language. <strong>ARVENT</strong> (Assistant for Requirements, Verification and Element Notes in Threads) is the 2026 rebuild. It runs on a <strong>local Llama model through Ollama</strong>, so model data and project documents never leave the machine.",
+        "It works inside Speckle's comment threads. It answers questions about a selected element from its properties and any attached specification PDF, with page references. It answers questions about the whole model. And it checks every new model version against rules taken from the specification: for each rule that fails, it opens a thread that highlights the elements involved, and it replies when a later version fixes them.",
+        "<strong>The language model never calculates anything and never writes database queries.</strong> It only fills in a structured query plan limited to the real field names; code checks and corrects that plan and runs it, and every reply shows the exact query and result. Rules from the specification are proposed by the model and run only after a person approves them.",
+        "Along the way I also built a custom connector between Speckle and Revit for a separate client, so the two platforms could exchange data more openly."],
+  result="The lesson from 2023 still holds: <strong>the AI was never the hard part.</strong> The hard part is getting clean, structured data out of the design tools.",
   media=[("img","img/arvent-card.png","The ARVENT mark",""), ("img","img/arvent-logo.png","The mark on light and dark backgrounds","On white, on the dark header band and as an icon.")]),
 
 dict(slug="qubecta", title="Qubecta", tag="Revit · cost planning", cats="revit",
-  card="Priced bills of quantities and elemental cost plans straight from the Revit model, exported to Excel, PDF, CSV or GAEB. Revit 2022 to 2027.",
+  card="Turns the quantities in a Revit model into a priced bill of quantities and a cost plan, and exports them to Excel, PDF or the German GAEB tender format.",
+  plain="To estimate what a building will cost, quantity surveyors measure how much of each material and component it needs, then price it. Much of that information is already in the 3D model. Qubecta reads it from the model, suggests prices and categories, and produces the cost documents in the formats that estimators and tender software use.",
   head="A priced bill and a cost plan without leaving Revit.",
-  problem="Quantity surveyors often re-measure what the model already knows. Qubecta reads the quantities straight from Revit, prices them and turns them into a bill and a cost plan.",
+  problem="Quantity surveyors often measure again what the model already knows. Qubecta reads the quantities straight from Revit, prices them and turns them into a bill of quantities and a cost plan.",
   stack=["C#", "Revit API 2022 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "ClosedXML", "PDFsharp", "GAEB DA XML 3.3", "xUnit"],
-  body=["<strong>Qubecta</strong> (QUantities, Bills, Elements, Costs, Tendering and Assembly codes) is an add-in for Revit 2022 to 2027. Tick the element types to price and give each one a unit, a bill section (CSI MasterFormat 2018, RICS NRM2 or your own list), an element for the cost plan (UniFormat, RICS NRM1, DIN 276 or your own list), a rate and a description. <strong>Qubecta suggests all of these</strong> from your earlier projects, Revit keynotes and assembly codes, and each type's name and materials, with the reason for each; you check them before anything changes.",
-        "It then measures the model and gives you the bill by trade and the cost plan by element, with cost per m² of gross floor area and additions such as preliminaries, contingency and VAT. Exports go to Excel, PDF and CSV, and to <strong>GAEB DA XML</strong> for German tendering and costing software, validated against the official schemas. Elements are written back into Revit's Assembly Code, so schedules and the IFC export carry them.",
-        "Under the hood it measures the model in one pass, filters by phase, design option and level, counts repeated linked models, and matches categories by Revit's built-in ids, so it works in any Revit language. Every third-party library is bundled into one assembly, so Qubecta never clashes with Revit's own copies or other add-ins. Elements are also read from where things are: doors and windows take theirs from the wall or roof they sit in, and walls and floors from their exterior and load-bearing settings."],
-  result="Self-tested inside Revit on Autodesk's Snowdon Towers sample: <strong>392 types, 294 suggestions, 136 bill lines</strong>, a cost plan by element, and a GAEB export that validates against the official 3.3 schemas.",
-  media=[("img","img/qubecta-tabs.jpg","Set up, bill and cost plan","Three numbered steps in one docked panel, shown with a sample model."),
+  body=["<strong>Qubecta</strong> (QUantities, Bills, Elements, Costs, Tendering and Assembly codes) is an add-in for Revit 2022 to 2027. You tick the element types to price and give each one a unit, a section in the bill (CSI MasterFormat 2018, RICS NRM2 or your own list), a group in the cost plan (UniFormat, RICS NRM1, DIN 276 or your own list), a rate and a description. <strong>Qubecta suggests all of these</strong> from your earlier projects, from codes already in the model, and from each type's name and materials, and it gives the reason for each suggestion. You check them before anything changes.",
+        "It then measures the model and produces the bill by trade and the cost plan by building element, with the cost per m² of floor area and additions such as site overheads, contingency and VAT. Exports go to Excel, PDF and CSV, and to <strong>GAEB DA XML</strong>, the standard format of German tendering and costing software, checked against the official schemas. The cost codes are also written back into the model, so Revit schedules and IFC exports carry them.",
+        "It measures the whole model in one pass, filters by construction phase, design option and floor, and counts linked models that are placed more than once. It recognises categories by Revit's internal IDs, so it works in any Revit language. Doors and windows can take their cost group from the wall or roof they sit in, and walls and floors from whether they are external or load-bearing."],
+  result="Tested inside Revit on Autodesk's Snowdon Towers sample model: <strong>392 types, 294 suggestions, 136 bill lines</strong>, a cost plan by element, and a GAEB export that passes the official 3.3 schemas.",
+  media=[("img","img/qubecta-tabs.jpg","Set up, bill and cost plan","Three numbered steps in one panel, shown with a sample model."),
          ("img","img/qubecta-suggest-export.jpg","Suggestions and export","Each suggestion says why; exports include GAEB X83 and X82."),
-         ("imgn","img/qubecta-revit.png","Docked in Revit","DIN 276 suggestions with their checks, from the in-Revit self-test on the Snowdon Towers sample."),
+         ("imgn","img/qubecta-revit.png","Docked in Revit","DIN 276 suggestions with their checks, from the in-Revit test on the Snowdon Towers sample."),
          ("video","video/qubecta-earlier.mp4","An earlier version","Generating a detailed bill of quantities in Excel.")]),
 
 dict(slug="rifadex", title="RIFADEX", tag="Revit · interior finishes", cats="revit",
-  card="Room finishes for Revit 2024 to 2027: pick wall, floor, skirting and ceiling finishes per room, then preview, draw and keep them up to date.",
+  card="Draws the wall, floor, skirting and ceiling finishes of every room in a Revit model, and keeps them up to date when the design changes.",
+  plain="Every room in a building gets finishes: plaster or tiles on the walls, a floor covering, skirting boards and a ceiling. In a 3D model each one has to be drawn by hand, and redrawn whenever a room changes. RIFADEX lets you pick the finishes per room, then draws and updates them automatically.",
   head="Finish walls, floors, skirting and ceilings that follow the rooms.",
   problem="Modelling interior finishes by hand, room by room, is slow, and every design change leaves finishes that no longer fit the room.",
   stack=["C#", "Revit API 2024 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "WPF", "extensible storage", "no third-party libraries"],
-  body=["Lengths are shown and typed in the project's units. Pick a wall, floor, base and ceiling finish for each room, from this model or from a linked architect's model, singly or for many rooms at once. RIFADEX then draws one finish wall per run of room boundary, a floor per room with openings for columns and shafts, skirting that stops at doors, and a ceiling at the room height. Doors and windows of the walls behind are cut through the finish walls.",
-        "<strong>Plan, preview, apply.</strong> Every change is shown before anything is drawn, and running it again updates existing finishes in place, keeping their element ids: a new code changes the type, a room that changed shape is redrawn, openings follow moved doors, and a type you changed by hand is kept, so a feature wall survives. The linked model is never touched.",
-        "Finish types and materials are managed in a table or round-tripped through Excel, with new rows creating new types and an optional naming convention. One XML settings file holds the company standard, so any template works and nothing has to be added to a project first.",
-        "<strong>RIFADEX</strong> (Revit Interior Finishes: Assignment, Drawing and Excel eXchange) is one company-neutral bundle that rebuilds my earlier in-house finishes tools, without any office-specific parameter."],
-  result="Tested inside Revit end to end, 57 checks in Revit 2026: drawing, redrawing, hand edits, door cuts, a moved and rotated link and an Excel round trip, from <strong>one codebase for Revit 2024 to 2027</strong> with no third-party DLLs.",
+  body=["You pick a wall, floor, skirting and ceiling finish for each room, one room at a time or many at once, in this model or in a linked architect's model. RIFADEX then draws a finish wall along each side of the room, a floor with cut-outs for columns and shafts, skirting that stops at doors, and a ceiling at the room height. Door and window openings in the walls behind are cut through the finish walls. Lengths are shown and entered in the project's own units.",
+        "<strong>Plan, preview, apply.</strong> Every change is shown before anything is drawn. Running it again updates the existing finishes instead of drawing new ones, so their tags and schedules keep working: a new finish code changes the type, a room that changed shape is redrawn, openings follow moved doors, and a wall moved by up to 500 mm takes its finish with it. A type you changed by hand is kept, so a feature wall survives. The linked model is never changed.",
+        "Finish types and materials are edited in a table or in Excel, where a new row creates a new type, with an optional naming convention. One settings file holds the company standard, so any project template works and nothing has to be added to a project first.",
+        "<strong>RIFADEX</strong> (Revit Interior Finishes: Assignment, Drawing and Excel eXchange) is a single, company-neutral package that rebuilds my earlier in-house finishes tools."],
+  result="Tested inside Revit from start to finish with 57 checks in Revit 2026: drawing, redrawing, hand edits, door openings, a moved and rotated linked model and an Excel round trip. <strong>One codebase for Revit 2024 to 2027</strong>, with no third-party libraries.",
   media=[("img","img/rifadex-room-finishes.png","Room Finishes","Codes per room from a linked model, then save and draw. Captured in Revit 2026."),
          ("imgn","img/rifadex-ribbon.png","The RIFADEX ribbon panel","Four tools: Room Finishes, Finish Types, Finish Materials and Settings."),
-         ("img","img/rifadex-finish-types.png","Finish Types","Edit types here or in Excel; a NEW row creates a type."),
+         ("img","img/rifadex-finish-types.png","Finish Types","Edit types here or in Excel; a row marked NEW creates a new type."),
          ("img","img/rifadex-materials.png","Finish Materials","The same table and Excel round trip for materials."),
          ("img","img/rifadex-settings.png","Settings","The company standard: finish parameters, types, materials, naming and Excel."),
-         ("video","video/finishes-drawer.mp4","An earlier version: drawing finishes","Reads room finishes and draws the wall, floor and wall-base geometry."),
+         ("video","video/finishes-drawer.mp4","An earlier version: drawing finishes","Reads room finishes and draws the walls, floors and skirting."),
          ("video","video/finishes-manager.mp4","An earlier version: finish types","Finish types exported, edited in Excel and written back to the model."),
          ("video","video/materials-manager.mp4","An earlier version: finish materials","The same round trip for finish materials.")]),
 
 dict(slug="acc-integrations", title="LARBACC", tag="ACC · backups", cats="cloud",
-  card="Scheduled local backups of Autodesk Construction Cloud and BIM 360 projects, incremental by hard links.",
-  head="Cloud-hosted does not mean backed up.",
+  card="Makes regular, automatic backup copies of Autodesk Construction Cloud projects on your own drive, downloading only what changed.",
+  plain="Many construction teams keep all their project files in Autodesk Construction Cloud, an online file platform. If a folder is deleted there or a subscription ends, the files can be lost. LARBACC copies the projects you choose to your own drive every week and keeps the last few copies.",
+  head="Stored in the cloud is not the same as backed up.",
   problem="Projects in Autodesk Construction Cloud feel safe because they live in the cloud. A deleted folder or an ended subscription can still take years of work with it.",
   stack=["C#", ".NET 8", "WPF", "Autodesk Platform Services (PKCE)", "Data Management API"],
-  body=["<strong>LARBACC</strong> (Local, Automatic, Rotating Backups of Autodesk Construction Cloud) keeps dated local copies of ACC and BIM 360 projects. Pick projects and folders, a destination and a weekly time; LARBACC downloads the latest version of every document and keeps the last few backups. The interface is in German and English.",
-        "<strong>Incremental by hard links.</strong> A document unchanged since the previous backup is linked instead of downloaded again, so later runs are fast and five kept backups do not take five times the space. A run only becomes a backup once its manifest is written, so a crash or power cut never leaves a half-finished folder that looks complete.",
-        "Sign-in uses PKCE, so no client secret ships with the program. A scheduled backup missed while LARBACC was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours."],
-  result="Open-source roots: LARBACC began as a WPF front end for Stewart Celani's MIT-licensed <a href=\"https://github.com/stewartcelani/autodesk-construction-cloud-backup\" rel=\"noopener\">autodesk-construction-cloud-backup</a>, and keeps that history and credit.",
-  media=[("img","img/larbacc-projects.png","Projects and weekly schedule","Shown with made-up data."),
-         ("img","img/larbacc-folders.png","Folder selection","Untick a folder to leave it out; new folders follow their parent."),
-         ("img","img/larbacc-running.png","A backup running","")]),
+  body=["<strong>LARBACC</strong> (Local, Automatic, Rotating Backups of Autodesk Construction Cloud) keeps dated copies of ACC and BIM 360 projects on a local or network drive. You choose projects and folders, a destination and a weekly time; LARBACC downloads the latest version of every document and keeps the last few backups. The interface is in German and English.",
+        "<strong>Only changes are downloaded.</strong> A document that has not changed since the previous backup is linked to the earlier copy instead of downloaded again (a file-system feature called a hard link), so later runs are fast and five backups do not take five times the space. A run only counts as a backup once its complete file list is written, so a crash or power cut never leaves a half-finished folder that looks complete.",
+        "Sign-in uses a secure method (PKCE) that needs no secret key inside the program. A backup missed while LARBACC was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours."],
+  result="Open-source roots: LARBACC began as a desktop interface for Stewart Celani's MIT-licensed <a href=\"https://github.com/stewartcelani/autodesk-construction-cloud-backup\" rel=\"noopener\">autodesk-construction-cloud-backup</a>, and keeps that history and credit.",
+  media=[]),  # screenshots in MEDIA below
 
-dict(slug="family-validation", title="Family Validation", tag="Revit · Content Catalog", cats="revit",
-  card="Checks and cleans Revit families before they reach the Autodesk Content Catalog, without the user ever opening Revit.",
-  head="Clean families in, clean catalog out.",
-  problem="One badly built family, with an embedded CAD import or the wrong category, slows down every project that loads it. Checking hundreds of them by hand does not happen.",
+dict(slug="family-validation", title="Family Validation", tag="Revit · content library", cats="revit",
+  card="Checks and cleans whole folders of Revit components (families) against a company standard, without anyone opening Revit.",
+  plain="Revit models are built from reusable components called families, such as a door, a chair or a light fitting. Companies keep libraries of hundreds of them, and one badly made family can slow down every project that uses it. Family Validation checks a whole folder of families against the company's rules, fixes what it safely can, and writes a report.",
+  head="Clean families in, clean library out.",
+  problem="One badly built family, for example one with an imported CAD drawing inside it or in the wrong category, slows down every project that loads it. Nobody checks hundreds of them by hand.",
   stack=["C#", "Revit API 2023 to 2027", "WPF", ".NET Framework 4.8 / .NET 8 / .NET 10", "no third-party libraries"],
-  body=["A launcher window drives a hidden Revit that opens every family in a folder and checks it: the naming convention (auto-correcting the category prefix when that is unambiguous), embedded CAD imports (removed, while linked CAD is kept), name against category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass.",
-        "<strong>Safe by construction.</strong> The original is copied aside before anything else, and a family whose copy fails is skipped, never touched. Cleaned copies go to their own folder, sources are never changed in place, and a dry run writes the full report without changing a file.",
-        "A visual rules editor lets non-developers maintain the standard: categories and name patterns are built from blocks instead of regular expressions, and the editor refuses to save a ruleset the run would reject."],
-  result="<strong>Zero third-party dependencies:</strong> everything is .NET plus the Revit API, with each worker built for the runtime its Revit version ships.",
+  body=["A small launcher program runs Revit in the background, opens every family in a folder and checks it: the file name against the naming rules (correcting the category prefix when that is safe), imported CAD drawings inside the family (removed, while linked CAD files are kept), whether the name matches the category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass. The checked families are then ready for the company library or the Autodesk Content Catalog.",
+        "<strong>Safe by design.</strong> The original file is copied aside before anything else, and a family that cannot be copied is skipped, never touched. Cleaned copies go to their own folder, the original files are never changed, and a dry run writes the full report without changing anything.",
+        "A visual rules editor lets people who do not write code maintain the standard: categories and name patterns are built from simple blocks, and the editor refuses to save a set of rules that the check would reject."],
+  result="<strong>No third-party libraries:</strong> everything is built on .NET and the Revit API, with a separate build for the .NET version that each Revit release uses.",
   media=[("img","img/family-validation-logo.png","The Family Validation mark","")]),
 
 dict(slug="cloud-revisions", title="Cloud Revisions", tag="Revit add-in", cats="revit data",
-  card="Every revision cloud in a model, with its sheet and revision data, exported to Excel or an offline interactive dashboard.",
-  head="Where the cloud APIs stop, an add-in starts.",
-  problem="Keeping track of which revision clouds sit on which sheets, and under which revision, usually means clicking through the sheets one by one.",
+  card="Lists every revision cloud in a Revit model with its drawing sheet and revision details, and exports the list to Excel or an interactive offline dashboard.",
+  plain="When a drawing changes, designers mark the change with a revision cloud, a wavy outline with a revision number next to it. On a big project there are hundreds of them spread over many drawing sheets. Cloud Revisions collects them all into one list, so anyone can see what changed, where, and in which revision.",
+  head="One list of every change marked on the drawings.",
+  problem="Keeping track of which revision clouds are on which sheets, and under which revision, usually means clicking through the sheets one by one.",
   stack=["C#", "Revit API 2023 to 2027", ".NET Framework 4.8 / .NET 8 / .NET 10", "dependency-free Excel and HTML"],
-  body=["Revision clouds are annotation elements. The APS AEC Data Model API does not expose them and the Model Derivative API only inconsistently, so the only complete source is the Revit API itself.",
-        "The add-in lists every revision cloud in the active model with its view, the sheet it appears on and the full revision data (sequence, number, date, description, issue status, issued by and to), then exports a formatted Excel workbook or a self-contained HTML dashboard with Power BI style filtering. Everything sits in one docked panel on its own ribbon tab, in German or English.",
-        "Version 2.0 has its own name, logo and ribbon tab."],
-  result="Neither export needs Excel, a CDN or internet access: both files are written by the add-in itself, so they work behind a <strong>corporate proxy</strong>.",
+  body=["Revision clouds are notes drawn on the drawings, and Autodesk's online data services either do not provide them or provide them only in part. The only complete source is Revit itself, so this is a Revit add-in.",
+        "It lists every revision cloud in the open model with its view, the sheet it appears on and all its revision details: sequence, number, date, description, whether it has been issued, and by and to whom. It then exports a formatted Excel workbook or a single-file HTML dashboard with filters similar to Power BI. Everything sits in one panel on its own Revit tab, in German or English."],
+  result="Neither export needs Excel, any online service or internet access. The add-in writes both files itself, so they also work on locked-down <strong>company networks</strong>.",
   media=[("img","img/cloud-revisions-dashboard.jpg","The revision cloud dashboard","Filters by revision, view type, issue status and sheet, with linked charts. Rendered from the real template with sample data."),
          ("img","img/cloud-revisions-logo.png","The Cloud Revisions mark","")]),
 
 dict(slug="revit-automation", title="Revit Automation Suite", tag="4 tools · video", cats="revit",
-  card="Production Revit plugins for model management, worksets, element joins and bulk file operations. With demos.",
+  card="Four Revit tools that take over repetitive model tasks: preparing files for issue, organising worksets, joining elements and copying types between projects.",
+  plain="In Revit, many routine jobs mean clicking through the same steps again and again, such as cleaning up a model before sending it out or copying standard settings into each project. Each of these four tools does one such job automatically, across a whole model or many projects at once.",
   head="Small tools for the jobs nobody wants to do by hand.",
-  problem="Small, repetitive Revit tasks (worksets, joins, moving types between projects, purging before issue) add up to hours of engineering time every week.",
+  problem="Small, repetitive Revit tasks, such as setting up worksets, joining elements, copying types between projects and cleaning models before issue, add up to hours of engineering time every week.",
   stack=["C#", "Revit API", "WPF", "Excel interop"],
-  body=["A suite of enterprise Revit add-ins built for architecture and engineering teams, covering model management, worksets, element joins and bulk file operations. Each one replaced a manual process that consumed engineering hours every week.",
-        "The quantity and finishes tools from the same years have since grown into products of their own, <a href=\"qubecta.html\">Qubecta</a> and <a href=\"rifadex.html\">RIFADEX</a>, and are shown there. All demos below are recorded against a generic sample model."],
+  body=["A set of Revit add-ins built for architecture and engineering teams, covering model management, worksets, element joins and bulk file operations. Each one replaced a manual routine that cost engineering hours every week.",
+        "The quantity and finishes tools from the same years have since grown into products of their own, <a href=\"qubecta.html\">Qubecta</a> and <a href=\"rifadex.html\">RIFADEX</a>, and are shown there. All demos below use a generic sample model."],
   result="",
   media=[
-    ("video","video/revit-transmitter.mp4","Revit-Transmitter","Detaches models with preserve or delete worksets, purges unused elements, and prepares issue-ready files."),
-    ("video","video/worksets-manager.mp4","Worksets Manager","Creates standard worksets from Excel or by UNIFORMAT, then assigns every element to the right one."),
-    ("video","video/auto-joiner.mp4","Auto Joiner","Joins and unjoins every intersecting element of selected categories in one pass."),
-    ("video","video/transfer-types.mp4","Transfer Types","Selects Revit projects from a folder tree and transfers types and families between them in bulk."),
+    ("video","video/revit-transmitter.mp4","Revit-Transmitter","Detaches models with worksets kept or removed, purges unused elements and prepares files ready for issue."),
+    ("video","video/worksets-manager.mp4","Worksets Manager","Creates standard worksets from Excel or by UniFormat code, then puts every element in the right one."),
+    ("video","video/auto-joiner.mp4","Auto Joiner","Joins and unjoins every overlapping element of the chosen categories in one pass."),
+    ("video","video/transfer-types.mp4","Transfer Types","Choose Revit projects from a folder tree and copy types and families between them in bulk."),
     ("img","img/image54.png","Auto Joiner: interface",""),
   ]),
 
 dict(slug="bim-analytics", title="BIM Analytics", tag="Power BI · 9 dashboards", cats="data",
-  card="Model health, clash detection, issues and resourcing: automated reporting pipelines on ACC and BIM 360.",
+  card="Power BI dashboards that show the health of building models, open clashes, issues and team workload to people who never open the models.",
+  plain="Project managers need to know whether the 3D models are in good shape, how many design conflicts are still open and who is working on what. That information sits inside model files and cloud platforms they rarely open. These dashboards pull it out automatically and show it in charts that update on their own.",
   head="Making model health visible to people who never open Revit.",
-  problem="Model health is invisible to the people who never open Revit, which is most of the people making decisions about a project.",
+  problem="Model health is invisible to the people who never open Revit, and they are most of the people making decisions about a project.",
   stack=["Power BI", "DAX", "SharePoint", "BIM 360 / ACC", "Revizto", "Python"],
-  body=["A suite of automated Power BI dashboards and reporting pipelines built for BIM coordination, covering model health, clash detection, open issues, ACC administration, resourcing and team-level assessment.",
-        "Each dashboard reads directly from project data and refreshes on a schedule, so coordination status is current without anyone assembling a report. Deployed as project-specific intelligence hubs on SharePoint.",
+  body=["A set of automated Power BI dashboards and reporting pipelines for BIM coordination, covering model health, clash detection, open issues, ACC account administration, resourcing and team assessment.",
+        "Each dashboard reads directly from project data and refreshes on a schedule, so the coordination status is always current without anyone putting a report together. They are published as project information hubs on SharePoint.",
         "In 2026 I decoded one programme's 52 Power BI files (model health across 376 Revit models, clash trends, issues and account administration) and rebuilt them as <strong>one self-contained HTML page</strong> that opens offline in any browser, without Power BI, and leaves out every personal detail."],
-  result="Built and refined across three organisations.",
-  media=[("img","img/image12.png","Project intelligence hub: home page",""),
+  result="Built and improved across three organisations.",
+  media=[("img","img/image12.png","Project information hub: home page",""),
          ("img","img/image10.png","SharePoint deployment",""),
          ("img","img/image11.png","SharePoint: project structure",""),
          ("img","img/image13.png","Automated reporting",""),
          ("img","img/image14.png","Model health dashboard",""),
          ("img","img/image15.png","Model health: detail",""),
-         ("img","img/image16.png","Clash detection dashboard","Clash trend over time, live counts per discipline pair, and current totals by element test."),
+         ("img","img/image16.png","Clash detection dashboard","Clash trend over time, live counts per discipline pair, and current totals by test."),
          ("img","img/image17.png","Issues dashboard",""),
          ("img","img/image18.png","ACC admin dashboard",""),
          ("img","img/image19.png","Resources dashboard",""),
          ("img","img/image20.png","Resources: allocation",""),
          ("img","img/image21.png","Resources: detail",""),
-         ("img","img/image22.png","Team level assessment",""),
-         ("img","img/image23.png","Team level: breakdown",""),
-         ("img","img/image24.png","Team level: detail","")]),
+         ("img","img/image22.png","Team assessment",""),
+         ("img","img/image23.png","Team assessment: breakdown",""),
+         ("img","img/image24.png","Team assessment: detail","")]),
 
-dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 tools", cats="revit",
-  card="Generator → Scheduler → Drawings → Tagger. A facade from parametric definition to annotated documentation.",
+dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Revit · facades · 4 tools", cats="revit",
+  card="Four Revit tools that take a glass facade from design to finished drawings: create the panels, list them, draw each type and label everything.",
+  plain="Large glass facades are made of hundreds of panels, often in many slightly different shapes. Each panel type needs its own drawing, a schedule and dimensions. These four tools create the panels from a design rule, then produce the schedules, drawings and labels automatically.",
   head="Geometry that builds itself.",
   problem="Documenting a complex facade panel by panel, with a schedule, a view and dimensions for every type, is slow and easy to get wrong.",
   stack=["C#", "Revit API", "adaptive families"],
-  body=["One tool chain taking a curtain wall facade from parametric definition through to fully annotated documentation.",
-        "<strong>Panel Generator</strong> creates and edits curtain panels across the facade. <strong>Panel Scheduler</strong> builds and exports panel schedules. <strong>Panel Drawings</strong> generates a dedicated view for every panel type. <strong>Panel Tagger</strong> tags and dimensions the whole set automatically."],
+  body=["One chain of tools that takes a curtain wall facade (a facade made of glass and frame panels) from a design rule to fully annotated drawings.",
+        "<strong>Panel Generator</strong> creates and edits curtain panels across the facade. <strong>Panel Scheduler</strong> builds and exports panel schedules. <strong>Panel Drawings</strong> creates a separate view for every panel type. <strong>Panel Tagger</strong> labels and dimensions the whole set automatically."],
   result="",
   media=[("img","img/image55.jpeg","Panel Generator",""),
          ("img","img/image56.jpeg","Panel Scheduler",""),
@@ -205,10 +215,186 @@ dict(slug="curtain-panels", title="Curtain Panel Suite", tag="Parametric · 4 to
          ("img","img/image58.jpeg","Panel Tagger","")]),
 ]
 
-# Full feature list per project, from each repository's README.
-FEATURES = {'bimnox': ['Seven tasks in one pass: Autodesk Model Checker, IFC export, NWC export for Navisworks, PDF and DWG sheet exports, a model health report and a change report', 'Revit opens each model once for every task of a job and closes it again without saving', 'Four kinds of source: chosen ACC cloud models, an ACC folder, a local or network folder, or a fixed list of .rvt files', 'Folders are read again at every run, so models added later are included', 'Every installed Revit from 2023 to 2027; each model goes to the version that can open it, older models are upgraded in memory only', 'Weekly runs through the Windows Task Scheduler, also while the program is closed', 'ACC both ways: plain .rvt files are downloaded for the run, and IFC, NWC, PDF, DWG files and reports can be uploaded back', 'Skip unchanged: a model whose source, settings and outputs have not changed since the last verified run is left out', 'PDF of every sheet, of a sheet set saved in the model, or of sheets matching a number pattern; one PDF per sheet or per model', 'Model health report per model: warnings, families, CAD, links, views, groups and rooms', "Change report: elements added, deleted and changed since the job's last report", 'A time limit per model; a model that hangs is closed and reported while the others carry on', 'One output folder (a SharePoint library synced with OneDrive works), a history workbook for Excel and Power BI, a Teams message after each run', 'Single-task editions built from the same code, each with its own name and icon: Bulk Model Checker, IFC Bulk Export and NWC Bulk Export', 'German and English interface; per-user install without admin rights'], 'aps-raumbuch': ['Revit add-in for Revit 2023 to 2027, one docked panel with three steps and a highlighted next action, in German and English', 'Assigns every piece of furniture and equipment to the room it stands in, also across linked models, and writes room number and name into shared parameters', 'Creates one cropped floor plan per room, named by room number and name', 'Exports the room book as Excel (area, volume and height as real numbers you can sum and filter), as a PDF with a cover and one page per room with its plan and furniture, and as an offline HTML dashboard', 'Settings choose the room parameters in the PDF, the furniture categories and the view template of the room plans', 'Web app: Autodesk sign-in, hubs, projects and folders of all APS regions (US, EMEA, AUS) in one list', 'Web app: APS Viewer with a plan panel; selecting a room tints its furniture and cuts it out with a section box', 'Web app: rooms from the 3D scene, the Model Derivative API or the 2D plan views; furniture from the main model and every linked model in one coordinate system', 'Furniture is matched to rooms by parameter, by position, or by the nearest room within 2 m; leftovers are listed separately', 'Searchable room table with level separators, area totals and furniture grouped by category and type', 'IFC files open in the browser without any login, several files form one federated model, nothing is uploaded', 'In IFC mode, selecting a room frames it from above and isolates its furniture', 'Dashboard export: one offline HTML file with KPI tiles, charts that act as filters, a room table with plan images and CSV download'], 'clash-management': ['Group clashes by the zone their clash point lies in, one group per zone, or write the zone in front of each clash name', 'Zones are any 3D objects: masses, rooms, generic models or a separate zones model', 'The real zone shape is used, with the bounding box as a faster option for simple zones', 'Where zones overlap the smallest wins; clashes outside every zone go to a "No zone" group', "Zone name from the object's name or from any property", 'Export status, assignment, approval, description and comments of clashes to a status file', 'Import them into the same clashes in this or another Navisworks file, also from a Navisworks XML clash report', 'Clashes are matched by result GUID first, then by the clashing pair; a clash with two possible counterparts is left alone', 'Clean up: move clashes out of their groups, or take the zones off their names again', 'Every action works on the clash tests you check and is one undo step', 'One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install'], 'rimacos': ['Clash rules instead of matrix cells: a rule says how two references are tested, and the most specific rule wins', 'References at four levels: everything, a discipline, a tag or a single clash group', 'Test types hard, hard (conservative), clearance, duplicate and none, each with tolerance and severity', 'Group priorities decide which side is responsible for each clash pair', 'Navisworks output: search sets and Clash Detective tests as XML, ready to import', 'IfcOpenShell output: IfcClash sets that run on IFC models and report as BCF', 'buildingSMART IDS 1.0 file that checks the models carry the classes, classifications and properties the groups filter on', 'Excel matrix for the BIM execution plan, editable and importable again', 'HTML report and CSV test list, optionally with clash counts per test and discipline pair', 'Clash groups select by IFC class and predefined type, property filters, classification codes and Revit categories', 'Models are found by their ISO 19650 container name', 'Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks', 'Merged or per-pair test granularity'], 'speckle-llm': ['Answers questions about a selected element from its parameters and any attached specification PDF, with page citations', 'Answers questions about the whole model, such as counts, totals and breakdowns per level', 'Every element of the latest version of each model sits in a local SQLite index', 'The Llama only fills a JSON query plan; code checks and repairs it and runs it as parameterised SQL', 'Each reply shows the exact query and result, plus a link that opens exactly those elements in the Speckle viewer', 'Proposes rules from specification PDFs; a person approves them before they run', 'Checks every new model version and opens one pinned thread per failing rule, isolating the elements in the viewer', 'Replies "Resolved" when a later version fixes the problem', 'Missing values are stated, never invented, and citations are checked against the supplied documents', 'Runs on a local Llama through Ollama, so model data and documents never leave the machine', 'Works with both Speckle data shapes (v2 Revit parameters and v3 properties)', 'Webhook server with signature check and de-duplicated retries; command line for indexing, questions and checks; Docker setup with GPU'], 'qubecta': ['Units, bill sections, cost plan elements, rates and descriptions per element type', 'Code lists: CSI MasterFormat 2018, RICS NRM2 and NRM1, UniFormat II and DIN 276 built in; Uniclass 2015, OmniClass and Revit assembly code files read as they are', "Suggestions from earlier projects, Revit keynotes and assembly codes, and each type's name and materials, each with its reason", 'Elements from where things are: doors and windows from their host, walls and floors from exterior and load-bearing settings', 'Measures count, length, area, volume, perimeter, weight from material density, and one line per material layer', 'Filters by phase, design option and level; counts repeated placements of linked models', 'Bill by trade and cost plan by element, with cost per m² of gross floor area', 'Additions on the running total: preliminaries, overheads and profit, contingency and VAT; waste percentage; items not in the model', 'Exports to Excel, PDF and CSV, and to GAEB DA XML 3.3 (X83 tender, X82 priced estimate) validated against the official schemas', "Writes elements back into Revit's Assembly Code, so schedules and the IFC export carry them", 'Settings and rates are saved in the model; price lists move between projects as Excel files', 'Works in any Revit language; one docked panel for Revit 2022 to 2027'], 'rifadex': ['Choose wall, floor, base (skirting) and ceiling finishes per room, from this model or a linked model', 'Set finishes for many rooms at once, filter by level, search or any room parameter, group rooms by name', 'Draws finish walls against the room boundary, a floor per room with openings, skirting that stops at doors, and a ceiling at the room height', 'Door and window openings are cut through the finish walls from the walls behind, linked or not', 'Plan, preview, apply: every change is shown before anything is drawn', 'Running it again updates existing finishes in place, keeps hand edits, and does not redraw skirting you deleted', 'A wall moved by up to 500 mm takes its finish wall with it, same element id and tags; walls are matched by the side facing the room, so narrow rooms never mix up opposite walls', 'Revit warnings while outlines are updated are handled and logged, not shown as dialogs', "Height and floor offset can be overridden per room; lengths in the project's units", 'Remove drawn finishes per room and surface; a count of what was drawn per room', 'Finish types and materials in a table or round-tripped through Excel; new rows create new types', 'Optional naming convention built from tokens', 'One XML settings file holds the company standard and can live on a server; any template works', 'No shared parameters and no third-party DLLs; Revit 2024 to 2027 from one codebase'], 'acc-integrations': ['Pick ACC and BIM 360 projects, folders and a destination; the latest version of every document is saved under its ACC name', 'One dated folder per project and run, with a report and a manifest of every file and its ACC version', 'Unchanged documents are hard-linked from the previous backup instead of downloaded again', 'Keeps the last backups per project (5 by default); never deletes anything after a run with failures', 'A run only becomes a backup once its manifest is written; failed and cancelled runs are kept and labelled', 'Include or exclude any folder; new folders follow their parent', 'Weekly schedule on any days and time, running from the notification area and optionally with Windows', 'Missed backups are made up at the next start; failed ones are retried after 15 minutes, 1 hour and 4 hours', 'Sign-in with PKCE, no client secret shipped; an optional secret is stored encrypted for the Windows user', 'Parallel downloads (1 to 8), a test run that downloads nothing, daily logs', 'German and English interface'], 'family-validation': ['Checks a whole folder of Revit families without the user opening Revit: a launcher drives a hidden Revit', 'File name against the naming convention, with a safe auto-correction of the category prefix', 'Removes embedded CAD imports, keeps linked CAD, and can scan nested families for CAD', "Checks that each family's category matches its name", 'Required family parameters: present, right binding and storage type, optionally not empty', 'File size warning and error limits', 'Optional classification code check against DIN 276, Uniclass or a custom pattern', 'Originals are copied aside before anything else; cleaned copies go to their own folder; sources are never changed', 'Dry run that writes the full report without changing a file', 'Excel report sorted worst first, plus a log', 'Visual rules editor: name patterns from blocks, refuses rulesets that would fail, keeps backups, imports rulesets from colleagues', 'Revit 2023 to 2027, German and English, no third-party libraries'], 'cloud-revisions': ['Lists every revision cloud in the active model', 'Per cloud: id, view and view type, the sheet it appears on, revision sequence, number, date, description, issue status, issued by and to, comment and mark', 'Filters for revision, clouds on sheets only and issued revisions only', 'Formatted Excel workbook with frozen header and filters', 'Offline HTML dashboard with KPI tiles, filter chips, linked charts and a searchable, sortable table', 'Neither export needs Excel, a CDN or internet access', 'One docked panel on its own ribbon tab, German or English, with an explanation for every option', 'Revit 2023 to 2027, no dependencies'], 'revit-automation': ['Revit-Transmitter: detaches models with worksets kept or discarded, purges unused elements and prepares issue-ready files', 'Worksets Manager: creates standard worksets from Excel or by classification and assigns every element to the right one', 'Auto Joiner: joins and unjoins every intersecting element of selected categories in one pass', 'Transfer Types: transfers types and families between many projects selected from a folder tree'], 'bim-analytics': ['Model health dashboards from Autodesk Model Checker results across every project', 'Clash detection dashboards: trend per report date, discipline-pair matrix and clash tests', 'Issues dashboards from BIM 360 and ACC: causes, companies, status and timelines', 'ACC account administration: staffing load, products, companies, project sizes and model opening times', 'Resourcing and team-level assessment dashboards', 'Project intelligence hubs on SharePoint with scheduled refresh', 'Offline rebuild: 52 Power BI files decoded into one self-contained HTML page with a project picker across every tab, no Power BI needed, personal data left out'], 'curtain-panels': ['Panel Generator: creates and edits curtain panels across the facade', 'Panel Scheduler: builds and exports panel schedules', 'Panel Drawings: generates a dedicated view for every panel type', 'Panel Tagger: tags and dimensions the whole set automatically']}
+FEATURES = {
+'bimnox': [
+ 'Seven tasks in one pass: Autodesk Model Checker, IFC export, NWC export for Navisworks, PDF and DWG export of sheets, a model health report and a change report',
+ 'Each model is opened once for all tasks and closed again without saving',
+ 'Four kinds of source: selected ACC models, an ACC folder, a local or network folder, or a fixed list of Revit files',
+ 'Folders are read again at every run, so models added later are included',
+ 'Works with every installed Revit from 2023 to 2027; each model opens in a version that can read it, and older models are upgraded in memory only, never saved',
+ 'Weekly runs through the Windows Task Scheduler, even while the program is closed',
+ 'Works with ACC in both directions: models are downloaded for the run, and the exported files and reports can be uploaded back',
+ 'Skips a model when its source, settings and results have not changed since the last successful run',
+ 'PDF of every sheet, of a sheet set saved in the model, or of sheets whose numbers match a pattern; one PDF per sheet or one per model',
+ 'Model health report per model: warnings, families, CAD imports, links, views, groups and rooms',
+ 'Change report: the elements added, deleted and changed since the last report',
+ 'A time limit per model: a model that hangs is closed and reported while the others carry on',
+ 'One output folder (a SharePoint library synced with OneDrive works), a history workbook for Excel and Power BI, and a Teams message after each run',
+ 'Three single-task versions from the same code, each with its own name and icon: Bulk Model Checker, IFC Bulk Export and NWC Bulk Export',
+ 'German and English interface; installs per user without admin rights'],
+'aps-raumbuch': [
+ 'Revit add-in for Revit 2023 to 2027: one panel with three steps and a highlighted next action, in German and English',
+ 'Finds the room each piece of furniture and equipment stands in, also across linked models, and writes the room number and name onto it',
+ 'Creates one cropped floor plan per room, named by room number and name',
+ 'Exports the room book as Excel (area, volume and height as real numbers you can add up and filter), as a PDF with a cover and one page per room with its plan and furniture, and as an offline HTML dashboard',
+ 'Settings choose which room details go into the PDF, which furniture categories count, and how the room plans look',
+ 'Web app: Autodesk sign-in, with hubs, projects and folders from all Autodesk data regions (US, Europe, Australia) in one list',
+ 'Web app: 3D viewer with a floor plan beside it; selecting a room highlights its furniture and cuts the room out of the model',
+ "Web app: rooms from the 3D model, from Autodesk's model data or from the 2D plans; furniture from the main model and every linked model in one coordinate system",
+ 'Furniture is matched to rooms by parameter, by position, or by the nearest room within 2 m; anything left over is listed separately',
+ 'Searchable room table grouped by floor, with area totals and furniture grouped by category and type',
+ 'IFC files open in the browser without any login; several files form one combined model, and nothing is uploaded',
+ 'In IFC mode, selecting a room shows it from above with its furniture',
+ 'Dashboard export: one offline HTML file with summary tiles, charts that act as filters, a room table with plan images and a CSV download'],
+'clash-management': [
+ 'Groups clashes by the zone their clash point lies in, one group per zone, or adds the zone in front of each clash name',
+ 'Zones can be any 3D objects: masses, rooms, generic models or a separate zones model',
+ 'Uses the real zone shape, with a simple bounding box as a faster option for simple zones',
+ 'Where zones overlap, the smallest wins; clashes outside every zone go to a "No zone" group',
+ "The zone name comes from the object's name or from any of its properties",
+ 'Saves the status, assignee, approval, description and comments of clashes to a file',
+ 'Loads them onto the same clashes in this or another Navisworks file, also from a Navisworks XML clash report',
+ 'Matches clashes by their unique ID first, then by the pair of clashing elements; a clash with two possible matches is left alone',
+ 'Clean up: moves clashes out of their groups, or removes the zone names again',
+ 'Every action works on the clash tests you tick and is one undo step',
+ 'One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install'],
+'rimacos': [
+ 'Clash rules instead of matrix cells: a rule says how two sets of elements are tested, and the most specific rule wins',
+ 'Each side of a rule can be everything, a discipline, a tag or a single clash group',
+ 'Test types: hard clash, conservative hard clash, clearance, duplicate and none, each with a tolerance and a severity',
+ 'Group priorities decide which side is responsible for fixing each clash',
+ 'Navisworks output: search sets and Clash Detective tests as XML files, ready to import',
+ 'Open-source output: IfcClash sets that run on IFC models and report results as BCF',
+ 'An IDS 1.0 file (buildingSMART) that checks the models contain the classes, codes and properties the groups rely on',
+ 'An Excel matrix for the BIM execution plan, which can be edited and imported again',
+ 'HTML report and CSV list of tests, optionally with clash counts per test and discipline pair',
+ 'Groups select by IFC class and type, property filters, classification codes and Revit categories',
+ 'Models are found by their ISO 19650 file names',
+ 'Local browser editor for the matrix, groups, rules and tests; imports classic matrix workbooks',
+ 'Tests can be merged or kept one per pair of groups'],
+'speckle-llm': [
+ 'Answers questions about a selected element from its properties and any attached specification PDF, with page references',
+ 'Answers questions about the whole model, such as counts, totals and breakdowns per floor',
+ 'Keeps every element of the latest version of each model in a local SQLite database',
+ 'The language model only fills in a structured query plan; code checks and corrects it and runs it as a safe database query',
+ 'Each reply shows the exact query and result, plus a link that opens exactly those elements in the Speckle viewer',
+ 'Suggests rules from specification PDFs; a person approves them before they run',
+ 'Checks every new model version and opens one pinned thread per failing rule, highlighting the elements in the viewer',
+ 'Replies "Resolved" when a later version fixes the problem',
+ 'Missing values are reported as missing, never invented, and page references are checked against the documents',
+ 'Runs on a local Llama model through Ollama, so model data and documents never leave the machine',
+ 'Works with both Speckle data formats (version 2 Revit parameters and version 3 properties)',
+ 'Webhook server with signature checks and protection against duplicate retries; a command line for indexing, questions and checks; Docker setup with GPU support'],
+'qubecta': [
+ 'Unit, bill section, cost plan group, rate and description for each element type',
+ 'Built-in code lists: CSI MasterFormat 2018, RICS NRM2 and NRM1, UniFormat II and DIN 276; Uniclass 2015, OmniClass and Revit assembly code files are read as they are',
+ "Suggestions from earlier projects, from codes already in the model, and from each type's name and materials, each with its reason",
+ 'Doors and windows can take their group from the wall or roof they sit in; walls and floors from whether they are external or load-bearing',
+ 'Measures count, length, area, volume, perimeter and weight (from material density), with one line per material layer if you want',
+ 'Filters by construction phase, design option and floor; counts linked models placed more than once',
+ 'Bill of quantities by trade and cost plan by building element, with cost per m² of gross floor area',
+ 'Additions on the running total: site overheads, overheads and profit, contingency and VAT; a waste percentage; extra items that are not in the model',
+ 'Exports to Excel, PDF and CSV, and to GAEB DA XML 3.3 (X83 tender, X82 priced estimate), checked against the official schemas',
+ "Writes the cost codes back into the model's Assembly Code, so schedules and IFC exports carry them",
+ 'Settings and rates are saved in the model; price lists move between projects as Excel files',
+ 'Works in any Revit language; one panel for Revit 2022 to 2027'],
+'rifadex': [
+ 'Choose wall, floor, skirting and ceiling finishes per room, in this model or a linked model',
+ 'Set finishes for many rooms at once; filter by floor, by search or by any room property; group rooms by name',
+ 'Draws finish walls along the room edges, a floor per room with cut-outs, skirting that stops at doors, and a ceiling at the room height',
+ 'Cuts door and window openings through the finish walls from the walls behind, linked or not',
+ 'Plan, preview, apply: every change is shown before anything is drawn',
+ 'Running it again updates existing finishes in place, keeps hand edits, and does not bring back skirting you deleted',
+ 'A wall moved by up to 500 mm takes its finish wall with it, keeping the same element and its tags; walls are matched by the side that faces the room, so opposite walls of a narrow room are never mixed up',
+ 'Revit warnings during updates are handled and logged instead of popping up',
+ "Height and floor offset can be set per room; lengths in the project's units",
+ 'Remove drawn finishes per room and surface; a count of what was drawn in each room',
+ 'Finish types and materials in a table or in Excel; new rows create new types',
+ 'Optional naming convention built from parts you choose',
+ 'One settings file holds the company standard and can be shared from a server; any template works',
+ 'No extra project parameters and no third-party libraries; Revit 2024 to 2027 from one codebase'],
+'acc-integrations': [
+ 'Choose ACC and BIM 360 projects, folders and a destination; the latest version of every document is saved under its ACC name',
+ 'One dated folder per project and run, with a report and a list of every file and its ACC version',
+ 'Unchanged documents are linked to the previous backup instead of downloaded again',
+ 'Keeps the last few backups per project (5 by default) and never deletes anything after a run that had failures',
+ 'A run only becomes a backup once its file list is written; failed and cancelled runs are kept and labelled',
+ 'Include or leave out any folder; new folders follow the choice made for their parent folder',
+ 'Weekly schedule on any days and time, running from the Windows notification area and optionally starting with Windows',
+ 'Missed backups run at the next start; failed ones are retried after 15 minutes, 1 hour and 4 hours',
+ 'Secure sign-in (PKCE) with no secret key shipped in the program; an optional key is stored encrypted for the Windows user',
+ '1 to 8 downloads at once, a test run that downloads nothing, and daily logs',
+ 'German and English interface'],
+'family-validation': [
+ 'Checks a whole folder of Revit families without the user opening Revit: a launcher runs a hidden Revit',
+ 'File name against the naming convention, with a safe automatic fix of the category prefix',
+ 'Removes imported CAD drawings, keeps linked CAD files, and can also check families nested inside others',
+ "Checks that each family's category matches its name",
+ 'Required family parameters: present, of the right kind, and optionally filled in',
+ 'File size warning and error limits',
+ 'Optional classification code check against DIN 276, Uniclass or your own pattern',
+ 'Originals are copied aside before anything else; cleaned copies go to their own folder; originals are never changed',
+ 'Dry run that writes the full report without changing a file',
+ 'Excel report sorted worst first, plus a log',
+ 'Visual rules editor: name patterns from blocks, refuses rules that would fail, keeps backups, and imports rule sets from colleagues',
+ 'Revit 2023 to 2027, German and English, no third-party libraries'],
+'cloud-revisions': [
+ 'Lists every revision cloud in the open model',
+ 'For each cloud: ID, view and view type, the sheet it appears on, revision sequence, number, date, description, issue status, issued by and to, comment and mark',
+ 'Filters by revision, by clouds on sheets only, and by issued revisions only',
+ 'Formatted Excel workbook with a fixed header row and filters',
+ 'Offline HTML dashboard with summary tiles, filter buttons, linked charts and a searchable, sortable table',
+ 'Neither export needs Excel, online resources or internet access',
+ 'One panel on its own Revit tab, in German or English, with an explanation for every option',
+ 'Revit 2023 to 2027, no extra software needed'],
+'revit-automation': [
+ 'Revit-Transmitter: prepares models for issue by detaching them with worksets kept or removed, purging unused elements and saving clean copies',
+ 'Worksets Manager: creates standard worksets from Excel or by classification, and puts every element in the right one',
+ 'Auto Joiner: joins or unjoins every overlapping element of the chosen categories in one go, so walls, floors and beams meet cleanly',
+ 'Transfer Types: copies types and families between many projects chosen from a folder tree'],
+'bim-analytics': [
+ 'Model health dashboards from Autodesk Model Checker results across every project',
+ 'Clash detection dashboards: the trend per report date, a matrix of discipline pairs, and the clash tests',
+ 'Issue dashboards from BIM 360 and ACC: causes, companies, status and timelines',
+ 'ACC account administration: user load, products, companies, project sizes and model opening times',
+ 'Resourcing and team assessment dashboards',
+ 'Project information hubs on SharePoint with scheduled refresh',
+ 'Offline rebuild: 52 Power BI files decoded into one self-contained HTML page with a project picker on every tab, no Power BI needed, and no personal data'],
+'curtain-panels': [
+ 'Panel Generator: creates and edits curtain panels across the whole facade',
+ 'Panel Scheduler: builds and exports panel schedules',
+ 'Panel Drawings: creates a separate view for every panel type',
+ 'Panel Tagger: labels and dimensions the whole set automatically']}
 
-MEDIA = {'bimnox': [('img', 'img/bimnox-jobs.png', 'A weekly job', 'Models from ACC, the Revit version each one opens in, and the tasks to run. Made-up data.'), ('img', 'img/bimnox-tasks.png', 'Seven tasks, one pass', ''), ('img', 'img/bimnox-pdf.png', 'PDF export of the sheets', ''), ('img', 'img/bimnox-reports.png', 'Model health and change reports', ''), ('img', 'img/bimnox-schedule.png', 'Output, history, Teams and the weekly schedule', ''), ('img', 'img/bimnox-results.png', 'Results per model and task', 'Unchanged models are skipped and say why; failures say what to fix.'), ('img', 'img/bimnox-mark.png', 'The Bimnox mark', 'A line cube with a green moon, on dark and light.'), ('img', 'img/bimnox-editions.png', 'The edition icons', 'Bimnox, Bulk Model Checker, IFC Bulk Export and NWC Bulk Export.'), ('img', 'img/bimnox-edition-modelcheck.png', 'Bulk Model Checker edition', ''), ('img', 'img/bimnox-edition-ifc.png', 'IFC Bulk Export edition', ''), ('img', 'img/bimnox-edition-nwc.png', 'NWC Bulk Export edition', ''), ('img', 'img/image9.png', 'An earlier version: scheduled model checks', ''), ('img', 'img/image7.png', 'An earlier version: nightly exports', '')], 'aps-raumbuch': [('img', 'img/raumbuch-dashboard.jpg', 'The room book dashboard', 'One offline HTML file. Rendered from the real template with sample data.'), ('imgn', 'img/raumbuch-panel.png', 'The Revit add-in panel', 'Model status, the three steps, export formats and settings.'), ('img', 'img/raumbuch-excel.png', 'Excel export', 'Rooms with their furniture grouped under each room.'), ('img', 'img/raumbuch-pdf-room.png', 'PDF: one page per room', 'General data, the room plan and the furniture list.'), ('img', 'img/raumbuch-web-login.png', 'Web app: sign in or open IFC', 'Autodesk sign-in for ACC, or IFC files with no login.'), ('img', 'img/raumbuch-web-ifc.png', 'Web app: an IFC model', 'The model, the plan panel and the room table side by side.'), ('img', 'img/raumbuch-web-room.png', 'Web app: a selected room', 'Framed from above with its furniture.'), ('img', 'img/raumbuch-web-settings.png', 'Web app: settings', 'Which room parameters and furniture categories go into the exports.')], 'clash-management': [('img', 'img/sortie-zones.png', 'Zones', ''), ('img', 'img/sortie-transfer.png', 'Status transfer', ''), ('img', 'img/sortie-report.png', 'A finished transfer', ''), ('img', 'img/sortie-cleanup.png', 'Clean up', ''), ('img', 'img/sortie-logo.png', 'The SORTIE mark', '')], 'rimacos': [('img', 'img/rimacos-editor.jpg', 'The matrix editor', ''), ('img', 'img/rimacos-tests.jpg', 'The clash tests a rule set produces', ''), ('img', 'img/rimacos-report.jpg', 'The HTML report', '')], 'speckle-llm': [('img', 'img/arvent-card.png', 'The ARVENT mark', ''), ('img', 'img/arvent-01-index.png', 'Indexing a model', ''), ('img', 'img/arvent-query.png', 'A model-wide question', ''), ('img', 'img/arvent-03-query-de.png', 'The same question in German', ''), ('img', 'img/arvent-04-extract.png', 'Rules proposed from a specification', ''), ('img', 'img/arvent-check.png', 'Checking approved rules', ''), ('img', 'img/arvent-ask.png', 'A missing value is stated, never invented', '')], 'qubecta': [('img', 'img/qubecta-tabs.jpg', 'Set up, bill and cost plan', 'Shown with a sample model.'), ('img', 'img/qubecta-suggest-export.jpg', 'Suggestions, what is measured, and export', ''), ('imgn', 'img/qubecta-revit.png', 'Docked in Revit', 'DIN 276 suggestions with their checks on the Snowdon Towers sample.'), ('img', 'img/qubecta-pdf.png', 'PDF bill summary', ''), ('img', 'img/qubecta-pdf-division.png', 'PDF bill by division', ''), ('img', 'img/qubecta-excel.png', 'Excel cost plan by element', ''), ('img', 'img/qubecta-excel-division.png', 'Excel bill by division', ''), ('video', 'video/qubecta-earlier.mp4', 'An earlier version', 'Generating a detailed bill of quantities in Excel.')], 'acc-integrations': [('img', 'img/larbacc-projects.png', 'Projects and weekly schedule', 'Made-up data.'), ('img', 'img/larbacc-folders.png', 'Folder selection', ''), ('img', 'img/larbacc-running.png', 'A backup running', ''), ('img', 'img/larbacc-first-run.png', 'First start', ''), ('imgn', 'img/larbacc-settings.png', 'Settings', '')], 'family-validation': [('img', 'img/family-validation-logo.png', 'The Family Validation mark', ''), ('img', 'img/family-validation-start.png', 'The launcher', ''), ('img', 'img/family-validation-launcher.png', 'A finished check', ''), ('img', 'img/family-validation-standards.png', 'The rules editor', ''), ('img', 'img/family-validation-standards-problem.png', 'The rules editor refusing an invalid rule', '')], 'cloud-revisions': [('img', 'img/cloud-revisions-dashboard.jpg', 'The revision cloud dashboard', ''), ('img', 'img/cloud-revisions-workbook.png', 'The Excel workbook', ''), ('imgn', 'img/cloud-revisions-panel.png', 'The docked panel', ''), ('img', 'img/cloud-revisions-logo.png', 'The Cloud Revisions mark', '')]}
+# Plain explanations of the technical words used on the project pages. A page lists only the
+# terms that appear in its own text, in this order.
+GLOSSARY = [
+ ("BIM", r"\bBIM\b", "Building Information Modelling: designing a building as a shared 3D model that also holds data about every part, instead of separate drawings."),
+ ("Revit", r"\bRevit\b", "Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it."),
+ ("Navisworks", r"\bNavisworks\b", "Autodesk software that combines the models of all disciplines into one and checks them for clashes."),
+ ("Add-in", r"\badd-ins?\b", "A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it."),
+ ("Family", r"\bfamil(y|ies)\b", "A reusable Revit component, such as a door, a window, a chair or a light fitting."),
+ ("Sheet", r"\bsheets?\b", "A drawing page in Revit, ready to print or send out."),
+ ("Workset", r"\bworksets?\b", "A part of a shared Revit model that one team member can edit while others work on the rest."),
+ ("Linked model", r"\blinked (architect's )?models?\b", "A model from another file, often from another team, shown inside your model for reference but kept separate from it."),
+ ("Schedule", r"\b(panel|Revit) schedules?\b|\bschedules keep\b", "A table in Revit that lists elements and their data, for example every door with its size."),
+ ("Curtain wall", r"\bcurtain (wall|panel)s?\b", "A building facade made of glass and frame panels hung on the structure, like most office towers."),
+ ("Clash", r"\bclash(es)?\b", "A place where two parts of a building model collide, for example a pipe running through a beam."),
+ ("ACC / BIM 360", r"\b(ACC|BIM 360|Autodesk Construction Cloud)\b", "Autodesk Construction Cloud, an online platform where project teams store and share models and documents. BIM 360 is the older version."),
+ ("IFC", r"\bIFC\b", "An open file format for building models that any BIM software can read. It is maintained by buildingSMART."),
+ ("NWC", r"\bNWC\b", "The file format Navisworks uses to bring in Revit models."),
+ ("DWG", r"\bDWG\b", "The standard file format for CAD drawings."),
+ ("Autodesk Model Checker", r"\bModel Checker\b", "A free Autodesk tool that checks Revit models against a list of rules and writes a report."),
+ ("BCF", r"\bBCF\b", "An open format for passing model issues, such as clashes, between different BIM programs."),
+ ("IDS", r"\bIDS\b", "An open format that lists the information a model must contain, so that it can be checked automatically."),
+ ("ISO 19650", r"\bISO 19650\b", "The international standard for managing information on BIM projects, including how files are named."),
+ ("Speckle", r"\bSpeckle\b", "An open platform for sharing and viewing 3D building models online."),
+ ("Language model", r"\b(language model|LLM|Llama)\b", "An AI model that reads and writes text, like the one behind ChatGPT. Llama is a free one that can run on your own computer."),
+ ("GAEB", r"\bGAEB\b", "The German standard file format for construction tenders and cost estimates."),
+ ("Power BI", r"\bPower BI\b", "Microsoft's software for interactive charts and dashboards."),
+]
+
+MEDIA = {'bimnox': [('img', 'img/bimnox-jobs.png', 'A weekly job', 'Models from ACC, the Revit version each one opens in, and the tasks to run. Made-up data.'), ('img', 'img/bimnox-tasks.png', 'Seven tasks, one pass', ''), ('img', 'img/bimnox-pdf.png', 'PDF export of the sheets', ''), ('img', 'img/bimnox-reports.png', 'Model health and change reports', ''), ('img', 'img/bimnox-schedule.png', 'Output, history, Teams and the weekly schedule', ''), ('img', 'img/bimnox-results.png', 'Results per model and task', 'Skipped models show why they were skipped; failures say what to fix.'), ('img', 'img/bimnox-mark.png', 'The Bimnox mark', 'A line cube with a green moon, on dark and light.'), ('img', 'img/bimnox-editions.png', 'The edition icons', 'Bimnox, Bulk Model Checker, IFC Bulk Export and NWC Bulk Export.'), ('img', 'img/bimnox-edition-modelcheck.png', 'Bulk Model Checker edition', ''), ('img', 'img/bimnox-edition-ifc.png', 'IFC Bulk Export edition', ''), ('img', 'img/bimnox-edition-nwc.png', 'NWC Bulk Export edition', ''), ('img', 'img/image9.png', 'An earlier version: scheduled model checks', ''), ('img', 'img/image7.png', 'An earlier version: nightly exports', '')], 'aps-raumbuch': [('img', 'img/raumbuch-dashboard.jpg', 'The room book dashboard', 'One offline HTML file. Rendered from the real template with sample data.'), ('imgn', 'img/raumbuch-panel.png', 'The Revit add-in panel', 'Model status, the three steps, export formats and settings.'), ('img', 'img/raumbuch-excel.png', 'Excel export', 'Rooms with their furniture grouped under each room.'), ('img', 'img/raumbuch-pdf-room.png', 'PDF: one page per room', 'General data, the room plan and the furniture list.'), ('img', 'img/raumbuch-web-login.png', 'Web app: sign in or open IFC', 'Autodesk sign-in for ACC, or IFC files with no login.'), ('img', 'img/raumbuch-web-ifc.png', 'Web app: an IFC model', 'The model, the plan panel and the room table side by side.'), ('img', 'img/raumbuch-web-room.png', 'Web app: a selected room', 'Shown from above with its furniture.'), ('img', 'img/raumbuch-web-settings.png', 'Web app: settings', 'Which room parameters and furniture categories go into the exports.')], 'clash-management': [('img', 'img/sortie-zones.png', 'Zones', ''), ('img', 'img/sortie-transfer.png', 'Status transfer', ''), ('img', 'img/sortie-report.png', 'A finished transfer', ''), ('img', 'img/sortie-cleanup.png', 'Clean up', ''), ('img', 'img/sortie-logo.png', 'The SORTIE mark', '')], 'rimacos': [('img', 'img/rimacos-editor.jpg', 'The matrix editor', ''), ('img', 'img/rimacos-tests.jpg', 'The clash tests a rule set produces', ''), ('img', 'img/rimacos-report.jpg', 'The HTML report', '')], 'speckle-llm': [('img', 'img/arvent-card.png', 'The ARVENT mark', ''), ('img', 'img/arvent-01-index.png', 'Reading a model into the local database', ''), ('img', 'img/arvent-query.png', 'A model-wide question', ''), ('img', 'img/arvent-03-query-de.png', 'The same question in German', ''), ('img', 'img/arvent-04-extract.png', 'Rules proposed from a specification', ''), ('img', 'img/arvent-check.png', 'Checking approved rules', ''), ('img', 'img/arvent-ask.png', 'A missing value is reported, never invented', '')], 'qubecta': [('img', 'img/qubecta-tabs.jpg', 'Set up, bill and cost plan', 'Shown with a sample model.'), ('img', 'img/qubecta-suggest-export.jpg', 'Suggestions, measured quantities and export', ''), ('imgn', 'img/qubecta-revit.png', 'Docked in Revit', 'DIN 276 suggestions with their checks on the Snowdon Towers sample.'), ('img', 'img/qubecta-pdf.png', 'PDF bill summary', ''), ('img', 'img/qubecta-pdf-division.png', 'PDF bill by division', ''), ('img', 'img/qubecta-excel.png', 'Excel cost plan by element', ''), ('img', 'img/qubecta-excel-division.png', 'Excel bill by division', ''), ('video', 'video/qubecta-earlier.mp4', 'An earlier version', 'Generating a detailed bill of quantities in Excel.')], 'acc-integrations': [('img', 'img/larbacc-projects.png', 'Projects and weekly schedule', 'Made-up data.'), ('img', 'img/larbacc-folders.png', 'Folder selection', ''), ('img', 'img/larbacc-running.png', 'A backup running', ''), ('img', 'img/larbacc-first-run.png', 'First start', ''), ('imgn', 'img/larbacc-settings.png', 'Settings', '')], 'family-validation': [('img', 'img/family-validation-logo.png', 'The Family Validation mark', ''), ('img', 'img/family-validation-start.png', 'The launcher', ''), ('img', 'img/family-validation-launcher.png', 'A finished check', ''), ('img', 'img/family-validation-standards.png', 'The rules editor', ''), ('img', 'img/family-validation-standards-problem.png', 'The rules editor refusing an invalid rule', '')], 'cloud-revisions': [('img', 'img/cloud-revisions-dashboard.jpg', 'The revision cloud dashboard', ''), ('img', 'img/cloud-revisions-workbook.png', 'The Excel workbook', ''), ('imgn', 'img/cloud-revisions-panel.png', 'The docked panel', ''), ('img', 'img/cloud-revisions-logo.png', 'The Cloud Revisions mark', '')]}
 for _p in P:
     if _p['slug'] in MEDIA: _p['media'] = MEDIA[_p['slug']]
     if _p['slug'] == 'bim-analytics': _p['media'] = [('img', 'img/bimperf-overview.jpg', 'Offline rebuild: overview', 'Client project names are blurred.'), ('img', 'img/bimperf-model-health-summary.jpg', 'Offline rebuild: model health', ''), ('img', 'img/bimperf-clash-detection.jpg', 'Offline rebuild: clash detection', '')] + _p['media']
@@ -216,28 +402,28 @@ for _p in P:
 
 # Where I've worked: (when, employer, place, role, summary)
 JOBS = [
- ("2025 to now", "Sweco", "Munich", "Werkstudent, AI &amp; Automation Specialist (BIM + Data Science)",
+ ("2025 to now", "Sweco", "Munich", "Working Student, AI &amp; Automation Specialist (BIM + Data Science)",
   "I own the AI and automation roadmap for the BIM + Data Science department: scoping the automation portfolio, building Revit tools and LLM agents, and taking tools through internal release."),
  ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer",
-  "Model-checking rules in Desite MD, Power Automate flows for SharePoint data management, and Power BI reporting on model quality."),
+  "Model-checking rules in Desite MD, Power Automate flows for managing SharePoint data, and Power BI reports on model quality."),
  ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst",
   "BIM software development and data analytics for coordination, model quality and project reporting."),
  ("2022 to 2024", "Freelance (Upwork)", "Remote", "BIM Software Developer &amp; Data Analyst",
-  "18 client engagements across 895 billable hours with a 5.0 average rating: Revit automation, Dynamo and Python pipelines."),
+  "18 client projects over 895 billable hours with a 5.0 average rating: Revit automation, Dynamo scripts and Python data pipelines."),
  ("2023", "Solid Construction", "Cairo", "BIM Software Developer",
   "Revit add-ins and Dynamo workflows for structural, quantity and finishes work."),
  ("2021 to 2023", "Pinnacle Misr", "Cairo", "BIM Coordinator / Developer",
   "Revit plugins and Dynamo workflows on large projects, including the El Alamein Iconic Tower and Kitoko Ministerial City."),
  ("2020 to 2021", "X-Dimension", "Cairo", "BIM Architect",
-  "BIM standards and templates, Dynamo workflows, and Scan-to-BIM."),
+  "BIM standards and templates, Dynamo workflows, and Scan-to-BIM (turning laser scans of existing buildings into models)."),
 ]
 
 # How I build: principles drawn from the projects above.
 WAYS = [
  ("People stay in control", "Every action is one undo step, a dry run comes before anything changes, and when AI proposes something, a person approves it."),
- ("Boring is a feature", "Tools that run overnight on their own, retry when the network drops, and never leave a half-finished result that looks complete."),
- ("Data stays where it belongs", "Local language models, IFC files read in the browser, and no secrets baked into a program."),
- ("Open where it counts", "IFC, IDS and BCF wherever they fit, so a workflow is not locked to one vendor."),
+ ("Boring is a feature", "Tools that run overnight on their own, try again when the network drops, and never leave a half-finished result that looks complete."),
+ ("Data stays where it belongs", "AI models that run locally, IFC files read in the browser instead of uploaded, and no passwords or keys built into a program."),
+ ("Open where it counts", "Open file formats such as IFC, IDS and BCF wherever they fit, so a workflow is not locked to one vendor."),
 ]
 
 CAPS = [
@@ -419,7 +605,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-betw
 .phead .subtitle{font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:var(--fg);margin:0 0 22px;font-weight:520;letter-spacing:-.01em}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
 .chips li{font-size:13px;color:var(--fg-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 11px}
-.pbody{padding:40px 0 48px}
+.pbody{padding-top:40px;padding-bottom:48px}
 .pbody h2{font-size:22px;margin:34px 0 10px}.pbody h2:first-child{margin-top:0}
 .problem{font-size:19px;line-height:1.6;color:var(--fg);margin:0}
 .pbody p{color:var(--fg-soft);margin:0 0 14px}
@@ -433,6 +619,13 @@ color:var(--fg);font-size:15.5px;line-height:1.5}
 .features li::before{content:"";position:absolute;left:14px;top:14px;width:14px;height:14px;border-radius:50%;background:var(--accent-2);
 }
 .features li::after{content:"";position:absolute;left:18.5px;top:17px;width:4px;height:7px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.plain{margin:0 0 30px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent-2);border-radius:10px}
+.plain span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);margin-bottom:6px}
+.plain p{margin:0;font-size:17.5px;line-height:1.6}
+.gloss{display:grid;grid-template-columns:1fr;gap:8px;margin:8px 0 0}
+.gloss div{padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card)}
+.gloss dt{font-weight:700;color:var(--accent)}
+.gloss dd{margin:2px 0 0;color:var(--fg-soft);font-size:15.5px;line-height:1.55}
 .pnote{margin-top:18px;font-size:14.5px;color:var(--fg-faint)}
 .gallery{display:grid;gap:40px}
 figure{margin:0}
@@ -507,7 +700,7 @@ def contact(root):
 <section id="contact"><div class="wrap"><div class="contact">
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
-  <p>If your team loses hours to model checks, exports, clash triage or data copied out of Revit by hand,
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
   I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
   tooling and AI in the built environment.</p>
   <div class="links">
@@ -589,7 +782,8 @@ def build_index():
     <p class="eyebrow">Work</p>
     <h2>Things I've built</h2>
     <p>Tools for architects, engineers and BIM coordinators, from small Revit add-ins to services that run
-    unattended every night. Each project page starts with the problem it solves.</p>
+    on their own every night. Each project page starts with a short explanation in plain words, then the
+    problem the tool solves, and it explains the technical terms it uses.</p>
     <p class="hint">Most of the code lives in private repositories. I am happy to walk you through any of it.</p>
   </div>
   <div class="filters" role="group" aria-label="Filter projects" hidden>{chips}</div>
@@ -629,14 +823,14 @@ def build_index():
   </div>
   <div class="about">
   <div>
-    <p>I trained as an architectural engineer and moved into software because the interesting problems in
-    construction are data problems. Most firms are sitting on valuable project data trapped in disconnected
-    tools and manual workflows. I build the systems that connect it.</p>
+    <p>I trained as an architectural engineer and moved into software because the most interesting problems in
+    construction are data problems. Most firms have valuable project data trapped in disconnected tools and
+    manual workflows. I build the systems that connect it.</p>
     <p>That has meant Revit and Navisworks plugins, model-health and clash-analytics platforms, and
-    enterprise automation, across Cairo, Dubai and Munich. Along the way I delivered <strong>18 independent client
-    engagements across 895 billable hours</strong> with a 5.0 average rating, doubling my rate over the period.</p>
-    <p>My M.Sc. at TUM added the half I was missing: graduate work in geospatial information science, spatial
-    data mining, photogrammetry and remote sensing alongside semantic modelling and software engineering.
+    enterprise automation, across Cairo, Dubai and Munich. Along the way I completed <strong>18 freelance client
+    projects over 895 billable hours</strong> with a 5.0 average rating, and doubled my rate over that time.</p>
+    <p>My M.Sc. at TUM added the half I was missing: graduate courses in geographic information science, spatial
+    data mining, photogrammetry and remote sensing, alongside semantic modelling and software engineering.
     <strong>BIM, GIS and AI are converging, and very few people work across all three.</strong></p>
     <p>I speak Arabic natively, English at a professional working level (IELTS Academic 6.5), and I am
     learning German (A2).</p>
@@ -739,6 +933,12 @@ def build_project(i, p):
 </div></section>"""
 
     body = "".join(f"<p>{b}</p>" for b in p['body'])
+    plain = f'<div class="plain"><span>In plain words</span><p>{p["plain"]}</p></div>' if p.get('plain') else ""
+    text = " ".join([p['title'], p['card'], p.get('plain', ''), p['problem'], p['result']] + p['body'] + p.get('features', []))
+    text = re.sub(r"<[^>]+>", " ", text)
+    # Everyday words (add-in, family, sheet...) match in any case; acronyms and names only as written.
+    terms = [(t, d) for t, rx, d in GLOSSARY if re.search(rx, text, 0 if t.isupper() or " " in t or t in ("Revit", "Navisworks", "Speckle") else re.I)]
+    gloss = ('<h2>Terms on this page</h2><dl class="gloss">' + "".join(f"<div><dt>{t}</dt><dd>{d}</dd></div>" for t, d in terms) + '</dl>') if terms else ""
     feats = ('<h2>Features</h2><ul class="features">' + "".join(f"<li>{html.escape(f, quote=False)}</li>" for f in p['features']) + '</ul>') if p.get('features') else ""
     res = f'<div class="result"><span>Highlight</span>{p["result"]}</div>' if p['result'] else ""
     pnote = f'<p class="pnote">{p["note"]}</p>' if p.get('note') else ""
@@ -762,12 +962,14 @@ def build_project(i, p):
   </div>
 </div></div>
 <section><div class="wrap read pbody">
+  {plain}
   <h2>The problem</h2>
   <p class="problem">{p['problem']}</p>
   <h2>What it does</h2>
   {body}
   {feats}
   {res}
+  {gloss}
   {pnote}
 </div></section>
 {gal}
