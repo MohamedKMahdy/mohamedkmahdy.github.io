@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Family Validation | Mohamed K. Mahdy</title>
-<meta name="description" content="Checks and cleans whole folders of Revit components (families) against a company standard, without anyone opening Revit.">
+<meta name="description" content="Checks and cleans whole folders of Revit families against a company standard, without anyone opening Revit.">
 <meta property="og:title" content="Family Validation | Mohamed K. Mahdy">
-<meta property="og:description" content="Checks and cleans whole folders of Revit components (families) against a company standard, without anyone opening Revit.">
+<meta property="og:description" content="Checks and cleans whole folders of Revit families against a company standard, without anyone opening Revit.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.com/projects/family-validation">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.com/og/family-validation.png?v=83f6700d">
+<meta property="og:image" content="https://mohamedkmahdy.com/og/family-validation.png?v=00b88284">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.com/og/family-validation.png?v=83f6700d">
+<meta name="twitter:image" content="https://mohamedkmahdy.com/og/family-validation.png?v=00b88284">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
@@ -44,11 +44,11 @@
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Revit models are built from reusable components called families, such as a door, a chair or a light fitting. Companies keep libraries of hundreds of them, and one badly made family can slow down every project that uses it. Family Validation checks a whole folder of families against the company's rules, fixes what it safely can, and writes a report.</p></div>
   <h2>The problem</h2>
-  <p class="problem">One badly built family, for example one with an imported CAD drawing inside it or in the wrong category, slows down every project that loads it. Nobody checks hundreds of them by hand.</p>
+  <p class="problem">One badly built family, say one with a CAD drawing imported inside it or in the wrong category, slows down every project that loads it. Nobody checks hundreds of them by hand.</p>
   <h2>What it does</h2>
-  <p>A small launcher program runs Revit in the background, opens every family in a folder and checks it: the file name against the naming rules (correcting the category prefix when that is safe), imported CAD drawings inside the family (removed, while linked CAD files are kept), whether the name matches the category, required parameters, file size limits, and an optional classification code such as DIN 276 or Uniclass. The checked families are then ready for the company library or the Autodesk Content Catalog.</p><p><strong>Safe by design.</strong> The original file is copied aside before anything else, and a family that cannot be copied is skipped, never touched. Cleaned copies go to their own folder, the original files are never changed, and a dry run writes the full report without changing anything.</p><p>A visual rules editor lets people who do not write code maintain the standard: categories and name patterns are built from simple blocks, and the editor refuses to save a set of rules that the check would reject.</p>
+  <p>A small launcher runs Revit in the background, opens every family in a folder and checks it: the file name against the naming rules (fixing the category prefix when that's safe), imported CAD inside the family (removed, linked CAD kept), whether the name matches the category, required parameters, file size limits, and optionally a classification code like DIN 276 or Uniclass. What comes out is ready for the company library or the Autodesk Content Catalog.</p><p><strong>Safe by design.</strong> The original is copied aside before anything happens, and if that copy fails the family is skipped. Cleaned copies go into their own folder, originals are never changed, and a dry run writes the full report without touching a file.</p><p>The rules live in a visual editor, so the people who own the standard can maintain it without writing code. Name patterns are built from blocks, and the editor won't save a rule set the check would reject.</p>
   <h2>Features</h2><ul class="features"><li>Checks a whole folder of Revit families without the user opening Revit: a launcher runs a hidden Revit</li><li>File name against the naming convention, with a safe automatic fix of the category prefix</li><li>Removes imported CAD drawings, keeps linked CAD files, and can also check families nested inside others</li><li>Checks that each family's category matches its name</li><li>Required family parameters: present, of the right kind, and optionally filled in</li><li>File size warning and error limits</li><li>Optional classification code check against DIN 276, Uniclass or your own pattern</li><li>Originals are copied aside before anything else; cleaned copies go to their own folder; originals are never changed</li><li>Dry run that writes the full report without changing a file</li><li>Excel report sorted worst first, plus a log</li><li>Visual rules editor: name patterns from blocks, refuses rules that would fail, keeps backups, and imports rule sets from colleagues</li><li>Revit 2023 to 2027, German and English, no third-party libraries</li></ul>
-  <div class="result"><span>Highlight</span><strong>No third-party libraries:</strong> everything is built on .NET and the Revit API, with a separate build for the .NET version that each Revit release uses.</div>
+  <div class="result"><span>Highlight</span><strong>No third-party libraries.</strong> It's .NET and the Revit API only, built separately for the .NET version each Revit release ships with.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Family</dt><dd>A reusable Revit component, such as a door, a window, a chair or a light fitting.</dd></div></dl>
   
 </div></section>
@@ -66,8 +66,8 @@
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
   <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
-  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
-  tooling and AI in the built environment.</p>
+  I'd like to hear about it. I'm also always up for a conversation about AEC software, openBIM and AI in
+  construction.</p>
   <div class="links">
     <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
     <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>

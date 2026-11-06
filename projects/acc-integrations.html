@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>LARBACC | Mohamed K. Mahdy</title>
-<meta name="description" content="Makes regular, automatic backup copies of Autodesk Construction Cloud projects on your own drive, downloading only what changed.">
+<meta name="description" content="Copies your Autodesk Construction Cloud projects to your own drive every week, downloading only what changed.">
 <meta property="og:title" content="LARBACC | Mohamed K. Mahdy">
-<meta property="og:description" content="Makes regular, automatic backup copies of Autodesk Construction Cloud projects on your own drive, downloading only what changed.">
+<meta property="og:description" content="Copies your Autodesk Construction Cloud projects to your own drive every week, downloading only what changed.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.com/projects/acc-integrations">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.com/og/acc-integrations.png?v=9425e377">
+<meta property="og:image" content="https://mohamedkmahdy.com/og/acc-integrations.png?v=038aa4ae">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.com/og/acc-integrations.png?v=9425e377">
+<meta name="twitter:image" content="https://mohamedkmahdy.com/og/acc-integrations.png?v=038aa4ae">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
@@ -44,11 +44,11 @@
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Many construction teams keep all their project files in Autodesk Construction Cloud, an online file platform. If a folder is deleted there or a subscription ends, the files can be lost. LARBACC copies the projects you choose to your own drive every week and keeps the last few copies.</p></div>
   <h2>The problem</h2>
-  <p class="problem">Projects in Autodesk Construction Cloud feel safe because they live in the cloud. A deleted folder or an ended subscription can still take years of work with it.</p>
+  <p class="problem">Projects in Autodesk Construction Cloud feel safe because they're in the cloud. But a deleted folder or an ended subscription can still take years of work with it.</p>
   <h2>What it does</h2>
-  <p><strong>LARBACC</strong> (Local, Automatic, Rotating Backups of Autodesk Construction Cloud) keeps dated copies of ACC and BIM 360 projects on a local or network drive. You choose projects and folders, a destination and a weekly time; LARBACC downloads the latest version of every document and keeps the last few backups. The interface is in German and English.</p><p><strong>Only changes are downloaded.</strong> A document that has not changed since the previous backup is linked to the earlier copy instead of downloaded again (a file-system feature called a hard link), so later runs are fast and five backups do not take five times the space. A run only counts as a backup once its complete file list is written, so a crash or power cut never leaves a half-finished folder that looks complete.</p><p>Sign-in uses a secure method (PKCE) that needs no secret key inside the program. A backup missed while LARBACC was closed runs at the next start, and a failed one is retried after 15 minutes, 1 hour and 4 hours.</p>
+  <p><strong>LARBACC</strong> (Local, Automatic, Rotating Backups of Autodesk Construction Cloud) keeps dated copies of ACC and BIM 360 projects on a local or network drive. You choose the projects and folders, a destination and a weekly time. It downloads the latest version of every document and keeps the last few backups. The interface is in German and English.</p><p><strong>Only changes get downloaded.</strong> If a document hasn't changed since the last backup, LARBACC links to the earlier copy instead of downloading it again (a file-system feature called a hard link). Later runs are fast, and five backups don't take five times the space. A run only counts as a backup once its complete file list is written, so a crash or power cut can't leave a half-finished folder that looks complete.</p><p>Sign-in uses PKCE, so there's no secret key inside the program. If LARBACC was closed when a backup was due, it runs at the next start, and a failed run tries again after 15 minutes, 1 hour and 4 hours.</p>
   <h2>Features</h2><ul class="features"><li>Choose ACC and BIM 360 projects, folders and a destination; the latest version of every document is saved under its ACC name</li><li>One dated folder per project and run, with a report and a list of every file and its ACC version</li><li>Unchanged documents are linked to the previous backup instead of downloaded again</li><li>Keeps the last few backups per project (5 by default) and never deletes anything after a run that had failures</li><li>A run only becomes a backup once its file list is written; failed and cancelled runs are kept and labelled</li><li>Include or leave out any folder; new folders follow the choice made for their parent folder</li><li>Weekly schedule on any days and time, running from the Windows notification area and optionally starting with Windows</li><li>Missed backups run at the next start; failed ones are retried after 15 minutes, 1 hour and 4 hours</li><li>Secure sign-in (PKCE) with no secret key shipped in the program; an optional key is stored encrypted for the Windows user</li><li>1 to 8 downloads at once, a test run that downloads nothing, and daily logs</li><li>German and English interface</li></ul>
-  <div class="result"><span>Highlight</span>Open-source roots: LARBACC began as a desktop interface for Stewart Celani's MIT-licensed <a href="https://github.com/stewartcelani/autodesk-construction-cloud-backup" rel="noopener">autodesk-construction-cloud-backup</a>, and keeps that history and credit.</div>
+  <div class="result"><span>Highlight</span>It started as a desktop front end for Stewart Celani's MIT-licensed <a href="https://github.com/stewartcelani/autodesk-construction-cloud-backup" rel="noopener">autodesk-construction-cloud-backup</a>, and keeps that history and credit.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>BIM</dt><dd>Building Information Modelling: designing a building as a shared 3D model that also holds data about every part, instead of separate drawings.</dd></div><div><dt>ACC / BIM 360</dt><dd>Autodesk Construction Cloud, an online platform where project teams store and share models and documents. BIM 360 is the older version.</dd></div></dl>
   
 </div></section>
@@ -66,8 +66,8 @@
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
   <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
-  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
-  tooling and AI in the built environment.</p>
+  I'd like to hear about it. I'm also always up for a conversation about AEC software, openBIM and AI in
+  construction.</p>
   <div class="links">
     <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
     <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>

@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SORTIE | Mohamed K. Mahdy</title>
-<meta name="description" content="Sorts the thousands of clashes found in a Navisworks clash check by building zone, and keeps their status and comments when the check is run again.">
+<meta name="description" content="Sorts thousands of Navisworks clashes by building zone, and keeps their status and comments when the clash test runs again.">
 <meta property="og:title" content="SORTIE | Mohamed K. Mahdy">
-<meta property="og:description" content="Sorts the thousands of clashes found in a Navisworks clash check by building zone, and keeps their status and comments when the check is run again.">
+<meta property="og:description" content="Sorts thousands of Navisworks clashes by building zone, and keeps their status and comments when the clash test runs again.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mohamedkmahdy.com/projects/clash-management">
 <meta property="og:site_name" content="Mohamed K. Mahdy">
-<meta property="og:image" content="https://mohamedkmahdy.com/og/clash-management.png?v=f1067f9e">
+<meta property="og:image" content="https://mohamedkmahdy.com/og/clash-management.png?v=2a915353">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mohamedkmahdy.com/og/clash-management.png?v=f1067f9e">
+<meta name="twitter:image" content="https://mohamedkmahdy.com/og/clash-management.png?v=2a915353">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%233C6E28'/><text y='.9em' x='50' text-anchor='middle' font-size='62' font-family='monospace' fill='white'>M</text></svg>">
 <link rel="stylesheet" href="../style.css?v=7ad84f10">
 </head>
@@ -44,11 +44,11 @@
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Before a building is built, designers combine the models from every discipline and let software look for places where things collide, such as a pipe running through a beam. These are called clashes, and one check can find thousands. SORTIE groups them by area of the building so each team can see its share, and it carries notes and decisions over when the check is repeated.</p></div>
   <h2>The problem</h2>
-  <p class="problem">A clash check can report thousands of clashes when the real coordination problems number only a few hundred. Sorting them by area, and keeping their status when the checks are rerun or the files change, takes days.</p>
+  <p class="problem">A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them by area by hand, and losing every status and comment when the test reruns, eats days.</p>
   <h2>What it does</h2>
-  <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is an add-in for Navisworks Manage 2022 to 2027.</p><p><strong>Zones.</strong> It groups clashes by the zone of the building they sit in, one group per zone, or adds the zone name in front of each clash name. A zone can be any 3D object, such as a mass, a room or a separate zones model, and its real shape is used rather than a simple box around it. Where zones overlap, the smallest one wins.</p><p><strong>Status transfer.</strong> It saves each clash's status, assignee, approval, description and comments, and loads them back onto the same clashes in this file or another Navisworks file, also from a Navisworks XML clash report. Clashes are matched by their unique ID first and then by the pair of elements involved.</p><p><strong>Clean up.</strong> It moves clashes back out of their groups, or removes the zone names again.</p>
+  <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is an add-in for Navisworks Manage 2022 to 2027. It does three jobs.</p><p><strong>Zones.</strong> It groups clashes by the zone they sit in, one group per zone, or puts the zone name in front of each clash name. A zone can be any 3D object: a mass, a room, or a separate zones model. It uses the real shape, not a box around it, and where zones overlap the smallest one wins.</p><p><strong>Status transfer.</strong> It saves each clash's status, assignee, approval, description and comments, then puts them back on the same clashes in this file or another one, even from a Navisworks XML clash report. Clashes are matched by their unique ID first, then by the pair of elements.</p><p><strong>Clean up.</strong> It takes clashes back out of their groups, or strips the zone names off again.</p>
   <h2>Features</h2><ul class="features"><li>Groups clashes by the zone their clash point lies in, one group per zone, or adds the zone in front of each clash name</li><li>Zones can be any 3D objects: masses, rooms, generic models or a separate zones model</li><li>Uses the real zone shape, with a simple bounding box as a faster option for simple zones</li><li>Where zones overlap, the smallest wins; clashes outside every zone go to a "No zone" group</li><li>The zone name comes from the object's name or from any of its properties</li><li>Saves the status, assignee, approval, description and comments of clashes to a file</li><li>Loads them onto the same clashes in this or another Navisworks file, also from a Navisworks XML clash report</li><li>Matches clashes by their unique ID first, then by the pair of clashing elements; a clash with two possible matches is left alone</li><li>Clean up: moves clashes out of their groups, or removes the zone names again</li><li>Every action works on the clash tests you tick and is one undo step</li><li>One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install</li></ul>
-  <div class="result"><span>Highlight</span>Every action works only on the clash tests you tick and can be undone in <strong>one step</strong>. A clash that could match two others is left alone rather than guessed.</div>
+  <div class="result"><span>Highlight</span>Every action only touches the clash tests you tick, and it undoes in <strong>one step</strong>. If a clash could match two others, SORTIE leaves it alone instead of guessing.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Navisworks</dt><dd>Autodesk software that combines the models of all disciplines into one and checks them for clashes.</dd></div><div><dt>Add-in</dt><dd>A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it.</dd></div><div><dt>Clash</dt><dd>A place where two parts of a building model collide, for example a pipe running through a beam.</dd></div></dl>
   
 </div></section>
@@ -66,8 +66,8 @@
   <p class="eyebrow">Contact</p>
   <h2>Let's talk</h2>
   <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
-  I would like to hear about it. I am also always up for a conversation about AEC software, openBIM
-  tooling and AI in the built environment.</p>
+  I'd like to hear about it. I'm also always up for a conversation about AEC software, openBIM and AI in
+  construction.</p>
   <div class="links">
     <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
     <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
