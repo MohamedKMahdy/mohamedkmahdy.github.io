@@ -5,36 +5,24 @@
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{width:1200px;height:630px;overflow:hidden}
   body{
-    background:#444444; color:#fff;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:#020617; color:#fff;
+    background-image:radial-gradient(760px 420px at 88% -12%,rgba(59,130,246,.30),transparent 62%),
+      radial-gradient(600px 360px at -8% 115%,rgba(14,165,233,.12),transparent 60%);
+    font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     display:flex; flex-direction:column; justify-content:center;
     padding:0 78px; position:relative;
   }
-  /* faint grid, architectural feel */
-  .grid{
-    position:absolute; inset:0; opacity:.07;
-    background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);
-    background-size:60px 60px;
-  }
+  .grid{display:none}
   .inner{position:relative}
-  .eyebrow{
-    font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:20px;
-    letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.62);
-    margin-bottom:26px;
-  }
-  h1{font-size:78px; line-height:1.02; letter-spacing:-.025em; font-weight:650; margin-bottom:18px}
-  .role{
-    font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:25px;
-    color:#A9C99A; letter-spacing:.02em; margin-bottom:30px;
-  }
-  .rule{width:96px;height:3px;background:#538840;margin-bottom:30px}
-  .lede{font-size:29px; line-height:1.4; color:rgba(255,255,255,.93); max-width:830px}
-  .stats{
-    position:absolute; left:78px; right:78px; bottom:52px;
-    display:flex; gap:52px; font-family:ui-monospace,"SF Mono",Menlo,monospace;
-  }
-  .stat b{display:block;font-size:34px;font-weight:650;letter-spacing:-.02em;line-height:1.1}
-  .stat span{font-size:14px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .eyebrow{display:inline-block;font-size:20px;font-weight:500;color:#bfdbfe;background:rgba(59,130,246,.14);
+    border:1px solid rgba(96,165,250,.3);border-radius:999px;padding:7px 18px;margin-bottom:28px}
+  h1{font-size:78px; line-height:1.02; letter-spacing:-.035em; font-weight:700; margin-bottom:16px}
+  .role{font-size:28px;font-weight:500;color:#93c5fd;margin-bottom:28px}
+  .rule{display:none}
+  .lede{font-size:29px; line-height:1.4; color:#e2e8f0; max-width:830px}
+  .stats{position:absolute; left:78px; right:78px; bottom:52px; display:flex; gap:56px}
+  .stat b{display:block;font-size:34px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+  .stat span{font-size:16px;color:#94a3b8}
 </style></head>
 <body>
   <div class="grid"></div>
