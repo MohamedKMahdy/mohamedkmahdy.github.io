@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static site generator for mohamedkmahdy.com (hosted on GitHub Pages).
+"""Static site generator for mohamedkmahdy.com (hosted on Cloudflare Pages, deployed on every push to main).
 Run: python3 build.py   (from the site/ directory)"""
 import os, re, html, hashlib
 
@@ -10,7 +10,7 @@ NAME  = "Mohamed K. Mahdy"
 ROLE  = "AEC Solutions Architect &amp; AI Specialist"
 LEDE  = "I build the software layer between engineers and their models, and the AI layer above it."
 BASE  = "https://mohamedkmahdy.com"
-DOMAIN = "mohamedkmahdy.com"  # written to CNAME so GitHub Pages serves the site on this domain
+DOMAIN = "mohamedkmahdy.com"  # written to CNAME so the old mohamedkmahdy.github.io address keeps redirecting here
 EMAIL = "mohamedkmahdy@outlook.com"
 LINKEDIN = "https://www.linkedin.com/in/mohamedkmahdy/"
 GITHUB = "https://github.com/MohamedKMahdy"
@@ -946,12 +946,13 @@ def build_project(i, p):
     chips = "".join(f"<li>{s}</li>" for s in p['stack'])
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
 
+    # og:url is the address without ".html", the form Cloudflare Pages serves.
     og_file = os.path.join(SITE, 'og', p['slug'] + '.png')
     # The version is the image's content hash, so link previews refresh whenever the image changes.
     og = (f"og/{p['slug']}.png?v={hashlib.sha1(open(og_file, 'rb').read()).hexdigest()[:8]}"
           if os.path.exists(og_file) else "og-image.png")
     return head(f"{p['title']} | {NAME}", html.unescape(p['card']), "../",
-                f"{BASE}/projects/{p['slug']}.html", og) + f"""
+                f"{BASE}/projects/{p['slug']}", og) + f"""
 <main id="main">
 <div class="band"><div class="wrap read">
   <a class="crumb" href="../index.html#work">← All work</a>
@@ -998,8 +999,11 @@ for i, p in enumerate(P):
 for old, new in REDIRECTS.items():
     open(os.path.join(OUT_PROJ, old + '.html'), 'w').write(
         f'<!doctype html><meta charset="utf-8"><title>Moved</title>'
-        f'<meta http-equiv="refresh" content="0; url={new}.html"><link rel="canonical" href="{BASE}/projects/{new}.html">'
+        f'<meta http-equiv="refresh" content="0; url={new}.html"><link rel="canonical" href="{BASE}/projects/{new}">'
         f'<p>This page moved to <a href="{new}.html">{new}.html</a>.</p>')
+# Cloudflare Pages answers these with a real 301 before the HTML stubs above are ever served.
+open(os.path.join(SITE, '_redirects'), 'w').write("".join(
+    f"/projects/{old} /projects/{new} 301\n/projects/{old}.html /projects/{new} 301\n" for old, new in REDIRECTS.items()))
 print(f"built: index.html, style.css, {len(P)} project pages, {sum(og_made)} preview images")
 for p in P:
     n = len(p['media'])
