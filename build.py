@@ -403,7 +403,7 @@ for _p in P:
 
 # Where I've worked: (when, employer, place, role, summary)
 JOBS = [
- ("2026 to now", "Sweco", "Munich", "BIM &amp; AI Solutions Architect", "I own the AI and automation roadmap for the BIM + Data Science department: deciding what gets automated, building the Revit tools and LLM agents, and getting them through internal release."),
+ ("2026 to now", "Sweco", "Munich", "BIM &amp; AI Solutions Architect", "I work on the AI and automation roadmap for the BIM + Data Science department: deciding what to automate, building Revit tools and LLM agents, and taking them through internal release."),
  ("2025 to 2026", "Sweco", "Munich", "BIM &amp; AI Specialist (working student)", "Revit add-ins, Power Automate and Power Apps for project workflows, and Power BI dashboards that show coordination status."),
  ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer (working student)", "Scripts that automate model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards on model quality."),
  ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst", "BIM software and data analysis for coordination, model quality and project reporting."),
