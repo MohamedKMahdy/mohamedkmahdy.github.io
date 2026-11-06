@@ -19,17 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="style.css?v=59fe1f49">
+<link rel="stylesheet" href="style.css?v=c3e98105">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
   <a class="brand" href="index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="index.html#services">Expertise</a>
     <a href="index.html#work">Work</a>
     <a href="index.html#experience">Experience</a>
     <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
+    <a class="cta" href="index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -42,14 +43,11 @@
     <h1>Mohamed K. Mahdy</h1>
     <p class="role">BIM &amp; AI Solutions Architect · Munich</p>
     <p class="lede">I build software that makes BIM data usable, and lately, software that lets AI act on it.</p>
-    <p class="sub">I started as an architectural engineer and fell for the logic behind the design. For five
-    years I've written the tools that sit between engineers and their models: Revit and Navisworks add-ins,
-    background services and cloud integrations that take repetitive coordination work off people's desks and
-    run it overnight.</p>
+    <p class="sub">For five years I've written the tools that sit between engineers and their models: add-ins,
+    background services and cloud integrations that take repetitive coordination work off people's desks.</p>
     <div class="links">
-      <a class="btn primary" href="#work">See my work</a>
-      <a class="btn" href="mailto:mohamedkmahdy@outlook.com">Get in touch</a>
-      <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+      <a class="btn primary" href="#work">See selected work</a>
+      <a class="btn" href="#contact">Get in touch</a>
     </div>
   </div>
   <img class="photo" src="img/headshot.jpg" alt="Portrait of Mohamed K. Mahdy" width="200" height="200">
@@ -62,42 +60,67 @@
   </div>
 </div></div>
 
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">What I do</p>
+    <h2>Three things I'm good at</h2>
+    <p>Most of my work falls into one of these. Each lists the tools I use and the projects that show it.</p>
+  </div>
+  <div class="pillars"><div class="pillar"><span class="num">01</span><h3>Revit &amp; Navisworks tools</h3><p>Add-ins and batch tools that take repetitive model work off people's desks: checks, exports, quantities and clashes.</p>
+      <ul aria-label="Tools"><li>Revit API (2022 to 2027)</li><li>Navisworks API</li><li>Autodesk Model Checker</li><li>Dynamo</li><li>Grasshopper</li><li>RhinoCommon</li><li>pyRevit</li><li>Desite MD</li></ul>
+      <p class="see">Projects: <a href="projects/bimnox.html">Bimnox</a> · <a href="projects/aps-raumbuch.html">Raumbuch</a> · <a href="projects/clash-management.html">SORTIE</a> · <a href="projects/rimacos.html">Rimacos</a> · <a href="projects/qubecta.html">Qubecta</a> · <a href="projects/rifadex.html">RIFADEX</a> · <a href="projects/family-validation.html">Family Validation</a> · <a href="projects/cloud-revisions.html">Cloud Revisions</a> · <a href="projects/revit-automation.html">Revit Automation Suite</a> · <a href="projects/curtain-panels.html">Curtain Panel Suite</a></p></div><div class="pillar"><span class="num">02</span><h3>Cloud &amp; data integration</h3><p>Getting model data out of one platform and into another, and into dashboards people who never open the model will actually read.</p>
+      <ul aria-label="Tools"><li>Autodesk Platform Services (Viewer, Model Derivative, Data Management, AEC Data Model)</li><li>ACC</li><li>BIM 360</li><li>Speckle</li><li>IFC / IfcOpenShell / web-ifc</li><li>IDS</li><li>BCF</li><li>Power BI</li><li>Power Automate</li><li>Power Apps</li><li>SharePoint</li><li>pandas</li><li>machine learning</li></ul>
+      <p class="see">Projects: <a href="projects/bimnox.html">Bimnox</a> · <a href="projects/aps-raumbuch.html">Raumbuch</a> · <a href="projects/speckle-llm.html">ARVENT</a> · <a href="projects/acc-integrations.html">LARBACC</a> · <a href="projects/cloud-revisions.html">Cloud Revisions</a> · <a href="projects/bim-analytics.html">BIM Analytics</a></p></div><div class="pillar"><span class="num">03</span><h3>AI on BIM data</h3><p>Language models that answer questions about a building model, with the numbers computed by code rather than guessed.</p>
+      <ul aria-label="Tools"><li>Model Context Protocol</li><li>Claude API</li><li>local LLMs (Ollama, Llama)</li><li>constrained query planning</li><li>multi-agent orchestration</li><li>Azure OpenAI</li><li>LLM evaluation</li></ul>
+      <p class="see">Projects: <a href="projects/speckle-llm.html">ARVENT</a></p></div></div>
+  <dl class="also"><dt>Software</dt><dd>C# .NET (Framework 4.8, .NET 8, .NET 10; WPF / MVVM) · Python · React · Vite · FastAPI · Node.js · GraphQL · SQL · SQLite · xUnit · pytest · Pydantic</dd><dt>Geospatial</dt><dd>Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science</dd></dl>
+</div></section>
+
 <section id="work"><div class="wrap">
   <div class="sec-head">
-    <p class="eyebrow">Work</p>
+    <p class="eyebrow">Selected work</p>
     <h2>Things I've built</h2>
-    <p>Tools for architects, engineers and BIM coordinators. Some are small Revit add-ins, some run every
-    night without anyone watching. Each page starts with a plain explanation, then the problem, then what the
-    tool actually does, and the technical words are explained at the bottom.</p>
-    <p class="hint">Most of the code is in private repositories. I'm happy to walk you through any of it.</p>
+    <p>Each case study starts with a plain explanation, then the problem, then what the tool actually does.
+    Technical words are explained at the bottom.</p>
   </div>
-  <div class="filters" role="group" aria-label="Filter projects" hidden><button type="button" data-f="all" aria-pressed="true">All <small>13</small></button><button type="button" data-f="revit" aria-pressed="false">Revit <small>8</small></button><button type="button" data-f="clash" aria-pressed="false">Navisworks &amp; clashes <small>2</small></button><button type="button" data-f="cloud" aria-pressed="false">Cloud &amp; web <small>4</small></button><button type="button" data-f="data" aria-pressed="false">Data &amp; dashboards <small>2</small></button></div>
-  <div class="cards">
-      <a class="card" href="projects/bimnox.html" data-cats="revit cloud">
+  <div class="featured">
+      <a class="card feat" href="projects/bimnox.html" data-cats="revit cloud">
         <div class="thumb"><img src="img/bimnox-jobs.png" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">Revit 2023 to 2027 · batch</span>
           <h3>Bimnox</h3>
-          <p>Runs model checks and exports on dozens of Revit models at once, on a schedule, with nobody sitting at the computer.</p>
-          <span class="more">Read the story →</span>
+          <p>Runs model checks and exports on dozens of Revit models at once, on a schedule, with nobody sitting at the computer.</p><div class="hl"><strong>One codebase</strong> covers every Revit version from 2023 to 2027 and sends each model to an installed Revit that can open it. German and English interface, and it installs per user without admin rights.</div>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
-      <a class="card" href="projects/aps-raumbuch.html" data-cats="revit cloud">
+      <a class="card feat" href="projects/speckle-llm.html" data-cats="ai cloud">
+        <div class="thumb"><img src="img/arvent-card.png" alt="" loading="lazy"></div>
+        <div class="cbody">
+          <span class="tag">Speckle · local AI</span>
+          <h3>ARVENT</h3>
+          <p>Answers questions about a 3D building model in plain language, right in the model's comment threads. It runs on a local AI model, so the data stays on the machine.</p><div class="hl">What I learned in 2023 still holds: <strong>the AI was never the hard part.</strong> Getting clean, structured data out of the design tools is.</div>
+          <span class="more">Read the case study →</span>
+        </div>
+      </a>
+      <a class="card feat" href="projects/aps-raumbuch.html" data-cats="revit cloud">
         <div class="thumb"><img src="img/raumbuch-dashboard.jpg" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">Revit + web</span>
           <h3>Raumbuch</h3>
-          <p>Builds a room book, every room and everything in it, straight from the building model. A Revit add-in, plus a web app that also opens IFC files.</p>
-          <span class="more">Read the story →</span>
+          <p>Builds a room book, every room and everything in it, straight from the building model. A Revit add-in, plus a web app that also opens IFC files.</p><div class="hl">I didn't want it tied to one vendor. IFC files open <strong>without any login</strong>, are read in the browser and never leave your machine, and you can load several at once as one model.</div>
+          <span class="more">Read the case study →</span>
         </div>
-      </a>
+      </a></div>
+  <div class="sub-head"><h3>More projects</h3><span class="hint">Most of the code is private. I'm happy to walk you through any of it.</span></div>
+  <div class="filters" role="group" aria-label="Filter projects" hidden><button type="button" data-f="all" aria-pressed="true">All <small>10</small></button><button type="button" data-f="revit" aria-pressed="false">Revit <small>6</small></button><button type="button" data-f="clash" aria-pressed="false">Navisworks &amp; clashes <small>2</small></button><button type="button" data-f="cloud" aria-pressed="false">Cloud &amp; web <small>1</small></button><button type="button" data-f="data" aria-pressed="false">Data &amp; dashboards <small>2</small></button></div>
+  <div class="cards compact">
       <a class="card" href="projects/clash-management.html" data-cats="clash">
         <div class="thumb"><img src="img/sortie-zones.png" alt="" loading="lazy"></div>
         <div class="cbody">
           <span class="tag">Navisworks · clash tools</span>
           <h3>SORTIE</h3>
           <p>Sorts thousands of Navisworks clashes by building zone, and keeps their status and comments when the clash test runs again.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/rimacos.html" data-cats="clash">
@@ -106,16 +129,7 @@
           <span class="tag">openBIM · clash matrices</span>
           <h3>Rimacos</h3>
           <p>Replaces a huge hand-filled clash matrix with a few rules, then writes the clash tests for Navisworks and for open-source tools.</p>
-          <span class="more">Read the story →</span>
-        </div>
-      </a>
-      <a class="card" href="projects/speckle-llm.html" data-cats="ai cloud">
-        <div class="thumb"><img src="img/arvent-card.png" alt="" loading="lazy"></div>
-        <div class="cbody">
-          <span class="tag">Speckle · local AI</span>
-          <h3>ARVENT</h3>
-          <p>Answers questions about a 3D building model in plain language, right in the model's comment threads. It runs on a local AI model, so the data stays on the machine.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/qubecta.html" data-cats="revit">
@@ -124,7 +138,7 @@
           <span class="tag">Revit · cost planning</span>
           <h3>Qubecta</h3>
           <p>Turns the quantities in a Revit model into a priced bill of quantities and a cost plan, exported to Excel, PDF or the German GAEB tender format.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/rifadex.html" data-cats="revit">
@@ -133,7 +147,7 @@
           <span class="tag">Revit · interior finishes</span>
           <h3>RIFADEX</h3>
           <p>Draws the wall, floor, skirting and ceiling finishes of every room in Revit, and keeps them right when the design changes.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/acc-integrations.html" data-cats="cloud">
@@ -142,7 +156,7 @@
           <span class="tag">ACC · backups</span>
           <h3>LARBACC</h3>
           <p>Copies your Autodesk Construction Cloud projects to your own drive every week, downloading only what changed.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/family-validation.html" data-cats="revit">
@@ -151,7 +165,7 @@
           <span class="tag">Revit · content library</span>
           <h3>Family Validation</h3>
           <p>Checks and cleans whole folders of Revit families against a company standard, without anyone opening Revit.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/cloud-revisions.html" data-cats="revit data">
@@ -160,7 +174,7 @@
           <span class="tag">Revit add-in</span>
           <h3>Cloud Revisions</h3>
           <p>Lists every revision cloud in a Revit model with its sheet and revision details, and exports the list to Excel or an offline dashboard.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/revit-automation.html" data-cats="revit">
@@ -169,7 +183,7 @@
           <span class="tag">4 tools · video</span>
           <h3>Revit Automation Suite</h3>
           <p>Four Revit tools that take over repetitive model tasks: preparing files for issue, organising worksets, joining elements and copying types between projects.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/bim-analytics.html" data-cats="data">
@@ -178,7 +192,7 @@
           <span class="tag">Power BI · 9 dashboards</span>
           <h3>BIM Analytics</h3>
           <p>Power BI dashboards that show model health, open clashes, issues and team workload to the people who never open the models.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a>
       <a class="card" href="projects/curtain-panels.html" data-cats="revit">
@@ -187,7 +201,7 @@
           <span class="tag">Revit · facades · 4 tools</span>
           <h3>Curtain Panel Suite</h3>
           <p>Four Revit tools that take a glass facade from design to finished drawings: create the panels, list them, draw each type and label everything.</p>
-          <span class="more">Read the story →</span>
+          <span class="more">Read the case study →</span>
         </div>
       </a></div>
 </div></section>
@@ -210,7 +224,8 @@
     </div></li>
     <li><span class="when">2023 to 2024</span><div class="job">
       <h3>Dewan Architects + Engineers <small>· Dubai, remote</small></h3><p class="jrole">BIM Software Developer &amp; Data Analyst</p><p>BIM software and data analysis for coordination, model quality and project reporting.</p>
-    </div></li>
+    </div></li></ol>
+  <details class="earlier"><summary>Earlier roles, 2020 to 2024</summary><ol class="timeline">
     <li><span class="when">2022 to 2024</span><div class="job">
       <h3>Freelance (Upwork) <small>· Remote</small></h3><p class="jrole">BIM Software Developer &amp; Data Analyst</p><p>18 client projects, 895 billable hours and a 5.0 average rating: Revit automation, Dynamo scripts and Python data pipelines.</p>
     </div></li>
@@ -222,24 +237,7 @@
     </div></li>
     <li><span class="when">2020 to 2021</span><div class="job">
       <h3>X-Dimension <small>· Cairo</small></h3><p class="jrole">BIM Architect</p><p>BIM standards and templates, Dynamo scripts, and Scan-to-BIM (turning laser scans of existing buildings into models).</p>
-    </div></li></ol>
-</div></section>
-
-<section id="how"><div class="wrap">
-  <div class="sec-head">
-    <p class="eyebrow">How I build</p>
-    <h2>A few things I care about</h2>
-    <p>The same handful of rules shows up in almost everything above.</p>
-  </div>
-  <div class="ways"><div class="way"><span>01</span><h3>People stay in control</h3><p>Every action is one undo step. There's a dry run before anything changes. When AI suggests something, a person signs off.</p></div><div class="way"><span>02</span><h3>Boring is a feature</h3><p>The best tools run overnight, try again when the network drops, and never leave a half-finished result that looks finished.</p></div><div class="way"><span>03</span><h3>Data stays where it belongs</h3><p>AI models that run locally, IFC files read in the browser instead of uploaded, and no passwords or keys baked into a program.</p></div><div class="way"><span>04</span><h3>Open where it counts</h3><p>IFC, IDS and BCF wherever they fit, so nobody gets locked into one vendor.</p></div></div>
-</div></section>
-
-<section id="skills"><div class="wrap">
-  <div class="sec-head">
-    <p class="eyebrow">Skills</p>
-    <h2>What I work with</h2>
-  </div>
-  <div class="caps"><div class="cap"><h3>AEC development</h3><p>Add-ins and scripts inside the tools designers already use.</p><small>Revit API (2022 to 2027) · Navisworks API · Autodesk Model Checker · Dynamo · Grasshopper · RhinoCommon · pyRevit · Desite MD</small></div><div class="cap"><h3>Cloud &amp; interoperability</h3><p>Getting model data out of one platform and into another, with open standards where possible.</p><small>Autodesk Platform Services (Viewer, Model Derivative, Data Management, AEC Data Model) · ACC · BIM 360 · Speckle · IFC / IfcOpenShell / web-ifc · IDS · BCF</small></div><div class="cap"><h3>AI &amp; agents</h3><p>Language models on top of BIM data, with the numbers computed by code rather than guessed.</p><small>Model Context Protocol · Claude API · local LLMs (Ollama, Llama) · constrained query planning · multi-agent orchestration · Azure OpenAI · LLM evaluation</small></div><div class="cap"><h3>Geospatial</h3><p>Graduate training at TUM in GIS, spatial data mining and remote sensing.</p><small>Spatial data mining · distributed GIS &amp; cloud computing · geospatial data harmonisation · photogrammetry &amp; remote sensing · mobile laser scanning · earth-observation data science</small></div><div class="cap"><h3>Software</h3><p>Desktop, web and back-end work, tested and built for every supported Revit version.</p><small>C# .NET (Framework 4.8, .NET 8, .NET 10; WPF / MVVM) · Python · React · Vite · FastAPI · Node.js · GraphQL · SQL · SQLite · xUnit · pytest · Pydantic</small></div><div class="cap"><h3>Data &amp; BI</h3><p>Dashboards and flows that make project data visible to people who never open the model.</p><small>Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning</small></div></div>
+    </div></li></ol></details>
 </div></section>
 
 <section id="about"><div class="wrap">
@@ -259,15 +257,23 @@
     It added the half I was missing: GIS, spatial data mining, photogrammetry and remote sensing, next to semantic
     modelling and software engineering. <strong>BIM, GIS and AI are converging, and not many people work across
     all three.</strong></p>
-    <p>I speak Arabic natively, English at a professional working level (IELTS Academic 6.5), and I am
-    learning German (A2).</p>
+    <h3 class="eyebrow" style="margin-top:32px">How I build</h3>
+    <ul class="principles"><li><b>People stay in control</b><span>Every action is one undo step. There's a dry run before anything changes. When AI suggests something, a person signs off.</span></li><li><b>Boring is a feature</b><span>The best tools run overnight, try again when the network drops, and never leave a half-finished result that looks finished.</span></li><li><b>Data stays where it belongs</b><span>AI models that run locally, IFC files read in the browser instead of uploaded, and no passwords or keys baked into a program.</span></li><li><b>Open where it counts</b><span>IFC, IDS and BCF wherever they fit, so nobody gets locked into one vendor.</span></li></ul>
   </div>
+  <div class="side">
   <div class="edu">
     <h3>Education</h3>
     <div><b>Technical University of Munich</b><span>M.Sc. Information Technologies for the Built Environment</span><em>2024 to 2026</em></div>
     <div><b>Information Technology Institute</b><span>Intensive Code Camp: BIM Automation Development</span><em>2022 · Giza</em></div>
     <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014 to 2020</em></div>
     <div><b>Autodesk</b><span>Certified Professional, Revit Architecture</span><em>2020</em></div>
+  </div>
+  <div class="edu">
+    <h3>Languages</h3>
+    <div><b>Arabic</b><span>Native</span></div>
+    <div><b>English</b><span>Professional working (IELTS Academic 6.5)</span></div>
+    <div><b>German</b><span>Learning (A2)</span></div>
+  </div>
   </div>
   </div>
 </div></section>
@@ -297,7 +303,7 @@ if(!c)c='light';
 var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
 try{localStorage.setItem('theme',n)}catch(e){}});})();
 (function(){var f=document.querySelector('.filters');if(!f)return;f.hidden=false;
-var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.card');
+var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.cards.compact .card');
 bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-f');
 bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
 cs.forEach(function(c){c.hidden=k!=='all'&&(' '+c.getAttribute('data-cats')+' ').indexOf(' '+k+' ')<0});});});})();</script>

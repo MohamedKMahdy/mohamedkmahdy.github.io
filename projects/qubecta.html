@@ -19,17 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../style.css?v=59fe1f49">
+<link rel="stylesheet" href="../style.css?v=c3e98105">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
   <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
     <a href="../index.html#work">Work</a>
     <a href="../index.html#experience">Experience</a>
     <a href="../index.html#about">About</a>
-    <a href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -46,12 +47,12 @@
 </div></div>
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>To estimate what a building will cost, quantity surveyors measure how much of each material and component it needs, then price it. Much of that information is already in the 3D model. Qubecta reads it from the model, suggests prices and categories, and produces the cost documents in the formats that estimators and tender software use.</p></div>
+  <div class="result"><span>Result</span>Tested inside Revit on Autodesk's Snowdon Towers sample model: <strong>392 types, 294 suggestions, 136 bill lines</strong>, a cost plan by element, and a GAEB export that passes the official 3.3 schemas.</div>
   <h2>The problem</h2>
   <p class="problem">Quantity surveyors often measure again what the model already knows. It's slow, and every design change means doing it over.</p>
   <h2>What it does</h2>
   <p><strong>Qubecta</strong> (QUantities, Bills, Elements, Costs, Tendering and Assembly codes) is an add-in for Revit 2022 to 2027. You tick the element types you want to price and give each one a unit, a section in the bill (CSI MasterFormat 2018, RICS NRM2 or your own list), a group in the cost plan (UniFormat, RICS NRM1, DIN 276 or your own list), a rate and a description. Typing all that by hand gets old fast, so <strong>Qubecta suggests it</strong>: from your earlier projects, from codes already in the model, and from each type's name and materials. Every suggestion says why, and nothing changes until you've checked it.</p><p>Then it measures the model and gives you the bill by trade and the cost plan by building element, with the cost per m² of floor area and the usual additions: site overheads, contingency, VAT. It exports to Excel, PDF and CSV, and to <strong>GAEB DA XML</strong>, the format German tendering and costing software expects, checked against the official schemas. The cost codes also go back into the model, so Revit schedules and IFC exports carry them.</p><p>It measures the whole model in one pass, filters by construction phase, design option and floor, and counts linked models that are placed more than once. Categories are matched by Revit's internal IDs, so it works whatever language Revit is in. Doors and windows can take their cost group from the wall or roof they sit in, and walls and floors from whether they're external or load-bearing.</p>
   <h2>Features</h2><ul class="features"><li>Unit, bill section, cost plan group, rate and description for each element type</li><li>Built-in code lists: CSI MasterFormat 2018, RICS NRM2 and NRM1, UniFormat II and DIN 276; Uniclass 2015, OmniClass and Revit assembly code files are read as they are</li><li>Suggestions from earlier projects, from codes already in the model, and from each type's name and materials, each with its reason</li><li>Doors and windows can take their group from the wall or roof they sit in; walls and floors from whether they are external or load-bearing</li><li>Measures count, length, area, volume, perimeter and weight (from material density), with one line per material layer if you want</li><li>Filters by construction phase, design option and floor; counts linked models placed more than once</li><li>Bill of quantities by trade and cost plan by building element, with cost per m² of gross floor area</li><li>Additions on the running total: site overheads, overheads and profit, contingency and VAT; a waste percentage; extra items that are not in the model</li><li>Exports to Excel, PDF and CSV, and to GAEB DA XML 3.3 (X83 tender, X82 priced estimate), checked against the official schemas</li><li>Writes the cost codes back into the model's Assembly Code, so schedules and IFC exports carry them</li><li>Settings and rates are saved in the model; price lists move between projects as Excel files</li><li>Works in any Revit language; one panel for Revit 2022 to 2027</li></ul>
-  <div class="result"><span>Highlight</span>Tested inside Revit on Autodesk's Snowdon Towers sample model: <strong>392 types, 294 suggestions, 136 bill lines</strong>, a cost plan by element, and a GAEB export that passes the official 3.3 schemas.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Add-in</dt><dd>A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it.</dd></div><div><dt>Linked model</dt><dd>A model from another file, often from another team, shown inside your model for reference but kept separate from it.</dd></div><div><dt>Schedule</dt><dd>A table in Revit that lists elements and their data, for example every door with its size.</dd></div><div><dt>IFC</dt><dd>An open file format for building models that any BIM software can read. It is maintained by buildingSMART.</dd></div><div><dt>GAEB</dt><dd>The German standard file format for construction tenders and cost estimates.</dd></div></dl>
   
 </div></section>

@@ -17,7 +17,9 @@ GITHUB = "https://github.com/MohamedKMahdy"
 
 # Filter chips on the index; each project lists the keys it belongs to in `cats`.
 CATS = [("revit","Revit"), ("clash","Navisworks &amp; clashes"), ("cloud","Cloud &amp; web"),
-        ("data","Data &amp; dashboards")]
+        ("data","Data &amp; dashboards"), ("ai","AI")]
+# Shown large under "Selected work", one per area of expertise; the rest go in the "More projects" grid.
+FEATURED = ["bimnox", "speckle-llm", "aps-raumbuch"]
 
 # ---------------------------------------------------------------- projects
 P = [
@@ -436,6 +438,13 @@ CAPS = [
   "Power BI · Power Automate · Power Apps · SharePoint · pandas · machine learning"),
 ]
 
+# What I do: (title, plain description, CAPS indices whose tools it lists, project categories it links to)
+PILLARS = [
+ ("Revit &amp; Navisworks tools", "Add-ins and batch tools that take repetitive model work off people's desks: checks, exports, quantities and clashes.", [0], ["revit", "clash"]),
+ ("Cloud &amp; data integration", "Getting model data out of one platform and into another, and into dashboards people who never open the model will actually read.", [1, 5], ["cloud", "data"]),
+ ("AI on BIM data", "Language models that answer questions about a building model, with the numbers computed by code rather than guessed.", [2], ["ai"]),
+]
+
 CSS = """
 /* Modern professional: monochrome zinc neutrals, near-black and white, Inter. No colour accent except the green status dot. Dark navy header and hero in both modes;
    in dark mode the page body is a step lighter than the header. */
@@ -482,7 +491,7 @@ box-shadow:inset 0 -1px 0 rgba(0,0,0,.12)}
 #tt{width:36px;height:36px;border:1px solid rgba(161,161,170,.25);background:transparent;color:#d4d4d8;border-radius:var(--r-sm);
 cursor:pointer;font-size:15px;line-height:1;display:grid;place-items:center;flex:none;transition:color .15s,border-color .15s}
 #tt:hover{color:#fff;border-color:rgba(161,161,170,.5)}
-@media(max-width:640px){.wrap{padding:0 16px}.brand span{display:none}.nav .wrap{gap:4px}.nav nav a{padding:6px 7px;font-size:13.5px}}
+@media(max-width:640px){.wrap{padding:0 16px}.brand span{display:none}.nav .wrap{gap:4px}.nav nav a{padding:6px 7px;font-size:13.5px}.nav nav a.hide-sm{display:none}}
 /* hero and project headers */
 .band{color:var(--on-ink);position:relative}
 .band a{color:var(--accent-hi)}
@@ -529,7 +538,7 @@ color:var(--fg);background:var(--card);transition:background-color .15s,border-c
 /* sections */
 section{padding:96px 0}
 section+section{border-top:1px solid var(--line)}
-#work,#how{background:var(--bg-alt)}
+#services,#experience{background:var(--bg-alt)}
 .sec-head{margin:0 0 40px;max-width:var(--read)}
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px}
 h2{font-size:clamp(28px,3.6vw,38px);line-height:1.15;letter-spacing:-.03em;margin:0 0 12px;font-weight:700;color:var(--fg)}
@@ -631,7 +640,7 @@ section:has(.pbody){padding:64px 0 80px}
 .problem{font-size:19px;line-height:1.6;color:var(--fg);margin:0}
 .pbody p{color:var(--fg-soft);margin:0 0 14px}
 .pbody p strong{color:var(--fg);font-weight:600}
-.result{margin-top:32px;padding:20px 22px;background:var(--accent-soft);border:1px solid var(--line);
+.result{margin:0 0 8px;padding:20px 22px;background:var(--accent-soft);border:1px solid var(--line);
 border-radius:var(--r);font-size:16px;color:var(--fg)}
 .result span,.plain span{display:block;font-size:13px;font-weight:600;color:var(--fg-faint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
 .features{list-style:none;margin:8px 0 4px;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
@@ -660,6 +669,55 @@ figcaption span{font-size:14.5px;color:var(--fg-soft);line-height:1.55}
 .pn b{font-size:17px;font-weight:650}
 .pn .next{text-align:right}
 @media(max-width:560px){.pn{grid-template-columns:1fr}.pn .next{text-align:left}}
+/* nav call to action */
+.nav nav a.cta{background:#fafafa;color:#09090b;margin-left:6px;font-weight:600}
+.nav nav a.cta:hover{background:#e4e4e7;color:#09090b}
+/* what I do */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pillar{display:flex;flex-direction:column;padding:26px 26px 22px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--shadow)}
+.pillar .num{font-size:13px;font-weight:600;color:var(--fg-faint);font-variant-numeric:tabular-nums}
+.pillar h3{font-size:20px;letter-spacing:-.02em;font-weight:650;margin:10px 0 8px}
+.pillar p{margin:0 0 16px;font-size:15px;color:var(--fg-soft);line-height:1.6}
+.pillar ul{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.pillar li{font-size:12.5px;font-weight:500;color:var(--fg-soft);background:var(--accent-soft);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.pillar .see{margin-top:auto;padding-top:16px;border-top:1px solid var(--line);font-size:14px;color:var(--fg-faint)}
+.pillar .see a{color:var(--fg);font-weight:500}
+.also{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;margin:28px 0 0;padding:18px 22px;border:1px dashed var(--line-strong);border-radius:var(--r);font-size:14.5px}
+.also dt{font-weight:600;color:var(--fg)}.also dd{margin:0;color:var(--fg-soft)}
+@media(max-width:900px){.pillars{grid-template-columns:1fr}}
+@media(max-width:560px){.also{grid-template-columns:1fr}.also dd{margin-bottom:8px}}
+/* selected work: large horizontal cards */
+.featured{display:grid;gap:24px;margin:0 0 72px}
+.card.feat{display:grid;grid-template-columns:1.25fr 1fr}
+.card.feat .thumb{aspect-ratio:auto;min-height:300px;border-bottom:0;border-right:1px solid var(--line)}
+.card.feat .cbody{padding:30px 32px}
+.card.feat h3{font-size:26px;margin-bottom:8px}
+.card.feat p{font-size:16px}
+.card.feat .hl{margin-top:16px;padding:12px 14px;border-radius:var(--r-sm);background:var(--accent-soft);border:1px solid var(--line);font-size:14px;color:var(--fg-soft);line-height:1.55}
+.card.feat .hl strong{color:var(--fg)}
+@media(max-width:860px){.card.feat{grid-template-columns:1fr}.card.feat .thumb{aspect-ratio:16/9;min-height:0;border-right:0;border-bottom:1px solid var(--line)}.card.feat .cbody{padding:22px}}
+.sub-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px;margin:0 0 18px}
+.sub-head h3{font-size:22px;letter-spacing:-.02em;margin:0;font-weight:650}
+.cards.compact{grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.cards.compact .cbody{padding:16px 18px 18px}
+.cards.compact h3{font-size:17px}
+.cards.compact p{font-size:14.5px}
+.cards.compact .more{display:none}
+/* experience: older roles folded */
+.earlier{max-width:860px;margin-top:28px}
+.earlier summary{cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:15px;color:var(--fg);
+padding:8px 16px;border:1px solid var(--line-strong);border-radius:999px;list-style:none;background:var(--card)}
+.earlier summary::-webkit-details-marker{display:none}
+.earlier summary::after{content:"+";font-weight:600;color:var(--fg-faint)}
+.earlier[open] summary::after{content:"\2212"}
+.earlier[open] summary{margin-bottom:28px}
+/* about: principles beside the story */
+.principles{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.principles li{padding:16px 18px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.principles b{display:block;font-size:15.5px;font-weight:600;margin-bottom:4px;color:var(--fg)}
+.principles span{display:block;font-size:14.5px;color:var(--fg-soft);line-height:1.55}
+@media(max-width:640px){.principles{grid-template-columns:1fr}}
+.side{display:grid;gap:20px;align-self:start}
 """
 
 CSS_VER = None  # set from the CSS content before writing
@@ -673,7 +731,7 @@ var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
 try{localStorage.setItem('theme',n)}catch(e){}});})();"""
 
 JS_FILTER = """(function(){var f=document.querySelector('.filters');if(!f)return;f.hidden=false;
-var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.card');
+var bs=f.querySelectorAll('button'),cs=document.querySelectorAll('.cards.compact .card');
 bs.forEach(function(b){b.addEventListener('click',function(){var k=b.getAttribute('data-f');
 bs.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
 cs.forEach(function(c){c.hidden=k!=='all'&&(' '+c.getAttribute('data-cats')+' ').indexOf(' '+k+' ')<0});});});})();"""
@@ -707,10 +765,11 @@ def head(title, desc, root, url, og="og-image.png"):
 <header class="nav"><div class="wrap">
   <a class="brand" href="{root}index.html"><i aria-hidden="true">MK</i><span>{NAME}</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="{root}index.html#services">Expertise</a>
     <a href="{root}index.html#work">Work</a>
     <a href="{root}index.html#experience">Experience</a>
     <a href="{root}index.html#about">About</a>
-    <a href="{root}index.html#contact">Contact</a>
+    <a class="cta" href="{root}index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -743,30 +802,46 @@ def thumb_for(p):
 
 # ---------------------------------------------------------------- index
 def build_index():
-    counts = {k: sum(k in p['cats'].split() for p in P) for k, _ in CATS}
-    chips = f'<button type="button" data-f="all" aria-pressed="true">All <small>{len(P)}</small></button>' + "".join(
+    feat = [next(p for p in P if p['slug'] == s) for s in FEATURED]
+    rest = [p for p in P if p['slug'] not in FEATURED]
+    counts = {k: sum(k in p['cats'].split() for p in rest) for k, _ in CATS}
+    chips = f'<button type="button" data-f="all" aria-pressed="true">All <small>{len(rest)}</small></button>' + "".join(
         f'<button type="button" data-f="{k}" aria-pressed="false">{label} <small>{counts[k]}</small></button>'
-        for k, label in CATS)
+        for k, label in CATS if counts[k])
 
-    cards = "".join(f"""
-      <a class="card" href="projects/{p['slug']}.html" data-cats="{p['cats']}">
+    def card(p, cls=""):
+        hl = f'<div class="hl">{p["result"]}</div>' if cls and p['result'] else ""
+        return f"""
+      <a class="card{cls}" href="projects/{p['slug']}.html" data-cats="{p['cats']}">
         <div class="thumb">{thumb_for(p)}</div>
         <div class="cbody">
           <span class="tag">{p['tag']}</span>
           <h3>{p['title']}</h3>
-          <p>{p['card']}</p>
-          <span class="more">Read the story →</span>
+          <p>{p['card']}</p>{hl}
+          <span class="more">Read the case study →</span>
         </div>
-      </a>""" for p in P)
+      </a>"""
+    featured = "".join(card(p, " feat") for p in feat)
+    cards = "".join(card(p) for p in rest)
 
-    ways = "".join(f'<div class="way"><span>0{i}</span><h3>{t}</h3><p>{b}</p></div>'
-                   for i, (t, b) in enumerate(WAYS, 1))
-    caps = "".join(f'<div class="cap"><h3>{t}</h3><p>{plain}</p><small>{tools}</small></div>'
-                   for t, plain, tools in CAPS)
-    jobs = "".join(f"""
+    def pillar(i, t, plain, ci, cats):
+        tools = [x.strip() for c in ci for x in re.split(r"\s·\s", CAPS[c][2])]
+        projs = [p for p in P if set(p['cats'].split()) & set(cats)]
+        links = " · ".join(f'<a href="projects/{p["slug"]}.html">{p["title"]}</a>' for p in projs)
+        return f"""<div class="pillar"><span class="num">0{i}</span><h3>{t}</h3><p>{plain}</p>
+      <ul aria-label="Tools">{"".join(f"<li>{x}</li>" for x in tools)}</ul>
+      <p class="see">Projects: {links}</p></div>"""
+    pillars = "".join(pillar(i, *x) for i, x in enumerate(PILLARS, 1))
+    also = "".join(f"<dt>{CAPS[c][0]}</dt><dd>{CAPS[c][2]}</dd>" for c in (4, 3))
+
+    ways = "".join(f'<li><b>{t}</b><span>{b}</span></li>' for t, b in WAYS)
+    def job(when, org, place, role, summary):
+        return f"""
     <li><span class="when">{when}</span><div class="job">
       <h3>{org} <small>· {place}</small></h3><p class="jrole">{role}</p><p>{summary}</p>
-    </div></li>""" for when, org, place, role, summary in JOBS)
+    </div></li>"""
+    recent = "".join(job(*j) for j in JOBS[:4])
+    older = "".join(job(*j) for j in JOBS[4:])
 
     return head(f"{NAME} | BIM &amp; AI Solutions Architect",
                 "BIM &amp; AI Solutions Architect in Munich: Revit and Navisworks tools, cloud integrations and AI on top of BIM data.",
@@ -779,14 +854,11 @@ def build_index():
     <h1>{NAME}</h1>
     <p class="role">{ROLE} · Munich</p>
     <p class="lede">{LEDE}</p>
-    <p class="sub">I started as an architectural engineer and fell for the logic behind the design. For five
-    years I've written the tools that sit between engineers and their models: Revit and Navisworks add-ins,
-    background services and cloud integrations that take repetitive coordination work off people's desks and
-    run it overnight.</p>
+    <p class="sub">For five years I've written the tools that sit between engineers and their models: add-ins,
+    background services and cloud integrations that take repetitive coordination work off people's desks.</p>
     <div class="links">
-      <a class="btn primary" href="#work">See my work</a>
-      <a class="btn" href="mailto:{EMAIL}">Get in touch</a>
-      <a class="btn" href="{LINKEDIN}" rel="noopener">LinkedIn</a>
+      <a class="btn primary" href="#work">See selected work</a>
+      <a class="btn" href="#contact">Get in touch</a>
     </div>
   </div>
   <img class="photo" src="img/headshot.jpg" alt="Portrait of {NAME}" width="200" height="200">
@@ -799,17 +871,27 @@ def build_index():
   </div>
 </div></div>
 
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">What I do</p>
+    <h2>Three things I'm good at</h2>
+    <p>Most of my work falls into one of these. Each lists the tools I use and the projects that show it.</p>
+  </div>
+  <div class="pillars">{pillars}</div>
+  <dl class="also">{also}</dl>
+</div></section>
+
 <section id="work"><div class="wrap">
   <div class="sec-head">
-    <p class="eyebrow">Work</p>
+    <p class="eyebrow">Selected work</p>
     <h2>Things I've built</h2>
-    <p>Tools for architects, engineers and BIM coordinators. Some are small Revit add-ins, some run every
-    night without anyone watching. Each page starts with a plain explanation, then the problem, then what the
-    tool actually does, and the technical words are explained at the bottom.</p>
-    <p class="hint">Most of the code is in private repositories. I'm happy to walk you through any of it.</p>
+    <p>Each case study starts with a plain explanation, then the problem, then what the tool actually does.
+    Technical words are explained at the bottom.</p>
   </div>
+  <div class="featured">{featured}</div>
+  <div class="sub-head"><h3>More projects</h3><span class="hint">Most of the code is private. I'm happy to walk you through any of it.</span></div>
   <div class="filters" role="group" aria-label="Filter projects" hidden>{chips}</div>
-  <div class="cards">{cards}</div>
+  <div class="cards compact">{cards}</div>
 </div></section>
 
 <section id="experience"><div class="wrap">
@@ -818,24 +900,8 @@ def build_index():
     <h2>Where I've worked</h2>
     <p>Six organisations and a freelance practice, from Cairo to Dubai to Munich.</p>
   </div>
-  <ol class="timeline">{jobs}</ol>
-</div></section>
-
-<section id="how"><div class="wrap">
-  <div class="sec-head">
-    <p class="eyebrow">How I build</p>
-    <h2>A few things I care about</h2>
-    <p>The same handful of rules shows up in almost everything above.</p>
-  </div>
-  <div class="ways">{ways}</div>
-</div></section>
-
-<section id="skills"><div class="wrap">
-  <div class="sec-head">
-    <p class="eyebrow">Skills</p>
-    <h2>What I work with</h2>
-  </div>
-  <div class="caps">{caps}</div>
+  <ol class="timeline">{recent}</ol>
+  <details class="earlier"><summary>Earlier roles, 2020 to 2024</summary><ol class="timeline">{older}</ol></details>
 </div></section>
 
 <section id="about"><div class="wrap">
@@ -855,15 +921,23 @@ def build_index():
     It added the half I was missing: GIS, spatial data mining, photogrammetry and remote sensing, next to semantic
     modelling and software engineering. <strong>BIM, GIS and AI are converging, and not many people work across
     all three.</strong></p>
-    <p>I speak Arabic natively, English at a professional working level (IELTS Academic 6.5), and I am
-    learning German (A2).</p>
+    <h3 class="eyebrow" style="margin-top:32px">How I build</h3>
+    <ul class="principles">{ways}</ul>
   </div>
+  <div class="side">
   <div class="edu">
     <h3>Education</h3>
     <div><b>Technical University of Munich</b><span>M.Sc. Information Technologies for the Built Environment</span><em>2024 to 2026</em></div>
     <div><b>Information Technology Institute</b><span>Intensive Code Camp: BIM Automation Development</span><em>2022 · Giza</em></div>
     <div><b>Alexandria University</b><span>B.Sc. Architectural Engineering</span><em>2014 to 2020</em></div>
     <div><b>Autodesk</b><span>Certified Professional, Revit Architecture</span><em>2020</em></div>
+  </div>
+  <div class="edu">
+    <h3>Languages</h3>
+    <div><b>Arabic</b><span>Native</span></div>
+    <div><b>English</b><span>Professional working (IELTS Academic 6.5)</span></div>
+    <div><b>German</b><span>Learning (A2)</span></div>
+  </div>
   </div>
   </div>
 </div></section>
@@ -963,7 +1037,7 @@ def build_project(i, p):
     terms = [(t, d) for t, rx, d in GLOSSARY if re.search(rx, text, 0 if t.isupper() or " " in t or t in ("Revit", "Navisworks", "Speckle") else re.I)]
     gloss = ('<h2>Terms on this page</h2><dl class="gloss">' + "".join(f"<div><dt>{t}</dt><dd>{d}</dd></div>" for t, d in terms) + '</dl>') if terms else ""
     feats = ('<h2>Features</h2><ul class="features">' + "".join(f"<li>{html.escape(f, quote=False)}</li>" for f in p['features']) + '</ul>') if p.get('features') else ""
-    res = f'<div class="result"><span>Highlight</span>{p["result"]}</div>' if p['result'] else ""
+    res = f'<div class="result"><span>Result</span>{p["result"]}</div>' if p['result'] else ""
     pnote = f'<p class="pnote">{p["note"]}</p>' if p.get('note') else ""
     chips = "".join(f"<li>{s}</li>" for s in p['stack'])
     prev, nxt = P[i - 1], P[(i + 1) % len(P)]
@@ -987,12 +1061,12 @@ def build_project(i, p):
 </div></div>
 <section><div class="wrap read pbody">
   {plain}
+  {res}
   <h2>The problem</h2>
   <p class="problem">{p['problem']}</p>
   <h2>What it does</h2>
   {body}
   {feats}
-  {res}
   {gloss}
   {pnote}
 </div></section>

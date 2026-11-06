@@ -19,17 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../style.css?v=59fe1f49">
+<link rel="stylesheet" href="../style.css?v=c3e98105">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
   <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
     <a href="../index.html#work">Work</a>
     <a href="../index.html#experience">Experience</a>
     <a href="../index.html#about">About</a>
-    <a href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -46,12 +47,12 @@
 </div></div>
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Before a building is built, designers combine the models from every discipline and let software look for places where things collide, such as a pipe running through a beam. These are called clashes, and one check can find thousands. SORTIE groups them by area of the building so each team can see its share, and it carries notes and decisions over when the check is repeated.</p></div>
+  <div class="result"><span>Result</span>Every action only touches the clash tests you tick, and it undoes in <strong>one step</strong>. If a clash could match two others, SORTIE leaves it alone instead of guessing.</div>
   <h2>The problem</h2>
   <p class="problem">A clash run can report thousands of clashes when the real coordination problems number a few hundred. Sorting them by area by hand, and losing every status and comment when the test reruns, eats days.</p>
   <h2>What it does</h2>
   <p><strong>SORTIE</strong> (Status Organiser, Renamer and Transferrer for Interference Events) is an add-in for Navisworks Manage 2022 to 2027. It does three jobs.</p><p><strong>Zones.</strong> It groups clashes by the zone they sit in, one group per zone, or puts the zone name in front of each clash name. A zone can be any 3D object: a mass, a room, or a separate zones model. It uses the real shape, not a box around it, and where zones overlap the smallest one wins.</p><p><strong>Status transfer.</strong> It saves each clash's status, assignee, approval, description and comments, then puts them back on the same clashes in this file or another one, even from a Navisworks XML clash report. Clashes are matched by their unique ID first, then by the pair of elements.</p><p><strong>Clean up.</strong> It takes clashes back out of their groups, or strips the zone names off again.</p>
   <h2>Features</h2><ul class="features"><li>Groups clashes by the zone their clash point lies in, one group per zone, or adds the zone in front of each clash name</li><li>Zones can be any 3D objects: masses, rooms, generic models or a separate zones model</li><li>Uses the real zone shape, with a simple bounding box as a faster option for simple zones</li><li>Where zones overlap, the smallest wins; clashes outside every zone go to a "No zone" group</li><li>The zone name comes from the object's name or from any of its properties</li><li>Saves the status, assignee, approval, description and comments of clashes to a file</li><li>Loads them onto the same clashes in this or another Navisworks file, also from a Navisworks XML clash report</li><li>Matches clashes by their unique ID first, then by the pair of clashing elements; a clash with two possible matches is left alone</li><li>Clean up: moves clashes out of their groups, or removes the zone names again</li><li>Every action works on the clash tests you tick and is one undo step</li><li>One add-in for Navisworks Manage 2022 to 2027, with its own ribbon tab, keyboard shortcuts and a per-user install</li></ul>
-  <div class="result"><span>Highlight</span>Every action only touches the clash tests you tick, and it undoes in <strong>one step</strong>. If a clash could match two others, SORTIE leaves it alone instead of guessing.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Navisworks</dt><dd>Autodesk software that combines the models of all disciplines into one and checks them for clashes.</dd></div><div><dt>Add-in</dt><dd>A small program that runs inside another program, here inside Revit or Navisworks, and adds new buttons and features to it.</dd></div><div><dt>Clash</dt><dd>A place where two parts of a building model collide, for example a pipe running through a beam.</dd></div></dl>
   
 </div></section>

@@ -19,17 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../style.css?v=59fe1f49">
+<link rel="stylesheet" href="../style.css?v=c3e98105">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
   <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
     <a href="../index.html#work">Work</a>
     <a href="../index.html#experience">Experience</a>
     <a href="../index.html#about">About</a>
-    <a href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -46,12 +47,12 @@
 </div></div>
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Revit models are built from reusable components called families, such as a door, a chair or a light fitting. Companies keep libraries of hundreds of them, and one badly made family can slow down every project that uses it. Family Validation checks a whole folder of families against the company's rules, fixes what it safely can, and writes a report.</p></div>
+  <div class="result"><span>Result</span><strong>No third-party libraries.</strong> It's .NET and the Revit API only, built separately for the .NET version each Revit release ships with.</div>
   <h2>The problem</h2>
   <p class="problem">One badly built family, say one with a CAD drawing imported inside it or in the wrong category, slows down every project that loads it. Nobody checks hundreds of them by hand.</p>
   <h2>What it does</h2>
   <p>A small launcher runs Revit in the background, opens every family in a folder and checks it: the file name against the naming rules (fixing the category prefix when that's safe), imported CAD inside the family (removed, linked CAD kept), whether the name matches the category, required parameters, file size limits, and optionally a classification code like DIN 276 or Uniclass. What comes out is ready for the company library or the Autodesk Content Catalog.</p><p><strong>Safe by design.</strong> The original is copied aside before anything happens, and if that copy fails the family is skipped. Cleaned copies go into their own folder, originals are never changed, and a dry run writes the full report without touching a file.</p><p>The rules live in a visual editor, so the people who own the standard can maintain it without writing code. Name patterns are built from blocks, and the editor won't save a rule set the check would reject.</p>
   <h2>Features</h2><ul class="features"><li>Checks a whole folder of Revit families without the user opening Revit: a launcher runs a hidden Revit</li><li>File name against the naming convention, with a safe automatic fix of the category prefix</li><li>Removes imported CAD drawings, keeps linked CAD files, and can also check families nested inside others</li><li>Checks that each family's category matches its name</li><li>Required family parameters: present, of the right kind, and optionally filled in</li><li>File size warning and error limits</li><li>Optional classification code check against DIN 276, Uniclass or your own pattern</li><li>Originals are copied aside before anything else; cleaned copies go to their own folder; originals are never changed</li><li>Dry run that writes the full report without changing a file</li><li>Excel report sorted worst first, plus a log</li><li>Visual rules editor: name patterns from blocks, refuses rules that would fail, keeps backups, and imports rule sets from colleagues</li><li>Revit 2023 to 2027, German and English, no third-party libraries</li></ul>
-  <div class="result"><span>Highlight</span><strong>No third-party libraries.</strong> It's .NET and the Revit API only, built separately for the .NET version each Revit release ships with.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Family</dt><dd>A reusable Revit component, such as a door, a window, a chair or a light fitting.</dd></div></dl>
   
 </div></section>

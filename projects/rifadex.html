@@ -19,17 +19,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="../style.css?v=59fe1f49">
+<link rel="stylesheet" href="../style.css?v=c3e98105">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="nav"><div class="wrap">
   <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
   <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
     <a href="../index.html#work">Work</a>
     <a href="../index.html#experience">Experience</a>
     <a href="../index.html#about">About</a>
-    <a href="../index.html#contact">Contact</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
   </nav>
   <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
 </div></header>
@@ -46,12 +47,12 @@
 </div></div>
 <section><div class="wrap read pbody">
   <div class="plain"><span>In plain words</span><p>Every room in a building gets finishes: plaster or tiles on the walls, a floor covering, skirting boards and a ceiling. In a 3D model each one has to be drawn by hand, and redrawn whenever a room changes. RIFADEX lets you pick the finishes per room, then draws and updates them automatically.</p></div>
+  <div class="result"><span>Result</span>Tested inside Revit from start to finish, 57 checks in Revit 2026: drawing, redrawing, hand edits, door openings, a moved and rotated linked model, and an Excel round trip. <strong>One codebase for Revit 2024 to 2027</strong>, with no third-party libraries.</div>
   <h2>The problem</h2>
   <p class="problem">Modelling interior finishes by hand, room by room, is slow, and every design change leaves finishes that no longer fit the room.</p>
   <h2>What it does</h2>
   <p>You pick a wall, floor, skirting and ceiling finish for each room, one at a time or many at once, in this model or in a linked architect's model. RIFADEX draws a finish wall along each side of the room, a floor with cut-outs for columns and shafts, skirting that stops at doors, and a ceiling at the room height. Door and window openings in the walls behind get cut through the finish walls. Lengths are shown and typed in the project's own units.</p><p><strong>Plan, preview, apply.</strong> You see every change before anything is drawn. Run it again and it updates the finishes that are already there instead of drawing new ones, so tags and schedules keep working: a new code changes the type, a room that changed shape gets redrawn, openings follow moved doors, and a wall moved by up to 500 mm takes its finish with it. A type you changed by hand stays, so a feature wall survives. The linked model is never touched.</p><p>Finish types and materials are edited in a table or in Excel, where a new row makes a new type, with an optional naming convention. One settings file holds the company standard, so any template works and nothing has to be added to a project first.</p><p><strong>RIFADEX</strong> (Revit Interior Finishes: Assignment, Drawing and Excel eXchange) rebuilds the in-house finishes tools I wrote years ago as one company-neutral package.</p>
   <h2>Features</h2><ul class="features"><li>Choose wall, floor, skirting and ceiling finishes per room, in this model or a linked model</li><li>Set finishes for many rooms at once; filter by floor, by search or by any room property; group rooms by name</li><li>Draws finish walls along the room edges, a floor per room with cut-outs, skirting that stops at doors, and a ceiling at the room height</li><li>Cuts door and window openings through the finish walls from the walls behind, linked or not</li><li>Plan, preview, apply: every change is shown before anything is drawn</li><li>Running it again updates existing finishes in place, keeps hand edits, and does not bring back skirting you deleted</li><li>A wall moved by up to 500 mm takes its finish wall with it, keeping the same element and its tags; walls are matched by the side that faces the room, so opposite walls of a narrow room are never mixed up</li><li>Revit warnings during updates are handled and logged instead of popping up</li><li>Height and floor offset can be set per room; lengths in the project's units</li><li>Remove drawn finishes per room and surface; a count of what was drawn in each room</li><li>Finish types and materials in a table or in Excel; new rows create new types</li><li>Optional naming convention built from parts you choose</li><li>One settings file holds the company standard and can be shared from a server; any template works</li><li>No extra project parameters and no third-party libraries; Revit 2024 to 2027 from one codebase</li></ul>
-  <div class="result"><span>Highlight</span>Tested inside Revit from start to finish, 57 checks in Revit 2026: drawing, redrawing, hand edits, door openings, a moved and rotated linked model, and an Excel round trip. <strong>One codebase for Revit 2024 to 2027</strong>, with no third-party libraries.</div>
   <h2>Terms on this page</h2><dl class="gloss"><div><dt>Revit</dt><dd>Autodesk's main software for designing buildings as BIM models. Most architects and engineers use it.</dd></div><div><dt>Linked model</dt><dd>A model from another file, often from another team, shown inside your model for reference but kept separate from it.</dd></div><div><dt>Schedule</dt><dd>A table in Revit that lists elements and their data, for example every door with its size.</dd></div></dl>
   
 </div></section>
