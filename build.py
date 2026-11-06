@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Static site generator for mohamedkmahdy.github.io.
+"""Static site generator for mohamedkmahdy.com (hosted on GitHub Pages).
 Run: python3 build.py   (from the site/ directory)"""
 import os, re, html, hashlib
 
@@ -9,7 +9,8 @@ OUT_PROJ = os.path.join(SITE, 'projects')
 NAME  = "Mohamed K. Mahdy"
 ROLE  = "AEC Solutions Architect &amp; AI Specialist"
 LEDE  = "I build the software layer between engineers and their models, and the AI layer above it."
-BASE  = "https://mohamedkmahdy.github.io"
+BASE  = "https://mohamedkmahdy.com"
+DOMAIN = "mohamedkmahdy.com"  # written to CNAME so GitHub Pages serves the site on this domain
 EMAIL = "mohamedkmahdy@outlook.com"
 LINKEDIN = "https://www.linkedin.com/in/mohamedkmahdy/"
 GITHUB = "https://github.com/MohamedKMahdy"
@@ -896,7 +897,7 @@ def build_og(p):
     d.text((x, y), html.unescape(p['tag']).upper(), font=mono(19), fill=(169, 201, 154)); y += 48
     for line in wrap(html.unescape(p['card']), sans(26), tw, 6 if shot else 4):
         d.text((x, y), line, font=sans(26), fill=(236, 236, 236)); y += 37
-    d.text((x, H - 64), "mohamedkmahdy.github.io", font=mono(18), fill=(169, 201, 154))
+    d.text((x, H - 64), DOMAIN, font=mono(18), fill=(169, 201, 154))
 
     if shot:
         bx, by, bw, bh = 576, 56, 568, 518
@@ -987,6 +988,7 @@ REDIRECTS = {"genq": "qubecta", "interior-finishes": "rifadex", "batch-tools": "
 
 # ---------------------------------------------------------------- write
 os.makedirs(OUT_PROJ, exist_ok=True)
+open(os.path.join(SITE, "CNAME"), "w").write(DOMAIN + "\n")
 CSS_VER = hashlib.sha1(CSS.encode()).hexdigest()[:8]
 open(os.path.join(SITE, 'style.css'), 'w').write(CSS)
 open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
