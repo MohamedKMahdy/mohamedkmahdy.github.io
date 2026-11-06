@@ -403,8 +403,8 @@ for _p in P:
 
 # Where I've worked: (when, employer, place, role, summary)
 JOBS = [
- ("2026 to now", "Sweco", "Munich", "BIM &amp; AI Solutions Architect", "I work on the AI and automation roadmap for the BIM + Data Science department: deciding what to automate, building Revit tools and LLM agents, and taking them through internal release."),
- ("2025 to 2026", "Sweco", "Munich", "BIM &amp; AI Specialist (working student)", "Revit add-ins, Power Automate and Power Apps for project workflows, and Power BI dashboards that show coordination status."),
+ ("2026 to now", "Sweco", "Munich", "BIM &amp; AI Solutions Architect", "I work on the department's AI roadmap: scoping the automation portfolio, planning the Microsoft Copilot Studio rollout and setting delivery milestones with leadership. I also build the Revit tools and LLM agents myself and take them through internal release."),
+ ("2025 to 2026", "Sweco", "Munich", "BIM &amp; AI Specialist (working student)", "Revit add-ins, LLM agents that search technical documentation, Power Automate and Power Apps for project workflows, and Power BI dashboards that show coordination status."),
  ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer (working student)", "Scripts that automate model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards on model quality."),
  ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst", "BIM software and data analysis for coordination, model quality and project reporting."),
  ("2022 to 2024", "Freelance (Upwork)", "Remote", "BIM Software Developer &amp; Data Analyst", "18 client projects, 895 billable hours and a 5.0 average rating: Revit automation, Dynamo scripts and Python data pipelines."),
