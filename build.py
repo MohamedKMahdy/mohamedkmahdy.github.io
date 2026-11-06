@@ -409,7 +409,7 @@ JOBS = [
  ("2025 to 2026", "Sweco", "Munich", "BIM &amp; AI Specialist (working student)", "Revit add-ins, LLM agents that search technical documentation, Power Automate and Power Apps for project workflows, and Power BI dashboards that show coordination status."),
  ("2024 to 2025", "Obermeyer", "Munich", "BIM Software Developer (working student)", "Scripts that automate model-checking rules in Desite MD, Power Automate flows that sort and name SharePoint files, and Power BI dashboards on model quality."),
  ("2023 to 2024", "Dewan Architects + Engineers", "Dubai, remote", "BIM Software Developer &amp; Data Analyst", "BIM software and data analysis for coordination, model quality and project reporting."),
- ("2022 to 2024", "Freelance (Upwork)", "Remote", "BIM Software Developer &amp; Data Analyst", "18 client projects, 895 billable hours and a 5.0 average rating: Revit automation, Dynamo scripts and Python data pipelines."),
+ ("2022 to 2024", "Freelance", "Remote", "BIM Software Developer &amp; Data Analyst", "18 client projects: Revit automation, Dynamo scripts and Python data pipelines."),
  ("2023", "Solid Construction", "Cairo", "BIM Software Developer", "Revit add-ins and Dynamo scripts for structural modelling, quantities and finishes."),
  ("2021 to 2023", "Pinnacle Misr", "Cairo", "BIM Coordinator / Developer", "Revit plugins and Dynamo workflows on large projects, including the El Alamein Iconic Tower and Kitoko Ministerial City."),
  ("2020 to 2021", "X-Dimension", "Cairo", "BIM Architect", "BIM standards and templates, Dynamo scripts, and Scan-to-BIM (turning laser scans of existing buildings into models)."),
@@ -867,7 +867,7 @@ def build_index():
     <div class="stat"><b>~20</b><span>tools shipped</span></div>
     <div class="stat"><b>5+</b><span>years in AEC</span></div>
     <div class="stat"><b>6</b><span>organisations</span></div>
-    <div class="stat"><b>895</b><span>consulting hours</span></div>
+    <div class="stat"><b>3</b><span>countries</span></div>
   </div>
 </div></div>
 
@@ -915,8 +915,7 @@ def build_index():
     the logic behind them. The interesting problems in construction turned out to be data problems: project
     information stuck in disconnected tools and manual routines. I build the systems that connect it.</p>
     <p>That has meant Revit and Navisworks plugins, model-health and clash dashboards, and automation that
-    runs on its own, in Cairo, Dubai and now Munich. Along the way I did <strong>18 freelance client projects,
-    895 billable hours</strong> with a 5.0 average rating, and doubled my rate.</p>
+    runs on its own, in Cairo, Dubai and now Munich. Along the way I took on <strong>18 freelance client projects</strong> next to my day jobs.</p>
     <p>In 2024 I left a good full-time job to do the ITBE master's at TUM, and I don't regret it for a second.
     It added the half I was missing: GIS, spatial data mining, photogrammetry and remote sensing, next to semantic
     modelling and software engineering. <strong>BIM, GIS and AI are converging, and not many people work across
