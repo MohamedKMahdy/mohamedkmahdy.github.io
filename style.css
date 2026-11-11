@@ -91,7 +91,7 @@ color:var(--fg);background:var(--card);transition:background-color .15s,border-c
 /* sections */
 section{padding:96px 0}
 section+section{border-top:1px solid var(--line)}
-#services,#experience{background:var(--bg-alt)}
+#services,#notes,#about{background:var(--bg-alt)}
 .sec-head{margin:0 0 40px;max-width:var(--read)}
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px}
 h2{font-size:clamp(28px,3.6vw,38px);line-height:1.15;letter-spacing:-.03em;margin:0 0 12px;font-weight:700;color:var(--fg)}
@@ -271,3 +271,21 @@ padding:8px 16px;border:1px solid var(--line-strong);border-radius:999px;list-st
 .principles span{display:block;font-size:14.5px;color:var(--fg-soft);line-height:1.55}
 @media(max-width:640px){.principles{grid-template-columns:1fr}}
 .side{display:grid;gap:20px;align-self:start}
+/* notes */
+.notes{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);overflow:hidden;max-width:920px}
+.note{display:grid;grid-template-columns:150px 1fr auto;gap:8px 28px;align-items:baseline;padding:24px 28px;color:var(--fg);border-top:1px solid var(--line);transition:background-color .15s}
+.note:first-child{border-top:0}
+.note:hover{background:var(--accent-soft);text-decoration:none}
+.note time{font-size:13.5px;font-weight:500;color:var(--fg-faint);font-variant-numeric:tabular-nums}
+.note h3{font-size:19px;margin:0 0 4px;font-weight:650;letter-spacing:-.02em;line-height:1.3}
+.note p{margin:0;font-size:15px;color:var(--fg-soft);line-height:1.6}
+.note .go{font-size:14px;font-weight:600;color:var(--fg);white-space:nowrap}
+.note:hover .go{text-decoration:underline}
+.feed{margin:16px 0 0;font-size:14px;color:var(--fg-faint)}
+.feed a{color:var(--fg-soft);text-decoration:underline}
+@media(max-width:700px){.note{grid-template-columns:1fr;padding:20px}.note .go{display:none}}
+.nbody h2{font-size:21px;margin:36px 0 8px}
+.nbody p{font-size:17.5px;line-height:1.7;color:var(--fg-soft);margin:0 0 16px}
+.nbody p:first-child{color:var(--fg);font-size:19px}
+.related{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--fg-faint)}
+.related a{color:var(--fg);font-weight:500;text-decoration:underline}

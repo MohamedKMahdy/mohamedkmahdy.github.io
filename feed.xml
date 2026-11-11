@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Notes by Mohamed K. Mahdy</title><link>https://mohamedkmahdy.com/#notes</link>
+  <description>Short write-ups on BIM automation and AI on BIM data.</description><language>en</language>
+  <item><title>The rules I follow when I put a language model on BIM data</title><link>https://mohamedkmahdy.com/notes/rules-for-ai-on-bim-data</link>
+  <guid>https://mohamedkmahdy.com/notes/rules-for-ai-on-bim-data</guid><pubDate>Wed, 11 Nov 2026 08:00:00 +0000</pubDate>
+  <description>Six rules from building an assistant that answers questions about building models. Most of them are about what the model isn&#x27;t allowed to do.</description></item>
+  <item><title>What a BIM tool needs before it can run with nobody watching</title><link>https://mohamedkmahdy.com/notes/running-with-nobody-watching</link>
+  <guid>https://mohamedkmahdy.com/notes/running-with-nobody-watching</guid><pubDate>Wed, 11 Nov 2026 08:00:00 +0000</pubDate>
+  <description>Seven requirements I now treat as a checklist. Each one comes from a tool that had to run overnight.</description></item>
+</channel></rss>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a BIM tool needs before it can run with nobody watching | Mohamed K. Mahdy</title>
+<meta name="description" content="Seven requirements I now treat as a checklist. Each one comes from a tool that had to run overnight.">
+<meta property="og:title" content="What a BIM tool needs before it can run with nobody watching | Mohamed K. Mahdy">
+<meta property="og:description" content="Seven requirements I now treat as a checklist. Each one comes from a tool that had to run overnight.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.com/notes/running-with-nobody-watching">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.com/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2309090b'/><text x='50' y='66' text-anchor='middle' font-size='44' font-weight='700' font-family='Inter,Arial,sans-serif' fill='%23fafafa'>MK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="alternate" type="application/rss+xml" title="Notes by Mohamed K. Mahdy" href="https://mohamedkmahdy.com/feed.xml">
+<link rel="stylesheet" href="../style.css?v=2ffa58a6">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#notes">Notes</a>
+    <a class="hide-sm" href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="band"><div class="wrap read">
+  <a class="crumb" href="../index.html#notes">← All notes</a>
+  <div class="phead">
+    <span class="tag">Note · <time datetime="2026-11-11">11 November 2026</time></span>
+    <h1 style="font-size:clamp(30px,4.6vw,44px);line-height:1.12">What a BIM tool needs before it can run with nobody watching</h1>
+    <p class="subtitle">Seven requirements I now treat as a checklist. Each one comes from a tool that had to run overnight.</p>
+  </div>
+</div></div>
+<section><div class="wrap read pbody nbody">
+  <p>Writing a tool that works while you watch it is the easy half. The hard half is the Tuesday night when the network drops, one model hangs, and nobody looks at the result until Thursday.</p><p>These are the seven things I build in before I let a tool run on a schedule.</p><h2>1. It knows when not to work</h2><p>Bimnox skips a model when its source, its settings and its results haven't changed since the last good run. LARBACC links an unchanged document to the previous backup instead of downloading it again. The second run should be the cheap one.</p><h2>2. One bad input doesn't stop the rest</h2><p>Every model in Bimnox has a time limit. A model that hangs is closed and reported, and the others carry on.</p><h2>3. It doesn't change what it reads</h2><p>Bimnox opens each model once, runs every task and closes it without saving. Older models are upgraded in memory only. Family Validation copies each original aside before it does anything, and if that copy fails, the family is skipped.</p><h2>4. A half-finished result can't look finished</h2><p>In LARBACC a run only counts as a backup once its complete file list is written. A crash or a power cut leaves a folder that's labelled as failed, not one that looks complete.</p><h2>5. It retries on its own, and it's careful after a failure</h2><p>A missed backup runs at the next start. A failed one tries again after 15 minutes, 1 hour and 4 hours. After any run that had failures, nothing old is deleted.</p><h2>6. It leaves a record someone else can read</h2><p>One output folder. A history workbook. A message in Teams after each run. Skipped models say why they were skipped, and failures say what to fix. The person reading it on Thursday wasn't there on Tuesday.</p><h2>7. There's a way to rehearse</h2><p>A dry run that writes the full report without changing a file. A test run that downloads nothing. People trust a schedule more once they've seen what it would have done.</p><p>None of this is clever. It's what lets people stop thinking about the tool.</p>
+  <p class="related">The tools this comes from: <a href="../projects/bimnox.html">Bimnox</a> · <a href="../projects/acc-integrations.html">LARBACC</a> · <a href="../projects/family-validation.html">Family Validation</a></p>
+</div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
+  I'd like to hear about it. I'm also always up for a conversation about AEC software, openBIM and AI in
+  construction.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c='light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The rules I follow when I put a language model on BIM data | Mohamed K. Mahdy</title>
+<meta name="description" content="Six rules from building an assistant that answers questions about building models. Most of them are about what the model isn&#x27;t allowed to do.">
+<meta property="og:title" content="The rules I follow when I put a language model on BIM data | Mohamed K. Mahdy">
+<meta property="og:description" content="Six rules from building an assistant that answers questions about building models. Most of them are about what the model isn&#x27;t allowed to do.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mohamedkmahdy.com/notes/rules-for-ai-on-bim-data">
+<meta property="og:site_name" content="Mohamed K. Mahdy">
+<meta property="og:image" content="https://mohamedkmahdy.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mohamedkmahdy.com/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2309090b'/><text x='50' y='66' text-anchor='middle' font-size='44' font-weight='700' font-family='Inter,Arial,sans-serif' fill='%23fafafa'>MK</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="alternate" type="application/rss+xml" title="Notes by Mohamed K. Mahdy" href="https://mohamedkmahdy.com/feed.xml">
+<link rel="stylesheet" href="../style.css?v=2ffa58a6">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="../index.html"><i aria-hidden="true">MK</i><span>Mohamed K. Mahdy</span></a>
+  <nav aria-label="Main">
+    <a class="hide-sm" href="../index.html#services">Expertise</a>
+    <a href="../index.html#work">Work</a>
+    <a href="../index.html#notes">Notes</a>
+    <a class="hide-sm" href="../index.html#experience">Experience</a>
+    <a href="../index.html#about">About</a>
+    <a class="cta" href="../index.html#contact">Contact</a>
+  </nav>
+  <button id="tt" type="button" aria-label="Switch between light and dark theme">◐</button>
+</div></header>
+
+<main id="main">
+<div class="band"><div class="wrap read">
+  <a class="crumb" href="../index.html#notes">← All notes</a>
+  <div class="phead">
+    <span class="tag">Note · <time datetime="2026-11-11">11 November 2026</time></span>
+    <h1 style="font-size:clamp(30px,4.6vw,44px);line-height:1.12">The rules I follow when I put a language model on BIM data</h1>
+    <p class="subtitle">Six rules from building an assistant that answers questions about building models. Most of them are about what the model isn't allowed to do.</p>
+  </div>
+</div></div>
+<section><div class="wrap read pbody nbody">
+  <p>Most demos of AI on BIM data look the same. Someone types a question, an answer appears, everyone nods. Nobody asks how you'd know if the answer was wrong.</p><p>On a real project that's the only question that matters. A wrong door count goes into a tender. A wrong fire rating goes into a report that someone signs. So when I rebuilt ARVENT in 2026, three years after I first connected Speckle to a language model, I wrote down the rules it had to follow. I use the same ones everywhere now.</p><h2>1. The model never does the arithmetic</h2><p>Counting, summing and comparing are done by code. A language model asked to count doors is guessing at a number that a query can simply return.</p><h2>2. The model never writes the query</h2><p>It fills in a structured query plan, and the plan can only use field names that exist in the data. Code checks the plan, repairs what it can and runs it. The model chooses what to ask for. It doesn't get to decide how.</p><h2>3. Every answer shows its working</h2><p>Each reply includes the exact query and the result it came from, and a link that shows those elements in the model. Anyone can check an answer without having to trust me or the model.</p><h2>4. Missing data is reported, not filled in</h2><p>If a door has no fire rating, the answer says so. It sounds obvious. It's also the first thing a language model gets wrong when it's left alone, because a plausible value is always available.</p><h2>5. Nothing takes effect until a person approves it</h2><p>ARVENT can read a specification and propose rules to check the model against. Those rules do nothing until someone approves them. The same goes for anything else AI suggests in my tools: a person signs off.</p><h2>6. Project data stays where it is</h2><p>ARVENT runs on a local Llama model through Ollama, so model data and project documents never leave the machine. On many projects that decides whether a tool is allowed at all.</p><h2>What this leaves for the model</h2><p>Less than you'd think, and that's fine. It turns a question in plain language into a plan, and it turns a result back into a sentence. Those are the two things it's good at.</p><p>What I learned in 2023 still holds. The model was never the hard part. Getting clean, structured data out of the design tools is.</p>
+  <p class="related">The tools this comes from: <a href="../projects/speckle-llm.html">ARVENT</a></p>
+</div></section>
+</main>
+
+<section id="contact"><div class="wrap"><div class="contact">
+  <p class="eyebrow">Contact</p>
+  <h2>Let's talk</h2>
+  <p>If your team loses hours to model checks, exports, sorting clashes or copying data out of Revit by hand,
+  I'd like to hear about it. I'm also always up for a conversation about AEC software, openBIM and AI in
+  construction.</p>
+  <div class="links">
+    <a class="btn primary" href="mailto:mohamedkmahdy@outlook.com">Email me</a>
+    <a class="btn" href="https://www.linkedin.com/in/mohamedkmahdy/" rel="noopener">LinkedIn</a>
+    <a class="btn" href="https://github.com/MohamedKMahdy" rel="noopener">GitHub</a>
+  </div>
+</div></div></section>
+<footer><div class="wrap">
+  <span>Mohamed K. Mahdy · Munich, Germany</span>
+  <span>A small static site. No trackers, no cookies.</span>
+</div></footer>
+<script>(function(){var r=document.documentElement,t=document.getElementById('tt'),s=null;
+try{s=localStorage.getItem('theme')}catch(e){}
+if(s)r.setAttribute('data-theme',s);
+t.addEventListener('click',function(){var c=r.getAttribute('data-theme');
+if(!c)c='light';
+var n=c==='dark'?'light':'dark';r.setAttribute('data-theme',n);
+try{localStorage.setItem('theme',n)}catch(e){}});})();</script>
+</body></html>

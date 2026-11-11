@@ -8,7 +8,7 @@ OUT_PROJ = os.path.join(SITE, 'projects')
 
 NAME  = "Mohamed K. Mahdy"
 ROLE  = "BIM &amp; AI Solutions Architect"
-LEDE  = "I build software that makes BIM data usable, and lately, software that lets AI act on it."
+LEDE  = "I build BIM automation that runs without supervision, and AI on BIM data whose answers can be checked."
 BASE  = "https://mohamedkmahdy.com"
 DOMAIN = "mohamedkmahdy.com"  # written to CNAME so the old mohamedkmahdy.github.io address keeps redirecting here
 EMAIL = "mohamedkmahdy@outlook.com"
@@ -403,6 +403,63 @@ for _p in P:
     if _p['slug'] == 'bim-analytics': _p['media'] = [('img', 'img/bimperf-overview.jpg', 'Offline rebuild: overview', 'Client project names are blurred.'), ('img', 'img/bimperf-model-health-summary.jpg', 'Offline rebuild: model health', ''), ('img', 'img/bimperf-clash-detection.jpg', 'Offline rebuild: clash detection', '')] + _p['media']
     _p['features'] = FEATURES.get(_p['slug'], [])
 
+
+# ---------------------------------------------------------------- notes
+# Short dated write-ups in my own voice. A string starting with "## " is a heading, anything else a paragraph.
+# `related` lists project slugs shown under the note.
+NOTES = [
+dict(slug="rules-for-ai-on-bim-data", date="2026-11-11",
+  title="The rules I follow when I put a language model on BIM data",
+  lead="Six rules from building an assistant that answers questions about building models. Most of them are about what the model isn't allowed to do.",
+  related=["speckle-llm"],
+  body=[
+   "Most demos of AI on BIM data look the same. Someone types a question, an answer appears, everyone nods. Nobody asks how you'd know if the answer was wrong.",
+   "On a real project that's the only question that matters. A wrong door count goes into a tender. A wrong fire rating goes into a report that someone signs. So when I rebuilt ARVENT in 2026, three years after I first connected Speckle to a language model, I wrote down the rules it had to follow. I use the same ones everywhere now.",
+   "## 1. The model never does the arithmetic",
+   "Counting, summing and comparing are done by code. A language model asked to count doors is guessing at a number that a query can simply return.",
+   "## 2. The model never writes the query",
+   "It fills in a structured query plan, and the plan can only use field names that exist in the data. Code checks the plan, repairs what it can and runs it. The model chooses what to ask for. It doesn't get to decide how.",
+   "## 3. Every answer shows its working",
+   "Each reply includes the exact query and the result it came from, and a link that shows those elements in the model. Anyone can check an answer without having to trust me or the model.",
+   "## 4. Missing data is reported, not filled in",
+   "If a door has no fire rating, the answer says so. It sounds obvious. It's also the first thing a language model gets wrong when it's left alone, because a plausible value is always available.",
+   "## 5. Nothing takes effect until a person approves it",
+   "ARVENT can read a specification and propose rules to check the model against. Those rules do nothing until someone approves them. The same goes for anything else AI suggests in my tools: a person signs off.",
+   "## 6. Project data stays where it is",
+   "ARVENT runs on a local Llama model through Ollama, so model data and project documents never leave the machine. On many projects that decides whether a tool is allowed at all.",
+   "## What this leaves for the model",
+   "Less than you'd think, and that's fine. It turns a question in plain language into a plan, and it turns a result back into a sentence. Those are the two things it's good at.",
+   "What I learned in 2023 still holds. The model was never the hard part. Getting clean, structured data out of the design tools is.",
+  ]),
+dict(slug="running-with-nobody-watching", date="2026-11-11",
+  title="What a BIM tool needs before it can run with nobody watching",
+  lead="Seven requirements I now treat as a checklist. Each one comes from a tool that had to run overnight.",
+  related=["bimnox", "acc-integrations", "family-validation"],
+  body=[
+   "Writing a tool that works while you watch it is the easy half. The hard half is the Tuesday night when the network drops, one model hangs, and nobody looks at the result until Thursday.",
+   "These are the seven things I build in before I let a tool run on a schedule.",
+   "## 1. It knows when not to work",
+   "Bimnox skips a model when its source, its settings and its results haven't changed since the last good run. LARBACC links an unchanged document to the previous backup instead of downloading it again. The second run should be the cheap one.",
+   "## 2. One bad input doesn't stop the rest",
+   "Every model in Bimnox has a time limit. A model that hangs is closed and reported, and the others carry on.",
+   "## 3. It doesn't change what it reads",
+   "Bimnox opens each model once, runs every task and closes it without saving. Older models are upgraded in memory only. Family Validation copies each original aside before it does anything, and if that copy fails, the family is skipped.",
+   "## 4. A half-finished result can't look finished",
+   "In LARBACC a run only counts as a backup once its complete file list is written. A crash or a power cut leaves a folder that's labelled as failed, not one that looks complete.",
+   "## 5. It retries on its own, and it's careful after a failure",
+   "A missed backup runs at the next start. A failed one tries again after 15 minutes, 1 hour and 4 hours. After any run that had failures, nothing old is deleted.",
+   "## 6. It leaves a record someone else can read",
+   "One output folder. A history workbook. A message in Teams after each run. Skipped models say why they were skipped, and failures say what to fix. The person reading it on Thursday wasn't there on Tuesday.",
+   "## 7. There's a way to rehearse",
+   "A dry run that writes the full report without changing a file. A test run that downloads nothing. People trust a schedule more once they've seen what it would have done.",
+   "None of this is clever. It's what lets people stop thinking about the tool.",
+  ]),
+]
+
+def nice_date(iso):
+    y, m, d = iso.split("-")
+    return f"{int(d)} {['January','February','March','April','May','June','July','August','September','October','November','December'][int(m)-1]} {y}"
+
 # Where I've worked: (when, employer, place, role, summary)
 JOBS = [
  ("2026 to now", "Sweco", "Munich", "BIM &amp; AI Solutions Architect", "I work on the department's AI roadmap: scoping the automation portfolio, planning the Microsoft Copilot Studio rollout and setting delivery milestones with leadership. I also build the Revit tools and LLM agents myself and take them through internal release."),
@@ -538,7 +595,7 @@ color:var(--fg);background:var(--card);transition:background-color .15s,border-c
 /* sections */
 section{padding:96px 0}
 section+section{border-top:1px solid var(--line)}
-#services,#experience{background:var(--bg-alt)}
+#services,#notes,#about{background:var(--bg-alt)}
 .sec-head{margin:0 0 40px;max-width:var(--read)}
 .eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-faint);margin:0 0 10px}
 h2{font-size:clamp(28px,3.6vw,38px);line-height:1.15;letter-spacing:-.03em;margin:0 0 12px;font-weight:700;color:var(--fg)}
@@ -718,6 +775,24 @@ padding:8px 16px;border:1px solid var(--line-strong);border-radius:999px;list-st
 .principles span{display:block;font-size:14.5px;color:var(--fg-soft);line-height:1.55}
 @media(max-width:640px){.principles{grid-template-columns:1fr}}
 .side{display:grid;gap:20px;align-self:start}
+/* notes */
+.notes{display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r);background:var(--card);box-shadow:var(--shadow);overflow:hidden;max-width:920px}
+.note{display:grid;grid-template-columns:150px 1fr auto;gap:8px 28px;align-items:baseline;padding:24px 28px;color:var(--fg);border-top:1px solid var(--line);transition:background-color .15s}
+.note:first-child{border-top:0}
+.note:hover{background:var(--accent-soft);text-decoration:none}
+.note time{font-size:13.5px;font-weight:500;color:var(--fg-faint);font-variant-numeric:tabular-nums}
+.note h3{font-size:19px;margin:0 0 4px;font-weight:650;letter-spacing:-.02em;line-height:1.3}
+.note p{margin:0;font-size:15px;color:var(--fg-soft);line-height:1.6}
+.note .go{font-size:14px;font-weight:600;color:var(--fg);white-space:nowrap}
+.note:hover .go{text-decoration:underline}
+.feed{margin:16px 0 0;font-size:14px;color:var(--fg-faint)}
+.feed a{color:var(--fg-soft);text-decoration:underline}
+@media(max-width:700px){.note{grid-template-columns:1fr;padding:20px}.note .go{display:none}}
+.nbody h2{font-size:21px;margin:36px 0 8px}
+.nbody p{font-size:17.5px;line-height:1.7;color:var(--fg-soft);margin:0 0 16px}
+.nbody p:first-child{color:var(--fg);font-size:19px}
+.related{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);font-size:15px;color:var(--fg-faint)}
+.related a{color:var(--fg);font-weight:500;text-decoration:underline}
 """
 
 CSS_VER = None  # set from the CSS content before writing
@@ -758,6 +833,7 @@ def head(title, desc, root, url, og="og-image.png"):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="alternate" type="application/rss+xml" title="Notes by {NAME}" href="{BASE}/feed.xml">
 <link rel="stylesheet" href="{root}style.css?v={CSS_VER}">
 </head>
 <body>
@@ -767,7 +843,8 @@ def head(title, desc, root, url, og="og-image.png"):
   <nav aria-label="Main">
     <a class="hide-sm" href="{root}index.html#services">Expertise</a>
     <a href="{root}index.html#work">Work</a>
-    <a href="{root}index.html#experience">Experience</a>
+    <a href="{root}index.html#notes">Notes</a>
+    <a class="hide-sm" href="{root}index.html#experience">Experience</a>
     <a href="{root}index.html#about">About</a>
     <a class="cta" href="{root}index.html#contact">Contact</a>
   </nav>
@@ -840,6 +917,9 @@ def build_index():
     <li><span class="when">{when}</span><div class="job">
       <h3>{org} <small>· {place}</small></h3><p class="jrole">{role}</p><p>{summary}</p>
     </div></li>"""
+    note_rows = "".join(f"""
+    <a class="note" href="notes/{n['slug']}.html"><time datetime="{n['date']}">{nice_date(n['date'])}</time>
+      <div><h3>{n['title']}</h3><p>{n['lead']}</p></div><span class="go">Read →</span></a>""" for n in NOTES)
     recent = "".join(job(*j) for j in JOBS[:4])
     older = "".join(job(*j) for j in JOBS[4:])
 
@@ -894,6 +974,16 @@ def build_index():
   <div class="cards compact">{cards}</div>
 </div></section>
 
+<section id="notes"><div class="wrap">
+  <div class="sec-head">
+    <p class="eyebrow">Notes</p>
+    <h2>How I think about this work</h2>
+    <p>Short write-ups on the rules and checklists behind the tools above, and what I got wrong on the way.</p>
+  </div>
+  <div class="notes">{note_rows}</div>
+  <p class="feed">New notes also go out by <a href="feed.xml">RSS</a>.</p>
+</div></section>
+
 <section id="experience"><div class="wrap">
   <div class="sec-head">
     <p class="eyebrow">Experience</p>
@@ -918,8 +1008,7 @@ def build_index():
     runs on its own, in Cairo, Dubai and now Munich. Along the way I took on <strong>18 freelance client projects</strong> next to my day jobs.</p>
     <p>In 2024 I left a good full-time job to do the ITBE master's at TUM, and I don't regret it for a second.
     It added the half I was missing: GIS, spatial data mining, photogrammetry and remote sensing, next to semantic
-    modelling and software engineering. <strong>BIM, GIS and AI are converging, and not many people work across
-    all three.</strong></p>
+    modelling and software engineering.</p>
     <h3 class="eyebrow" style="margin-top:32px">How I build</h3>
     <ul class="principles">{ways}</ul>
   </div>
@@ -1079,6 +1168,47 @@ def build_project(i, p):
 <script>{JS_THEME}</script>
 </body></html>"""
 
+# ---------------------------------------------------------------- note page
+def build_note(n):
+    parts = []
+    for b in n['body']:
+        parts.append(f"<h2>{b[3:]}</h2>" if b.startswith("## ") else f"<p>{b}</p>")
+    rel = [p for p in P if p['slug'] in n.get('related', [])]
+    related = ('<p class="related">The tools this comes from: ' + " · ".join(
+        f'<a href="../projects/{p["slug"]}.html">{p["title"]}</a>' for p in rel) + '</p>') if rel else ""
+    return head(f"{n['title']} | {NAME}", html.escape(n['lead'], quote=True), "../", f"{BASE}/notes/{n['slug']}") + f"""
+<main id="main">
+<div class="band"><div class="wrap read">
+  <a class="crumb" href="../index.html#notes">← All notes</a>
+  <div class="phead">
+    <span class="tag">Note · <time datetime="{n['date']}">{nice_date(n['date'])}</time></span>
+    <h1 style="font-size:clamp(30px,4.6vw,44px);line-height:1.12">{n['title']}</h1>
+    <p class="subtitle">{n['lead']}</p>
+  </div>
+</div></div>
+<section><div class="wrap read pbody nbody">
+  {"".join(parts)}
+  {related}
+</div></section>
+</main>
+{contact("../")}
+<script>{JS_THEME}</script>
+</body></html>"""
+
+def build_feed():
+    from email.utils import format_datetime
+    from datetime import datetime, timezone
+    items = "".join(f"""
+  <item><title>{html.escape(n['title'])}</title><link>{BASE}/notes/{n['slug']}</link>
+  <guid>{BASE}/notes/{n['slug']}</guid><pubDate>{format_datetime(datetime.fromisoformat(n['date']).replace(hour=8, tzinfo=timezone.utc))}</pubDate>
+  <description>{html.escape(n['lead'])}</description></item>""" for n in NOTES)
+    return f"""<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"><channel>
+  <title>Notes by {NAME}</title><link>{BASE}/#notes</link>
+  <description>Short write-ups on BIM automation and AI on BIM data.</description><language>en</language>{items}
+</channel></rss>
+"""
+
 # Old page names point to the current ones, so earlier links keep working.
 REDIRECTS = {"genq": "qubecta", "interior-finishes": "rifadex", "batch-tools": "bimnox", "model-health": "bimnox", "revit-batch": "bimnox"}
 
@@ -1091,6 +1221,10 @@ open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
 og_made = [build_og(p) for p in P]
 for i, p in enumerate(P):
     open(os.path.join(OUT_PROJ, p['slug'] + '.html'), 'w').write(build_project(i, p))
+OUT_NOTES = os.path.join(SITE, 'notes'); os.makedirs(OUT_NOTES, exist_ok=True)
+for n in NOTES:
+    open(os.path.join(OUT_NOTES, n['slug'] + '.html'), 'w').write(build_note(n))
+open(os.path.join(SITE, 'feed.xml'), 'w').write(build_feed())
 for old, new in REDIRECTS.items():
     open(os.path.join(OUT_PROJ, old + '.html'), 'w').write(
         f'<!doctype html><meta charset="utf-8"><title>Moved</title>'
@@ -1099,7 +1233,7 @@ for old, new in REDIRECTS.items():
 # Cloudflare Pages answers these with a real 301 before the HTML stubs above are ever served.
 open(os.path.join(SITE, '_redirects'), 'w').write("".join(
     f"/projects/{old} /projects/{new} 301\n/projects/{old}.html /projects/{new} 301\n" for old, new in REDIRECTS.items()))
-print(f"built: index.html, style.css, {len(P)} project pages, {sum(og_made)} preview images")
+print(f"built: index.html, style.css, {len(P)} project pages, {len(NOTES)} notes, {sum(og_made)} preview images")
 for p in P:
     n = len(p['media'])
     print(f"  projects/{p['slug']}.html  ({n} media)" if n else f"  projects/{p['slug']}.html")
