@@ -1176,7 +1176,11 @@ def build_note(n):
     rel = [p for p in P if p['slug'] in n.get('related', [])]
     related = ('<p class="related">The tools this comes from: ' + " · ".join(
         f'<a href="../projects/{p["slug"]}.html">{p["title"]}</a>' for p in rel) + '</p>') if rel else ""
-    return head(f"{n['title']} | {NAME}", html.escape(n['lead'], quote=True), "../", f"{BASE}/notes/{n['slug']}") + f"""
+    # Each note gets its own link-preview card (og/note-<slug>.png), built like the project cards.
+    og_file = os.path.join(SITE, 'og', 'note-' + n['slug'] + '.png')
+    og = (f"og/note-{n['slug']}.png?v={hashlib.sha1(open(og_file, 'rb').read()).hexdigest()[:8]}"
+          if os.path.exists(og_file) else "og-image.png")
+    return head(f"{n['title']} | {NAME}", html.escape(n['lead'], quote=True), "../", f"{BASE}/notes/{n['slug']}", og) + f"""
 <main id="main">
 <div class="band"><div class="wrap read">
   <a class="crumb" href="../index.html#notes">← All notes</a>
@@ -1219,6 +1223,8 @@ CSS_VER = hashlib.sha1(CSS.encode()).hexdigest()[:8]
 open(os.path.join(SITE, 'style.css'), 'w').write(CSS)
 open(os.path.join(SITE, 'index.html'), 'w').write(build_index())
 og_made = [build_og(p) for p in P]
+for n in NOTES:
+    build_og(dict(slug='note-' + n['slug'], title=n['title'], tag='Note · ' + nice_date(n['date']), card=n['lead'], media=[]))
 for i, p in enumerate(P):
     open(os.path.join(OUT_PROJ, p['slug'] + '.html'), 'w').write(build_project(i, p))
 OUT_NOTES = os.path.join(SITE, 'notes'); os.makedirs(OUT_NOTES, exist_ok=True)
